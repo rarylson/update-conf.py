@@ -1,0 +1,5 @@
+# Sample using the daemon SNMPd in Ubuntu or Debian systems
+[snmpd]
+file = /etc/snmp/snmpd.conf
+dir = /etc/snmp/snmpd.d
+main = /etc/snmp/snmpd.main
