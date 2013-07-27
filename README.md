@@ -11,7 +11,7 @@ Files ending with '.bak', '.old' and some others terminations will be ignored.
 
 Commands can be defined in a config file. In this case, it's only needed to pass the name of commmand.
 
-Commom usage examples can be found in [Usage](#usage).
+Commom usage examples can be found in [quick-start](#quick-start).
 
 This project was based in the [update-conf.d project](https://github.com/Atha/update-conf.d).
 
