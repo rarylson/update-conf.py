@@ -2,36 +2,25 @@
 
 """Generate config files from 'conf.d' like directories
 
-Split your config file into smaller files in a 'conf.d' like directory and optionally a main file
+Split your config file into smaller files in a 'conf.d' like directory.
+
+NOTE: This software was based in the 'update-conf.d' project.
+      See: https://github.com/Atha/update-conf.d
 """
 
-# Generate a new config file using as base the splitted config dir (default is './conf.d') and a 
-# optional main file.
-# If the main files was not provided, only the splitted files in the 'conf.d' like dir will be used.
-# The new file will consist of the main file followed by the splitted files. These last ones will 
-# be merged in the lexical sort order of their names. 
-# Files ending with '.bak', '.old' and some others terminations will be ignored.
-#
-# Usage example:
-#     ./update-conf.d.py -f /etc/snmp/snmpd.conf -d /etc/snmp/snmpd.d -m /etc/snmp/snmpd.main
-#
-# Commands can be defined in a config file. In this case, it's only needed to pass the name of 
-# commmand.
-#
-# Usage example:
-#     ./update-conf.d.py -n snmpd
-#
-# This software was based in the update-conf.d project
-# See: https://github.com/Atha/update-conf.d
-
-# TODO Use better Arg groups
-#      See: http://docs.python.org/dev/library/argparse.html#argument-groups
-
-import sys, os, shutil
+import sys
+import os
+import shutil
 import re
+import subprocess
+
 import argparse
 import ConfigParser
-import subprocess
+
+# About
+__author__ = "Rarylson Freitas"
+__email__ = "rarylson@gmail.com"
+__version__ = "0.1.0"
 
 # Constants
 # Program
