@@ -12,7 +12,7 @@ This project was based in the [update-conf.d project](https://github.com/Atha/up
 Install
 -------
 
-Install Python 2.7 or newer.
+At first, we need Python 2.6 or newer. It's possible to use Python 3 too.
 
 In Ubuntu/Debian:
 
@@ -26,7 +26,7 @@ After, install the requirements:
 pip install -r requirements.txt
 ```
 
-At last, install the script (`/usr/local/bin/update-conf.py`) and create the config file (`/etc/update-conf.py.conf`):
+At last, install the script:
 
 ```sh
 make install
@@ -35,27 +35,15 @@ make install
 Usage
 -----
 
-If you run:
-
-```sh
-update-conf.py -f /path/to/conf
-```
-
-The script will merge the splitted config files in the directory `/path/to/conf.d` in the file `/path/to/conf`.
-
-Using a real example:
+If can run:
 
 ```sh
 update-conf.py -f /etc/snmp/snmpd.conf
 ```
 
+The script will merge the splitted config files in the directory `/etc/snmp/snmpd.conf.d` in the file `/etc/snmp/snmpd.conf`.
+
 If the directory containing the splitted files uses a diferent name pattern, you can pass its name as an param:
-
-```sh
-update-conf.py -f /path/to/conf -d /other/path/to/conf.d
-```
-
-Using a real example:
 
 ```sh
 update-conf.py -f /etc/snmp/snmpd.conf -d /etc/snmp/snmpd.d
