@@ -74,7 +74,7 @@ License
 
 This software is protected by Revised BSD License.
 
-See more: [LICENCE](LICENCE)
+See more at [LICENSE](LICENSE).
 
 TODO
 ----
