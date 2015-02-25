@@ -1,5 +1,4 @@
-# Sample using the daemon SNMPd in Ubuntu or Debian systems
+# Sample config file using SNMPd as an example
 [snmpd]
 file = /etc/snmp/snmpd.conf
 dir = /etc/snmp/snmpd.d
-main = /etc/snmp/snmpd.main
