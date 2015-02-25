@@ -41,7 +41,7 @@ If you run:
 update-conf.py -f /etc/snmp/snmpd.conf
 ```
 
-The script will merge the splitted config files in the directory `/etc/snmp/snmpd.conf.d` in the file `/etc/snmp/snmpd.conf`.
+The script will merge the splitted config files in the directory `/etc/snmp/snmpd.conf.d` into the file `/etc/snmp/snmpd.conf`.
 
 If the directory containing the splitted files uses a diferent name pattern, you can pass its name as an param:
 
