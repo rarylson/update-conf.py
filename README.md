@@ -49,7 +49,9 @@ If the directory containing the splitted files uses a diferent name pattern, you
 update-conf.py -f /etc/snmp/snmpd.conf -d /etc/snmp/snmpd.d
 ```
 
-It's also possible to define the paths in a config file (`/etc/update-conf.py.conf`):
+It's also possible to define the paths in a config file (`/etc/update-conf.py.conf`).
+
+For example:
 
 ```ini
 [snmpd]
