@@ -35,7 +35,7 @@ make install
 Usage
 -----
 
-If can run:
+If you run:
 
 ```sh
 update-conf.py -f /etc/snmp/snmpd.conf
