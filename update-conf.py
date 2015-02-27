@@ -21,7 +21,7 @@ from ConfigParser import SafeConfigParser
 # About
 __author__ = "Rarylson Freitas"
 __email__ = "rarylson@gmail.com"
-__version__ = "0.1.0"
+__version__ = "0.1.1"
 
 # Consts
 DEFAULT_CONFIG = "/etc/update-conf.py.conf"
