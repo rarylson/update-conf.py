@@ -21,7 +21,7 @@ from ConfigParser import SafeConfigParser
 # About
 __author__ = "Rarylson Freitas"
 __email__ = "rarylson@gmail.com"
-__version__ = "0.1.0"
+__version__ = "0.1.1"
 
 # Consts
 DEFAULT_CONFIG = "/etc/update-conf.py.conf"
@@ -104,7 +104,14 @@ def _get_splitted(directory):
 
     # Test all entries in the dir, getting the spllited files
     try:
-        for entry in os.listdir(directory):
+        entries = os.listdir(directory)
+        # Sort the return of 'listdir' as "the list is in arbitrary order"
+        # acourding to the docs. The explanation comes from the SO underlying
+        # implementation.
+        # See: https://docs.python.org/2/library/os.html#os.listdir
+        #      http://stackoverflow.com/a/8984803/2530295
+        entries.sort()
+        for entry in entries:
             entry_path = os.path.join(directory, entry)
             entry_is_valid = True
             if not os.path.isfile(entry_path):
