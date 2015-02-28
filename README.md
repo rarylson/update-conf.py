@@ -74,9 +74,7 @@ update-conf.py --help
 License
 -------
 
-This software is protected by Revised BSD License.
-
-See more at [LICENSE](LICENSE).
+This software is released under the [Revised BSD License](LICENSE).
 
 TODO
 ----
