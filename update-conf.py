@@ -28,6 +28,13 @@ DEFAULT_CONFIG = "/etc/update-conf.py.conf"
 DEFAULT_DIR_EXT = "d"
 IGNORE_FILES_EXT = ["bak", "backup", "old", "inactive", "disabled"]
 BACKUP_EXT = "bak"
+VERBOSE = False
+
+
+# Print a message if verbose is set
+def _print_verbose(message):
+    if VERBOSE:
+        print(message)
 
 
 # Parse command line args and config file
@@ -39,6 +46,7 @@ BACKUP_EXT = "bak"
 # It returns a argparse 'args' object.
 def _parse_all():
     args = None
+    global VERBOSE
 
     # Parse args
     parser = argparse.ArgumentParser(
@@ -56,8 +64,13 @@ def _parse_all():
         help="update-conf.py config file (default {0})".format(DEFAULT_CONFIG),
         default=DEFAULT_CONFIG)
     parser.add_argument(
-        "-v", "--version", action="version", version=__version__)
+        "-v", "--verbose", action="store_true")
+    parser.add_argument(
+        "-V", "--version", action="version", version=__version__)
     args = parser.parse_args()
+
+    # Set global verbose flag
+    VERBOSE = args.verbose
 
     # Parse config file
     if args.name:
