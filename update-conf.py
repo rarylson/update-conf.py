@@ -21,7 +21,7 @@ from ConfigParser import SafeConfigParser
 # About
 __author__ = "Rarylson Freitas"
 __email__ = "rarylson@gmail.com"
-__version__ = "0.1.1"
+__version__ = "0.2.0"
 
 # Consts
 DEFAULT_CONFIG = "/etc/update-conf.py.conf"
@@ -100,6 +100,9 @@ def _parse_all():
     if not args.dir:
         args.dir = "{0}.{1}".format(args.file, DEFAULT_DIR_EXT)
 
+    _print_verbose("Generating {0} using splitted config files from {1}...".format(
+        args.file, args.dir))
+
     return args
 
 
@@ -129,6 +132,7 @@ def _get_splitted(directory):
                 continue
             for ext in IGNORE_FILES_EXT:
                 if entry.endswith(ext):
+                    _print_verbose("Skiping {0}".format(entry))
                     entry_is_valid = False
                     break
             if entry_is_valid:
@@ -157,6 +161,7 @@ def _create_temp_config(splitted_files):
     # See: http://www.logilab.org/blogentry/17873
     temp_file_fd = os.fdopen(temp_file_fd, 'w')
     for splitted in splitted_files:
+        _print_verbose("Merging {0}".format(splitted))
         with open(splitted, 'r') as splitted_fd:
             temp_file_fd.write(splitted_fd.read())
     temp_file_fd.close()
@@ -171,10 +176,13 @@ def _create_temp_config(splitted_files):
 def _temp_to_file(temp_file, config_file):
     # Backup
     if os.path.isfile(config_file):
+        _print_verbose("Backing up current {0}".format(config_file))
         os.rename(config_file, "{0}.{1}".format(config_file, BACKUP_EXT))
     # Move temp_file
     # Using shutil.move because the tmp file can be in a different filesystem
+    _print_verbose("Generating {0}".format(config_file))
     shutil.move(temp_file, config_file)
+    _print_verbose("Done")
 
 
 # Run the script
