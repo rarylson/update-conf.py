@@ -26,7 +26,7 @@ __version__ = "0.1.1"
 # Consts
 DEFAULT_CONFIG = "/etc/update-conf.py.conf"
 DEFAULT_DIR_EXT = "d"
-IGNORE_FILES_EXT = ["bak", "backup", "old", "inactive"]
+IGNORE_FILES_EXT = ["bak", "backup", "old", "inactive", "disabled"]
 BACKUP_EXT = "bak"
 
 
