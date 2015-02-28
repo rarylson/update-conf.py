@@ -21,13 +21,20 @@ from ConfigParser import SafeConfigParser
 # About
 __author__ = "Rarylson Freitas"
 __email__ = "rarylson@gmail.com"
-__version__ = "0.1.1"
+__version__ = "0.2.0"
 
 # Consts
 DEFAULT_CONFIG = "/etc/update-conf.py.conf"
 DEFAULT_DIR_EXT = "d"
-IGNORE_FILES_EXT = ["bak", "backup", "old", "inactive"]
+IGNORE_FILES_EXT = ["bak", "backup", "old", "inactive", "disabled"]
 BACKUP_EXT = "bak"
+VERBOSE = False
+
+
+# Print a message if verbose is set
+def _print_verbose(message):
+    if VERBOSE:
+        print(message)
 
 
 # Parse command line args and config file
@@ -39,6 +46,7 @@ BACKUP_EXT = "bak"
 # It returns a argparse 'args' object.
 def _parse_all():
     args = None
+    global VERBOSE
 
     # Parse args
     parser = argparse.ArgumentParser(
@@ -47,19 +55,22 @@ def _parse_all():
         "-f", "--file", help="config file to be generated")
     parser.add_argument(
         "-d", "--dir",
-        help="directory whith the splitted files (default "
-             "FILE_PATH/FILE_NAME.{0})".format(DEFAULT_DIR_EXT))
+        help="directory with the splitted files (default "
+             "FILE.{0})".format(DEFAULT_DIR_EXT))
     parser.add_argument(
-        "-n", "--name",
-        help="name of the section (defined in the config file) to be used "
-             "while generating a config file")
+        "-n", "--name", help="name of the section (defined in the config file) to be used")
     parser.add_argument(
         "-c", "--config",
-        help="update-conf.py config file (default {0})",
+        help="update-conf.py config file (default {0})".format(DEFAULT_CONFIG),
         default=DEFAULT_CONFIG)
     parser.add_argument(
-        "-v", "--version", action="version", version=__version__)
+        "-v", "--verbose", action="store_true")
+    parser.add_argument(
+        "-V", "--version", action="version", version=__version__)
     args = parser.parse_args()
+
+    # Set global verbose flag
+    VERBOSE = args.verbose
 
     # Parse config file
     if args.name:
@@ -83,11 +94,14 @@ def _parse_all():
     # More parse errors
     if not args.file:
         parser.error(
-            "'file' is required (you must set it via config file or cmd arg)")
+            "'file' is required (you must set it via config file or command line arguments)")
 
     # Default value of 'dir'
     if not args.dir:
         args.dir = "{0}.{1}".format(args.file, DEFAULT_DIR_EXT)
+
+    _print_verbose("Generating {0} using splitted config files from {1}...".format(
+        args.file, args.dir))
 
     return args
 
@@ -118,6 +132,7 @@ def _get_splitted(directory):
                 continue
             for ext in IGNORE_FILES_EXT:
                 if entry.endswith(ext):
+                    _print_verbose("Skiping {0}".format(entry))
                     entry_is_valid = False
                     break
             if entry_is_valid:
@@ -146,6 +161,7 @@ def _create_temp_config(splitted_files):
     # See: http://www.logilab.org/blogentry/17873
     temp_file_fd = os.fdopen(temp_file_fd, 'w')
     for splitted in splitted_files:
+        _print_verbose("Merging {0}".format(splitted))
         with open(splitted, 'r') as splitted_fd:
             temp_file_fd.write(splitted_fd.read())
     temp_file_fd.close()
@@ -160,10 +176,13 @@ def _create_temp_config(splitted_files):
 def _temp_to_file(temp_file, config_file):
     # Backup
     if os.path.isfile(config_file):
+        _print_verbose("Backing up current {0}".format(config_file))
         os.rename(config_file, "{0}.{1}".format(config_file, BACKUP_EXT))
     # Move temp_file
     # Using shutil.move because the tmp file can be in a different filesystem
+    _print_verbose("Generating {0}".format(config_file))
     shutil.move(temp_file, config_file)
+    _print_verbose("Done")
 
 
 # Run the script
