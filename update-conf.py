@@ -232,8 +232,8 @@ def _temp_to_file(temp_file, config_file):
 # Run the script
 def run():
     args = _parse_all()
-    spplited_files = _get_splitted(args.dir)
-    temp_file = _create_temp_config(spplited_files, args.comment_prefix)
+    splitted_files = _get_splitted(args.dir)
+    temp_file = _create_temp_config(splitted_files, args.comment_prefix)
     _temp_to_file(temp_file, args.file)
 
 
