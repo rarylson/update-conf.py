@@ -61,6 +61,22 @@ class SplittedFilesTest(unittest.TestCase):
         finally:
             sys.stderr = stderr_old
 
+    def test_splitted_verbose(self):
+        """App must print verbose messages about skips when verbosity is
+        active
+        """
+        app.VERBOSE = True
+        the_dir = join(utils.SNIPPETS_DIR, "test1_2")
+        stdout_old, sys.stdout = sys.stdout, StringIO()
+        try:
+            app._get_splitted(the_dir)
+            output = sys.stdout.getvalue()
+            self.assertTrue("Skiping" in output and "01-conf_1.bak" in output)
+            self.assertTrue(
+                "Skiping" in output and "03-conf_3.disabled" in output)
+        finally:
+            sys.stdout = stdout_old
+
 
 if __name__ == '__main__':
     unittest.main()
