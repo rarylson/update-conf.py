@@ -17,6 +17,9 @@ class SplittedFilesTest(unittest.TestCase):
     def setUp(self):
         utils.clean_tmp()
 
+    def tearDown(self):
+        app.VERBOSE = False
+
     def test_splitted(self):
         """App must return all splitted files in the correct order
         """
