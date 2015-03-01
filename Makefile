@@ -2,6 +2,7 @@
 
 BIN=update-conf.py
 CONF=$(BIN).conf
+TESTS=tests
 PREFIX=/usr/local
 ETC=/etc
 PYTHON_REQUIREMENTS=requirements.txt
@@ -10,7 +11,7 @@ VENV=venv
 # Tests
 
 test-pep8:
-	pep8 $(BIN)
+	pep8 $(BIN) $(TESTS)/*.py
 
 test:
 	echo "Not implemented yet!"
