@@ -15,7 +15,7 @@ APP_DIR = join(TESTS_DIR, os.pardir)
 SNIPPETS_DIR = join(TESTS_DIR, "snippets")
 TMP_DIR = join(TESTS_DIR, "tmp")
 CONF_FILE = join(TESTS_DIR, "config", "update-conf.py.conf")
-EXPECTED_RESULTS_DIR = join(TESTS_DIR, "expected_results")
+RESULTS_DIR = join(TESTS_DIR, "expected_results")
 
 
 def import_app():
