@@ -47,7 +47,7 @@ class ParseTest(unittest.TestCase):
 
     def test_default_parse(self):
         """App must set the correct default options
-        
+
         It must set the default dir if no one is provided too.
         """
         sys.argv = [
@@ -57,7 +57,6 @@ class ParseTest(unittest.TestCase):
         self.assertEqual(args.dir, "{0}.d".format(self.file_path))
         self.assertEqual(args.comment_prefix, "#")
         self.assertEqual(args.config, "/etc/update-conf.py.conf")
-
 
     def test_wrong_cmd_args(self):
         """App must print an error and exit on wrong cmd args
