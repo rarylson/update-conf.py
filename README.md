@@ -12,7 +12,7 @@ This project was based in the [update-conf.d project](https://github.com/Atha/up
 Install
 -------
 
-At first, we need Python 2.6 or newer. It's possible to use Python 3 too.
+At first, install Python 2.6 or newer.
 
 In Ubuntu/Debian:
 
@@ -20,10 +20,12 @@ In Ubuntu/Debian:
 apt-get install python
 ```
 
+**PS:** It's possible to use Python 3. However, it's not well tested.
+
 After, install the requirements:
 
 ```sh
-pip install -r requirements.txt
+make requirements
 ```
 
 At last, install the script:
@@ -77,9 +79,6 @@ This software is released under the [Revised BSD License](LICENSE).
 TODO
 ----
 
-- Improve the `Makefile`. Currently, `make install` overrides the config file;
-    - There could be a `make requirements` option too;
 - Add tests
-    - There is no `make test` function;
     - Add global command line tests;
     - Add python unit tests.
