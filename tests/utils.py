@@ -2,7 +2,7 @@
 """
 
 import os
-from os.path import join, dirname
+from os.path import join, dirname, isdir
 import sys
 import shutil
 import glob
@@ -43,4 +43,7 @@ def clean_tmp():
     """Clean the TMP_DIR directory
     """
     for entry in glob.iglob(join(TMP_DIR, "*")):
-        shutil.rmtree(entry)
+        if isdir(entry):
+            shutil.rmtree(entry)
+        else:
+            os.remove(entry)
