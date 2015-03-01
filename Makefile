@@ -15,7 +15,7 @@ test-pep8:
 	pep8 $(BIN) $(TEST_DIR)/*.py
 
 test:
-	$(foreach TEST,$(TESTS), python $(TEST);)
+	$(foreach TEST,$(TESTS), python $(TEST) -v;)
 
 test-all: test test-pep8
 
