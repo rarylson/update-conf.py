@@ -88,8 +88,7 @@ def _parse_all():
         default=DEFAULT_CONFIG)
     parser.add_argument(
         "-p", "--comment-prefix",
-        help="Prefix to be used in the auto-generated comment (default '#')",
-        default=DEFAULT_COMMENT_PREFIX)
+        help="Prefix to be used in the auto-generated comment (default '#')")
     parser.add_argument(
         "-v", "--verbose", action="store_true")
     parser.add_argument(
@@ -128,9 +127,11 @@ def _parse_all():
             "'file' is required (you must set it via config file or command "
             "line arguments)")
 
-    # Default value of 'dir'
+    # Default values
     if not args.dir:
         args.dir = "{0}.{1}".format(args.file, DEFAULT_DIR_EXT)
+    if not args.comment_prefix:
+        args.comment_prefix = DEFAULT_COMMENT_PREFIX
 
     _print_verbose(
         "Generating {0} using splitted config files from {1}...".format(
