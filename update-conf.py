@@ -77,7 +77,8 @@ def _parse_all():
         help="directory with the splitted files (default "
              "FILE.{0})".format(DEFAULT_DIR_EXT))
     parser.add_argument(
-        "-n", "--name", help="name of the section (defined in the config file) to be used")
+        "-n", "--name",
+        help="name of the section (defined in the config file) to be used")
     parser.add_argument(
         "-c", "--config",
         help="{0} config file (default {0})".format(
@@ -122,14 +123,16 @@ def _parse_all():
     # More parse errors
     if not args.file:
         parser.error(
-            "'file' is required (you must set it via config file or command line arguments)")
+            "'file' is required (you must set it via config file or command "
+            "line arguments)")
 
     # Default value of 'dir'
     if not args.dir:
         args.dir = "{0}.{1}".format(args.file, DEFAULT_DIR_EXT)
 
-    _print_verbose("Generating {0} using splitted config files from {1}...".format(
-        args.file, args.dir))
+    _print_verbose(
+        "Generating {0} using splitted config files from {1}...".format(
+            args.file, args.dir))
 
     return args
 
