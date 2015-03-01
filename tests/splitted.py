@@ -25,7 +25,7 @@ class SplittedFilesTest(unittest.TestCase):
         self.assertEqual(
             map(basename, files),
             ["00-conf_0", "01-conf_1", "02-conf_2", "99-conf_99",
-            "other_name-conf", "some_name-conf"])
+                "other_name-conf", "some_name-conf"])
 
     def test_splitted_skip(self):
         """App must skip all invalid splitted files
@@ -35,7 +35,7 @@ class SplittedFilesTest(unittest.TestCase):
         self.assertEqual(
             map(basename, files),
             ["00-conf_0", "01-conf_1", "02-conf_2", "99-conf_99",
-            "other_name-conf", "some_name-conf"])
+                "other_name-conf", "some_name-conf"])
 
     def test_splitted_wrong_dir(self):
         """App must prints an error and exists if wrong dirs are used
@@ -55,9 +55,9 @@ class SplittedFilesTest(unittest.TestCase):
         stderr_old, sys.stderr = sys.stderr, StringIO()
         try:
             with self.assertRaises(SystemExit):
-                app._get_splitted(util.TMP_DIR)
+                app._get_splitted(utils.TMP_DIR)
             output = sys.stderr.getvalue()
-            self.assertTrue("no splitted" in output and "found" in output)
+            self.assertTrue("No splitted" in output and "found" in output)
         finally:
             sys.stderr = stderr_old
 

@@ -5,7 +5,6 @@ import os
 from os.path import join, dirname, isdir
 import sys
 import shutil
-import glob
 
 # Consts
 APP = "update-conf.py"
@@ -42,8 +41,6 @@ def import_app():
 def clean_tmp():
     """Clean the TMP_DIR directory
     """
-    for entry in glob.iglob(join(TMP_DIR, "*")):
-        if isdir(entry):
-            shutil.rmtree(entry)
-        else:
-            os.remove(entry)
+    if isdir(TMP_DIR):
+        shutil.rmtree(TMP_DIR)
+    os.mkdir(TMP_DIR)
