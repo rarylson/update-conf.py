@@ -1,0 +1,7 @@
+# A snippet file without a order number
+# Usually, they are created when the user don't worry if this file is merged
+# before or after the other files.
+
+[section1002]
+config1002 = test1002
+

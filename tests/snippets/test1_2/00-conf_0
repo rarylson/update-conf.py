@@ -1,0 +1,7 @@
+# This is the snippet config file number 1
+# It simulates the main config file (it's the first file that will be merged
+# to the final config file)
+
+config1 = test1
+config2 = test2
+
