@@ -1,30 +1,37 @@
 # update-conf.py Makefile
 
+BIN=update-conf.py
+CONF=$(BIN).conf
+PREFIX=/usr/local
+ETC=/etc
+PYTHON_REQUIREMENTS=requirements.txt
+VENV=venv
+
 # Tests
 
 test-pep8:
-	pep8 update-conf.py
+	pep8 $(BIN)
 
 test:
 	echo "Not implemented yet!"
 
-test-all: test-code test-pep8
+test-all: test test-pep8
 
 
 # Install
 
 uninstall:
-	rm /usr/local/bin/update-conf.py
-	rm -Rf /usr/share/update-conf.py
+	rm $(PREFIX)/bin/$(BIN)
+	rm -Rf $(PREFIX)/share/$(BIN)
 
 requirements:
-	pip install -r requirements.txt
+	pip install -r $(PYTHON_REQUIREMENTS)
 
 install: 
-	cp update-conf.py /usr/local/bin
-	mkdir -p /usr/share/update-conf.py
-	cp update-conf.py.conf.sample /usr/share/update-conf.py
-	if [ ! -f /etc/update-conf.py.conf ]; then cp update-conf.py.conf.sample /etc/update-conf.py.conf; fi
+	cp $(BIN) $(PREFIX)/bin/$(BIN)
+	mkdir -p $(PREFIX)/share/$(BIN)
+	cp $(CONF).sample $(PREFIX)/share/$(BIN)/$(CONF).sample
+	if [ ! -f $(ETC)/$(CONF) ]; then cp $(CONF).sample $(ETC)/$(CONF); fi
 
 install-all: requirements install
 
@@ -32,6 +39,6 @@ install-all: requirements install
 # Development
 
 install-dev:
-	virtualenv venv
-	. venv/bin/activate && pip install -r requirements.txt
-	cp update-conf.py.conf.sample update-conf.py.conf
+	virtualenv $(VENV)
+	. $(VENV)/bin/activate && pip install -r $(PYTHON_REQUIREMENTS)
+	cp $(CONF).sample $(CONF)
