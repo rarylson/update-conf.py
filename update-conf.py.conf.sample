@@ -1,4 +1,27 @@
-# Sample config file using SNMPd as an example
+# update-conf.py config file#
+#
+# Entries must have the following format:
+#
+# [name]
+# file = /path/to/file
+# dir = /path/to/dir
+# comment_prefix = prefix
+#
+# All options are optional.
+# If you do not provide a specific option, you can inform it via command line
+# arguments. If you do not do this, the default one will be used.
+# Options passed via command line arguments takes precedence.
+
+# Some useful examples are given in the next lines
+
 [snmpd]
 file = /etc/snmp/snmpd.conf
 dir = /etc/snmp/snmpd.d
+comment_prefix = #
+
+[php]
+file = /etc/php.ini
+dir = /etc/php.d
+comment_prefix = ;
+
+# vim: set filetype=ini :
