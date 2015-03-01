@@ -3,7 +3,7 @@ update-conf.py
 
 Generate config files from `conf.d` like directories.
 
-Split your config file into smaller files in a `conf.d` like directory. The generated config file will be the concatenation of all splitted config files. The spplited files will be merged in the lexical sort order of their names. 
+Split your config file into smaller files in a `conf.d` like directory. The generated config file will be the concatenation of all splitted config files (also called snippets). The spplited files will be merged in the lexical order of their names.
 
 Files ending with `.bak`, `.old` and other similar terminations will be ignored.
 
