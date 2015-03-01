@@ -22,7 +22,7 @@ from ConfigParser import SafeConfigParser
 __author__ = "Rarylson Freitas"
 __email__ = "rarylson@gmail.com"
 __program__ = "update-conf.py"
-__version__ = "0.3.0"
+__version__ = "0.3.1"
 __license__ = "Revised BSD"
 
 # Consts
@@ -40,6 +40,14 @@ VERBOSE = False
 def _print_verbose(message):
     if VERBOSE:
         print(message)
+
+
+# Print an error message and then exit
+#
+# This function exit with an adequate exit code
+def _error(message):
+    print("Error: {0}".format(message))
+    sys.exit(1)
 
 
 # Create a auto-generated comment
@@ -173,12 +181,10 @@ def _get_splitted(directory):
                 splitted_files.append(entry_path)
     # Dir not found error
     except OSError:
-        print("Error: Dir '{0}' not found".format(directory))
-        sys.exit(1)
+        _error("Dir '{0}' not found".format(directory))
     # No splitted files error
     if not splitted_files:
-        print("Error: No splitted files found in dir '{0}'".format(directory))
-        sys.exit(1)
+        _error("No splitted files found in dir '{0}'".format(directory))
 
     return splitted_files
 
