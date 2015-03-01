@@ -45,6 +45,20 @@ class ParseTest(unittest.TestCase):
         self.assertEqual(args.dir, self.snippets_path)
         self.assertEqual(args.comment_prefix, "$")
 
+    def test_default_parse(self):
+        """App must set the correct default options
+        
+        It must set the default dir if no one is provided too.
+        """
+        sys.argv = [
+            sys.argv[0], "--file", self.file_path]
+        args = app._parse_all()
+        self.assertEqual(args.file, self.file_path)
+        self.assertEqual(args.dir, "{0}.d".format(self.file_path))
+        self.assertEqual(args.comment_prefix, "#")
+        self.assertEqual(args.config, "/etc/update-conf.py.conf")
+
+
     def test_wrong_cmd_args(self):
         """App must print an error and exit on wrong cmd args
         """
@@ -83,6 +97,34 @@ class ParseTest(unittest.TestCase):
             self.assertTrue("config" in output and "not found" in output)
         finally:
             sys.stderr = stderr_old
+
+    def test_wrong_config_parse(self):
+        """App must print an error and exit on wrong config args
+        """
+        sys.argv = [sys.argv[0], "-c", self.config_path, "-n", "non_existent"]
+        stderr_old, sys.stderr = sys.stderr, StringIO()
+        try:
+            with self.assertRaises(SystemExit):
+                app._parse_all()
+            output = sys.stderr.getvalue()
+            self.assertTrue("section" in output and "not found" in output)
+        finally:
+            sys.stderr = stderr_old
+
+    def test_config_and_args_parse(self):
+        """App must parse options from config/cmd args
+
+        It must consider that cmd args takes precedence too.
+        """
+        sys.argv = [
+            sys.argv[0], "-c", self.config_path, "-n", "test1",
+            "-d", self.snippets_path]
+        args = app._parse_all()
+        self.assertEqual(args.file, self.config_file_path)
+        self.assertEqual(args.dir, self.snippets_path)
+        self.assertEqual(args.comment_prefix, "#")
+        self.assertEqual(args.config, self.config_path)
+        self.assertEqual(args.name, self.section_name)
 
 
 if __name__ == '__main__':
