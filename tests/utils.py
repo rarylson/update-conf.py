@@ -1,4 +1,4 @@
-"""Module that contain shared functions to be used by the test classes
+"""Module that contains shared functions to the test classes
 """
 
 import os
