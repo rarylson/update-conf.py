@@ -5,6 +5,7 @@ import os
 from os.path import join, dirname, isdir
 import sys
 import shutil
+import subprocess
 
 # Consts
 APP = "update-conf.py"
@@ -16,6 +17,7 @@ SNIPPETS_DIR = join(TESTS_DIR, "snippets")
 TMP_DIR = join(TESTS_DIR, "tmp")
 CONF_FILE = join(TESTS_DIR, "config", "update-conf.py.conf")
 RESULTS_DIR = join(TESTS_DIR, "expected_results")
+SCRIPT = join(APP_DIR, APP)
 
 
 def import_app():

@@ -1,4 +1,5 @@
 import sys
+import os
 from os.path import join
 from StringIO import StringIO
 
@@ -21,6 +22,12 @@ class ParseTest(unittest.TestCase):
         self.section_name = "test1"
         self.config_file_path = "tests/tmp/test1"
         self.config_dir_path = "tests/tmp/test1.d"
+        # These tests must be done from the app dir
+        self.chdir_old = os.getcwd()
+        os.chdir(utils.APP_DIR)
+
+    def tearDown(self):
+        os.chdir(self.chdir_old)
 
     def test_short_cmd_args(self):
         """App must sucessfully parse cmd args (short options)
