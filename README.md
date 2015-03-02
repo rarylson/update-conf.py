@@ -20,7 +20,7 @@ In Ubuntu/Debian:
 apt-get install python
 ```
 
-**PS:** It's possible to use Python 3. However, it's not well tested.
+**PS:** It's possible to use Python 3. However, it is not well tested.
 
 After, install the requirements:
 
@@ -79,6 +79,5 @@ This software is released under the [Revised BSD License](LICENSE).
 TODO
 ----
 
-- Add tests
-    - Add global command line tests;
-    - Add python unit tests.
+- Publish this project in Pypi;
+- Publish this software in a Ubuntu PPA.
