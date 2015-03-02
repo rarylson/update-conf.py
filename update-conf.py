@@ -22,7 +22,7 @@ from ConfigParser import SafeConfigParser
 __author__ = "Rarylson Freitas"
 __email__ = "rarylson@gmail.com"
 __program__ = "update-conf.py"
-__version__ = "0.3.1"
+__version__ = "0.3.2"
 __license__ = "Revised BSD"
 
 # Consts
@@ -46,7 +46,7 @@ def _print_verbose(message):
 #
 # This function exit with an adequate exit code
 def _error(message):
-    print("Error: {0}".format(message))
+    print("Error: {0}".format(message), file=sys.stderr)
     sys.exit(1)
 
 
@@ -232,8 +232,8 @@ def _temp_to_file(temp_file, config_file):
 # Run the script
 def run():
     args = _parse_all()
-    spplited_files = _get_splitted(args.dir)
-    temp_file = _create_temp_config(spplited_files, args.comment_prefix)
+    splitted_files = _get_splitted(args.dir)
+    temp_file = _create_temp_config(splitted_files, args.comment_prefix)
     _temp_to_file(temp_file, args.file)
 
 

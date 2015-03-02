@@ -1,0 +1,137 @@
+import sys
+import os
+from os.path import join
+from StringIO import StringIO
+
+import unittest
+
+import utils
+
+# App module
+app = utils.import_app()
+
+
+class ParseTest(unittest.TestCase):
+    """Tests of command line parsing and config parsing
+    """
+
+    def setUp(self):
+        self.file_path = join(utils.TMP_DIR, "test1")
+        self.snippets_path = join(utils.SNIPPETS_DIR, "test1")
+        self.config_path = utils.CONF_FILE
+        self.section_name = "test1"
+        self.config_file_path = "tests/tmp/test1"
+        self.config_dir_path = "tests/tmp/test1.d"
+        # These tests must be done from the app dir
+        self.chdir_old = os.getcwd()
+        os.chdir(utils.APP_DIR)
+
+    def tearDown(self):
+        os.chdir(self.chdir_old)
+
+    def test_short_cmd_args(self):
+        """App must sucessfully parse cmd args (short options)
+        """
+        # Mock 'argv' with the new cmd args
+        sys.argv = [
+            sys.argv[0], "-f", self.file_path, "-d", self.snippets_path,
+            "-p", "$"]
+        args = app._parse_all()
+        self.assertEqual(args.file, self.file_path)
+        self.assertEqual(args.dir, self.snippets_path)
+        self.assertEqual(args.comment_prefix, "$")
+
+    def test_long_cmd_args(self):
+        """App must sucessfully parse cmd args (full options)
+        """
+        sys.argv = [
+            sys.argv[0], "--file", self.file_path, "--dir", self.snippets_path,
+            "--comment-prefix", "$"]
+        args = app._parse_all()
+        self.assertEqual(args.file, self.file_path)
+        self.assertEqual(args.dir, self.snippets_path)
+        self.assertEqual(args.comment_prefix, "$")
+
+    def test_default_parse(self):
+        """App must set the correct default options
+
+        It must set the default dir if no one is provided too.
+        """
+        sys.argv = [
+            sys.argv[0], "--file", self.file_path]
+        args = app._parse_all()
+        self.assertEqual(args.file, self.file_path)
+        self.assertEqual(args.dir, "{0}.d".format(self.file_path))
+        self.assertEqual(args.comment_prefix, "#")
+        self.assertEqual(args.config, "/etc/update-conf.py.conf")
+
+    def test_wrong_cmd_args(self):
+        """App must print an error and exit on wrong cmd args
+        """
+        sys.argv = [
+            sys.argv[0], "--dir", self.snippets_path,
+            "--comment-prefix", "$"]
+        stderr_old, sys.stderr = sys.stderr, StringIO()
+        try:
+            with self.assertRaises(SystemExit):
+                app._parse_all()
+            output = sys.stderr.getvalue()
+            self.assertTrue("file" in output and "required" in output)
+        finally:
+            sys.stderr = stderr_old
+
+    def test_config_parse(self):
+        """App must parse options from a config file
+        """
+        sys.argv = [sys.argv[0], "-c", self.config_path, "-n", "test1"]
+        args = app._parse_all()
+        self.assertEqual(args.file, self.config_file_path)
+        self.assertEqual(args.dir, self.config_dir_path)
+        self.assertEqual(args.comment_prefix, "#")
+        self.assertEqual(args.config, self.config_path)
+        self.assertEqual(args.name, self.section_name)
+
+    def test_nonexistent_config_parse(self):
+        """App must print an error and exit when no config file was found
+        """
+        sys.argv = [sys.argv[0], "-c", "/non-existent", "-n", "test1"]
+        stderr_old, sys.stderr = sys.stderr, StringIO()
+        try:
+            with self.assertRaises(SystemExit):
+                app._parse_all()
+            output = sys.stderr.getvalue()
+            self.assertTrue("config" in output and "not found" in output)
+        finally:
+            sys.stderr = stderr_old
+
+    def test_wrong_config_parse(self):
+        """App must print an error and exit on wrong config args
+        """
+        sys.argv = [sys.argv[0], "-c", self.config_path, "-n", "non_existent"]
+        stderr_old, sys.stderr = sys.stderr, StringIO()
+        try:
+            with self.assertRaises(SystemExit):
+                app._parse_all()
+            output = sys.stderr.getvalue()
+            self.assertTrue("section" in output and "not found" in output)
+        finally:
+            sys.stderr = stderr_old
+
+    def test_config_and_args_parse(self):
+        """App must parse options from config/cmd args
+
+        It must consider that cmd args takes precedence too.
+        """
+        sys.argv = [
+            sys.argv[0], "-c", self.config_path, "-n", "test1",
+            "-d", self.snippets_path]
+        args = app._parse_all()
+        self.assertEqual(args.file, self.config_file_path)
+        self.assertEqual(args.dir, self.snippets_path)
+        self.assertEqual(args.comment_prefix, "#")
+        self.assertEqual(args.config, self.config_path)
+        self.assertEqual(args.name, self.section_name)
+
+
+if __name__ == '__main__':
+    unittest.main()

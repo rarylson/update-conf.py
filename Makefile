@@ -2,6 +2,8 @@
 
 BIN=update-conf.py
 CONF=$(BIN).conf
+TEST_DIR=tests
+TESTS=$(wildcard $(TEST_DIR)/*.py)
 PREFIX=/usr/local
 ETC=/etc
 PYTHON_REQUIREMENTS=requirements.txt
@@ -10,10 +12,10 @@ VENV=venv
 # Tests
 
 test-pep8:
-	pep8 $(BIN)
+	pep8 $(BIN) $(TEST_DIR)/*.py
 
 test:
-	echo "Not implemented yet!"
+	$(foreach TEST, $(TESTS), python $(TEST);)
 
 test-all: test test-pep8
 
