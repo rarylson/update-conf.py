@@ -1,19 +1,21 @@
 # update-conf.py Makefile
 
 BIN=update-conf.py
+PACKAGE=update_conf_py
 CONF=$(BIN).conf
-TEST_DIR=tests
-TESTS=$(wildcard $(TEST_DIR)/*.py)
 PREFIX=/usr/local
 ETC=/etc
 PYTHON_REQUIREMENTS=requirements.txt
+PYTHON_SETUP=setup.py
 VENV=venv
+TEST_DIR=tests
+TESTS=$(wildcard $(TEST_DIR)/*.py)
 
 
 # Tests
 
 test-pep8:
-	pep8 $(BIN) $(TEST_DIR)/*.py
+	pep8 $(PACKAGE)/*.py $(BIN) $(TEST_DIR)/*.py
 
 test:
 	$(foreach TEST, $(TESTS), python $(TEST);)
@@ -27,9 +29,13 @@ uninstall:
 	rm $(PREFIX)/bin/$(BIN)
 	rm -Rf $(PREFIX)/share/$(BIN)
 
+purge: uninstall
+	rm $(ETC)/$(CONF)
+
 requirements:
 	pip install -r $(PYTHON_REQUIREMENTS)
 
+# TODO Update to 'setup.py'
 install: 
 	cp $(BIN) $(PREFIX)/bin/$(BIN)
 	mkdir -p $(PREFIX)/share/$(BIN)
