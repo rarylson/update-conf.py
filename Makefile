@@ -9,6 +9,7 @@ ETC=/etc
 PYTHON_REQUIREMENTS=requirements.txt
 VENV=venv
 
+
 # Tests
 
 test-pep8:
@@ -40,7 +41,18 @@ install-all: requirements install
 
 # Development
 
+deps-ubuntu-dev:
+	apt-get install -y pandoc
+
 install-dev:
 	virtualenv $(VENV)
 	. $(VENV)/bin/activate && pip install -r $(PYTHON_REQUIREMENTS)
 	cp $(CONF).sample $(CONF)
+
+# Util when using long description in setup.py and Pypi
+readme-rst:
+	pandoc --from=markdown --to=rst --output=README.rst README.md
+# Post-fix: License broken link
+	sed -i -e 's/`Revised BSD License <LICENSE>`__/**Revised BSD License**/' README.rst
+# MacOS clean: for some reason, MacOSX is creating a '-e' file
+	rm README.rst-e &>/dev/null
