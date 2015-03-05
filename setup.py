@@ -83,12 +83,13 @@ setup(
     # The script config file is defined here.
     data_files=[
         ("/etc", ['samples/update-conf.py.conf', ]),
-    ]
+    ],
 
     # Extra
-    extras_require = {
+    extras_require={
         "dev": [
-            "pyandoc",
+            "setuptools>=0.8",
+            "pyandoc>=0.0.1",
         ],
     }
 )
