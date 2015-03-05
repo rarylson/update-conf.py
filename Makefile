@@ -1,16 +1,17 @@
 # update-conf.py Makefile
 
 PACKAGE=update_conf_py
-BIN=update-conf.py
-CONF=$(BIN).conf
+NAME=update-conf.py
+CONF=$(NAME).conf
 PREFIX=/usr/local
 ETC=/etc
-PYTHON_REQUIREMENTS=requirements.txt
-PYTHON_SETUP=setup.py
 VENV=venv
 TEST_DIR=tests
 TESTS=$(wildcard $(TEST_DIR)/*.py)
 
+
+all:
+	echo "Did you mean 'make install'?"
 
 # Tests
 
@@ -20,29 +21,30 @@ test-pep8:
 test:
 	$(foreach TEST, $(TESTS), python $(TEST);)
 
+test-testpypi:
+	pip search --index http://testpypi.python.org/pypi/ $(NAME)
+
+test-pypi:
+	pip search $(NAME)
+
 test-all: test test-pep8
 
 
 # Install
 
+# setup.py does not have a uninstall command. We're only showing a tip.
+# See: http://stackoverflow.com/a/1550235/2530295
 uninstall:
-	rm $(PREFIX)/bin/$(BIN)
-	rm -Rf $(PREFIX)/share/$(BIN)
+	echo "'setup.py' does not have a uninstall command."
+	echo "You can run the follow command to get a list of installed files and "
+	echo "then removing them:"
+	echo
+	echo "    python setup.py install --record files.txt"
+	echo
+	echo "It's also a good practice using 'pip' in a production env."
 
-purge: uninstall
-	rm $(ETC)/$(CONF)
-
-requirements:
-	pip install -r $(PYTHON_REQUIREMENTS)
-
-# TODO Update to 'setup.py'
 install: 
-	cp $(BIN) $(PREFIX)/bin/$(BIN)
-	mkdir -p $(PREFIX)/share/$(BIN)
-	cp $(CONF).sample $(PREFIX)/share/$(BIN)/$(CONF).sample
-	if [ ! -f $(ETC)/$(CONF) ]; then cp $(CONF).sample $(ETC)/$(CONF); fi
-
-install-all: requirements install
+	python setup.py install
 
 
 # Development
@@ -50,12 +52,8 @@ install-all: requirements install
 dev-deps-ubuntu:
 	apt-get install -y pandoc
 
-dev-install:
-	virtualenv $(VENV)
-	. $(VENV)/bin/activate && pip install -r $(PYTHON_REQUIREMENTS)
-	cp $(CONF).sample $(CONF)
-
-# Util when using long description in setup.py and Pypi
+# TODO Use pyandoc in setup.py
+# See: https://coderwall.com/p/qawuyq/use-markdown-readme-s-in-python-modules
 readme-rst:
 	pandoc --from=markdown --to=rst --output=README.rst README.md
 # Post-fix: License broken link
@@ -63,3 +61,6 @@ readme-rst:
 	    README.rst
 # MacOS clean: for some reason, MacOSX is creating a '-e' file after sed.
 	rm README.rst-e &>/dev/null
+
+dev-install:
+	python setup.py develop

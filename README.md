@@ -80,4 +80,7 @@ TODO
 ----
 
 - Publish this project in Pypi;
+    - See pyandoc;
+    - Update tests;
+    - Update install in README;
 - Publish this software in a Ubuntu PPA.

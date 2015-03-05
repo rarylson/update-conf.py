@@ -1,0 +1,3 @@
+-r requirements.txt
+
+pyandoc>=0.0.1

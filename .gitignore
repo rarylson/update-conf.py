@@ -1,4 +1,7 @@
 /venv
 /README.rst
 /tests/tmp
+/build
+/dist
+*.egg-info/
 *.pyc
