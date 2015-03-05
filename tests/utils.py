@@ -2,14 +2,14 @@
 """
 
 import os
-from os.path import join, dirname, isdir
+from os.path import join, abspath, dirname, isdir
 import sys
 import shutil
 import subprocess
 
 # Consts
 APP = "update-conf.py"
-TESTS_DIR = dirname(__file__)
+TESTS_DIR = abspath(dirname(__file__))
 APP_DIR = join(TESTS_DIR, os.pardir)
 
 # Consts to be used by the test classes
