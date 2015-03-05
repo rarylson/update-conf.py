@@ -12,7 +12,9 @@ This project was based in the [update-conf.d project](https://github.com/Atha/up
 Install
 -------
 
-At first, install Python 2.6 or newer.
+This project requires Python 2.6 or newer.
+
+**PS:** It's possible to use Python 3. However, it is not well tested.
 
 In Ubuntu/Debian:
 
@@ -20,18 +22,16 @@ In Ubuntu/Debian:
 apt-get install python
 ```
 
-**PS:** It's possible to use Python 3. However, it is not well tested.
-
-After, install the requirements:
+To install:
 
 ```sh
-make requirements
+python setup.py install
 ```
 
-At last, install the script:
+It's also possible to use `pip` to install:
 
 ```sh
-make install
+pip install update-conf.py
 ```
 
 Usage
@@ -82,5 +82,4 @@ TODO
 - Publish this project in Pypi;
     - See pyandoc;
     - Update tests;
-    - Update install in README;
 - Publish this software in a Ubuntu PPA.
