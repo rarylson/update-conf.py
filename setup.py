@@ -84,4 +84,11 @@ setup(
     data_files=[
         ("/etc", ['samples/update-conf.py.conf', ]),
     ]
+
+    # Extra
+    extras_require = {
+        "dev": [
+            "pyandoc",
+        ],
+    }
 )
