@@ -4,13 +4,11 @@ from StringIO import StringIO
 
 import unittest
 
+from update_conf_py import main
 import utils
 
-# App module
-app = utils.import_app()
 
-
-class SplittedFilesTest(unittest.TestCase):
+class GetSplittedTest(unittest.TestCase):
     """Tests to verify if the '_get_splitted' function works
     """
 
@@ -18,13 +16,13 @@ class SplittedFilesTest(unittest.TestCase):
         utils.clean_tmp()
 
     def tearDown(self):
-        app.VERBOSE = False
+        main.VERBOSE = False
 
     def test_splitted(self):
         """App must return all splitted files in the correct order
         """
         the_dir = join(utils.SNIPPETS_DIR, "test1")
-        files = app._get_splitted(the_dir)
+        files = main._get_splitted(the_dir)
         self.assertEqual(
             map(basename, files),
             ["00-conf_0", "01-conf_1", "02-conf_2", "99-conf_99",
@@ -34,7 +32,7 @@ class SplittedFilesTest(unittest.TestCase):
         """App must skip all invalid splitted files
         """
         the_dir = join(utils.SNIPPETS_DIR, "test1_2")
-        files = app._get_splitted(the_dir)
+        files = main._get_splitted(the_dir)
         self.assertEqual(
             map(basename, files),
             ["00-conf_0", "01-conf_1", "02-conf_2", "99-conf_99",
@@ -49,7 +47,7 @@ class SplittedFilesTest(unittest.TestCase):
         stderr_old, sys.stderr = sys.stderr, StringIO()
         try:
             with self.assertRaises(SystemExit):
-                app._get_splitted("/non-existent")
+                main._get_splitted("/non-existent")
             output = sys.stderr.getvalue()
             self.assertTrue("Dir" in output and "not found" in output)
         finally:
@@ -58,7 +56,7 @@ class SplittedFilesTest(unittest.TestCase):
         stderr_old, sys.stderr = sys.stderr, StringIO()
         try:
             with self.assertRaises(SystemExit):
-                app._get_splitted(utils.TMP_DIR)
+                main._get_splitted(utils.TMP_DIR)
             output = sys.stderr.getvalue()
             self.assertTrue("No splitted" in output and "found" in output)
         finally:
@@ -68,11 +66,11 @@ class SplittedFilesTest(unittest.TestCase):
         """App must print verbose messages about skips when verbosity is
         active
         """
-        app.VERBOSE = True
+        main.VERBOSE = True
         the_dir = join(utils.SNIPPETS_DIR, "test1_2")
         stdout_old, sys.stdout = sys.stdout, StringIO()
         try:
-            app._get_splitted(the_dir)
+            main._get_splitted(the_dir)
             output = sys.stdout.getvalue()
             self.assertTrue("Skiping" in output and "01-conf_1.bak" in output)
             self.assertTrue(

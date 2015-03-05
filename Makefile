@@ -7,7 +7,7 @@ PREFIX=/usr/local
 ETC=/etc
 VENV=venv
 TEST_DIR=tests
-TESTS=$(wildcard $(TEST_DIR)/*.py)
+TESTS=$(wildcard $(TEST_DIR)/test_*.py)
 
 
 all:

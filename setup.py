@@ -75,7 +75,7 @@ setup(
     # The script itself is defined here.
     entry_points={
         "console_scripts": [
-            "update-conf.py = update_conf_py.run",
+            "update-conf.py = update_conf_py:run",
         ],
     },
 

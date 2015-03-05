@@ -81,5 +81,4 @@ TODO
 
 - Publish this project in Pypi;
     - See pyandoc;
-    - Update tests;
 - Publish this software in a Ubuntu PPA.
