@@ -1,7 +1,7 @@
 # update-conf.py Makefile
 
-BIN=update-conf.py
 PACKAGE=update_conf_py
+BIN=update-conf.py
 CONF=$(BIN).conf
 PREFIX=/usr/local
 ETC=/etc
@@ -15,7 +15,7 @@ TESTS=$(wildcard $(TEST_DIR)/*.py)
 # Tests
 
 test-pep8:
-	pep8 $(PACKAGE)/*.py $(BIN) $(TEST_DIR)/*.py
+	pep8 $(PACKAGE)/*.py $(TEST_DIR)/*.py setup.py
 
 test:
 	$(foreach TEST, $(TESTS), python $(TEST);)
@@ -47,10 +47,10 @@ install-all: requirements install
 
 # Development
 
-deps-ubuntu-dev:
+dev-deps-ubuntu:
 	apt-get install -y pandoc
 
-install-dev:
+dev-install:
 	virtualenv $(VENV)
 	. $(VENV)/bin/activate && pip install -r $(PYTHON_REQUIREMENTS)
 	cp $(CONF).sample $(CONF)
@@ -59,6 +59,7 @@ install-dev:
 readme-rst:
 	pandoc --from=markdown --to=rst --output=README.rst README.md
 # Post-fix: License broken link
-	sed -i -e 's/`Revised BSD License <LICENSE>`__/**Revised BSD License**/' README.rst
-# MacOS clean: for some reason, MacOSX is creating a '-e' file
+	sed -i -e 's/`Revised BSD License <LICENSE>`__/**Revised BSD License**/' \
+	    README.rst
+# MacOS clean: for some reason, MacOSX is creating a '-e' file after sed.
 	rm README.rst-e &>/dev/null

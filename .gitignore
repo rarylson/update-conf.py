@@ -1,5 +1,4 @@
 /venv
-/update-conf.py.conf
 /README.rst
 /tests/tmp
 *.pyc
