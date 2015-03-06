@@ -71,3 +71,13 @@ dev-install:
 	. $(VENV)/bin/activate && python setup.py develop
 # FIXME Config file should be instaled in other location than the hardcoded path /etc
 	cp $(CONF) /etc
+
+clean-pyc:
+	find . -name "*.pyc" -type f -delete
+
+clean-build:
+	rm -Rf build/
+	rm -Rf dist/
+	rm -Rf *.egg-info
+
+clean: clean-build clean-pyc
