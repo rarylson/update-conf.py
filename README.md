@@ -79,6 +79,9 @@ This software is released under the [Revised BSD License](LICENSE).
 TODO
 ----
 
-- Publish this project in Pypi;
-    - See pyandoc;
-- Publish this software in a Ubuntu PPA.
+- Problems with the config file install;
+    - It can generate errors while instaling the project in a local env, or using `--user`;
+    - A think the application should search for a config file in `/etc` or in `sys.prefix/etc`;
+- Generate `README.rst` using `pyandoc` in `setup.py`;
+- Publish this software in a Ubuntu PPA;
+    - Ubuntu 12.04 and Ubuntu 14.04.

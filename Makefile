@@ -10,8 +10,12 @@ TEST_DIR=tests
 TESTS=$(wildcard $(TEST_DIR)/test_*.py)
 
 
-all:
-	echo "Did you mean 'make install'?"
+all: help
+
+# TODO Create a help!
+help:
+	@echo "Did you mean 'make install'?"
+
 
 # Tests
 
@@ -35,19 +39,19 @@ test-all: test test-pep8
 # setup.py does not have a uninstall command. We're only showing a tip.
 # See: http://stackoverflow.com/a/1550235/2530295
 uninstall:
-	echo "'setup.py' does not have a uninstall command."
-	echo "You can run the follow command to get a list of installed files and "
-	echo "then removing them:"
-	echo
-	echo "    python setup.py install --record files.txt"
-	echo
-	echo "It's also a good practice using 'pip' in a production env."
+	@echo "'setup.py' does not have a uninstall command."
+	@echo "You can run the follow command to get a list of installed files and "
+	@echo "then removing them:"
+	@echo
+	@echo "    python setup.py install --record files.txt"
+	@echo
+	@echo "It's also a good practice using 'pip' in a production env."
 
 install: 
 	python setup.py install
 
 
-# Development
+# Development / Release
 
 dev-deps-ubuntu:
 	apt-get install -y pandoc
@@ -63,4 +67,7 @@ readme-rst:
 	rm README.rst-e &>/dev/null
 
 dev-install:
-	python setup.py develop
+	virtualenv $(VENV)
+	. $(VENV)/bin/activate && python setup.py develop
+# FIXME Config file should be instaled in other location than the hardcoded path /etc
+	cp $(CONF) /etc
