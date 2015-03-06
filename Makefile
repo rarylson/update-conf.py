@@ -6,8 +6,7 @@ CONF=$(NAME).conf
 PREFIX=/usr/local
 ETC=/etc
 VENV=venv
-TEST_DIR=tests
-TESTS=$(wildcard $(TEST_DIR)/test_*.py)
+TEST_PACKAGE=tests
 
 
 all: help
@@ -20,10 +19,10 @@ help:
 # Tests
 
 test-pep8:
-	pep8 $(PACKAGE)/*.py $(TEST_DIR)/*.py setup.py
+	pep8 $(PACKAGE)/*.py $(TEST_PACKAGE)/*.py setup.py
 
 test:
-	$(foreach TEST, $(TESTS), python $(TEST);)
+	python setup.py test
 
 test-testpypi:
 	pip search --index http://testpypi.python.org/pypi/ $(NAME)

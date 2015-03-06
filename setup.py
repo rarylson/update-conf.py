@@ -91,5 +91,8 @@ setup(
             "setuptools>=0.8",
             "pyandoc>=0.0.1",
         ],
-    }
+    },
+
+    # Tests
+    test_suite="tests",
 )

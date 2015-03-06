@@ -16,6 +16,7 @@ CONF_FILE = join(TESTS_DIR, "config", "update-conf.py.conf")
 RESULTS_DIR = join(TESTS_DIR, "expected_results")
 ROOT_DIR = join(TESTS_DIR, os.pardir)
 
+
 def clean_tmp():
     """Clean the TMP_DIR directory
     """
