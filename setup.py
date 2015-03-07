@@ -52,7 +52,7 @@ class GenerateRstCommand(Command):
         import tempfile
         import shutil
         import re
-    
+
         import pypandoc
 
         tmp_readme_md = join(tempfile.gettempdir(), README_MD)
@@ -63,7 +63,7 @@ class GenerateRstCommand(Command):
             # Convert links that points to a relative URL
             # The markdown file may be relative URLs (like [Page](page)).
             # However, we do not want these links in Pypi (they will be
-            # broken). We want to replace them by absolutive URLs (like 
+            # broken). We want to replace them by absolutive URLs (like
             # [Page]({url}/blob/master/page)).
             # For now, the conversions are hardcoded
             md_link_re = r"\(LICENSE\)"

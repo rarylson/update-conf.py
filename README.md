@@ -25,13 +25,15 @@ apt-get install python
 To install:
 
 ```sh
-python setup.py install
+pip install update-conf.py
 ```
 
-It's also possible to use `pip` to install:
+It's also possible to clone the project in Github and install via `setuptools`:
 
 ```sh
-pip install update-conf.py
+git clone git@github.com:rarylson/update-conf.py.git
+cd update-conf.py
+python setup.py install
 ```
 
 Usage

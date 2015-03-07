@@ -70,7 +70,7 @@ generate-dist:
 	python setup.py bdist_wheel
 
 # To use this command, you should have pypitest configured in your ~/.pypirc.
-testpypi-publish: generate-rst generate-dist
+pypitest-publish: generate-rst generate-dist
 	twine upload dist/* -r pypitest
 
 pypi-publish: generate-rst generate-dist
