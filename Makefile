@@ -24,7 +24,7 @@ test-pep8:
 test:
 	python setup.py test
 
-test-testpypi:
+test-pypitest:
 	pip search --index http://testpypi.python.org/pypi/ $(NAME)
 
 test-pypi:
@@ -65,12 +65,16 @@ dev-install:
 generate-rst:
 	python setup.py generate_rst
 
-# To use this command, you should have testpypi configured in your ~/.pypirc.
-testpypi-register: generate-rst
-    python setup.py register -r testpypi
+generate-dist:
+	python setup.py sdist
+	python setup.py bdist_wheel
 
-pypi-register: generate-rst
-	python setup.py register
+# To use this command, you should have pypitest configured in your ~/.pypirc.
+testpypi-publish: generate-rst generate-dist
+	twine upload dist/* -r pypitest
+
+pypi-publish: generate-rst generate-dist
+	twine upload dist/*
 
 clean-rst:
 	rm -f README.rst

@@ -84,6 +84,5 @@ TODO
     - A think the application should search for a config file in `/etc` or in `sys.prefix/etc`;
     - See: http://stackoverflow.com/questions/7567642/where-to-put-a-configuration-file-in-python;
     - See: https://pythonhosted.org/mrjob/guides/configs-basics.html;
-- Generate `README.rst` using `pyandoc` in `setup.py`;
 - Publish this software in a Ubuntu PPA;
     - Ubuntu 12.04 and Ubuntu 14.04.

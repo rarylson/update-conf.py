@@ -3,7 +3,8 @@
 
 import os
 from os.path import abspath, dirname, join, isfile
-from setuptools import setup, command, Command
+from setuptools import setup, Command
+from setuptools.command.register import register
 
 from update_conf_py import main
 
@@ -22,9 +23,11 @@ description = main.__doc__.split('\n')[0]
 # use the module doc string.
 # The 'README.rst' is required when registering on Pypi.
 long_description = ""
+using_rst = False
 try:
     with open(readme_rst, 'r') as f:
         long_description = f.read()
+        using_rst = True
 except IOError:
     long_description = main.__doc__
 
@@ -76,6 +79,17 @@ class GenerateRstCommand(Command):
             os.remove(tmp_readme_md)
 
 
+class RegisterCommand(register):
+    """Check if we're using README.rst before register in Pypi
+    """
+
+    def finalize_options(self):
+        if not using_rst:
+            raise Exception("{} file not found".format(README_RST))
+
+        return register.finalize_options(self)
+
+
 # Setup
 setup(
     # Main software info
@@ -83,7 +97,7 @@ setup(
     version=main.__version__,
     description=description,
     long_description=long_description,
-    license=license,
+    license=main.__license__,
     author=main.__author__,
     author_email=main.__email__,
     url=GITHUB_URL,
@@ -145,5 +159,6 @@ setup(
     # Commands
     cmdclass={
         "generate_rst": GenerateRstCommand,
+        "register": RegisterCommand,
     }
 )
