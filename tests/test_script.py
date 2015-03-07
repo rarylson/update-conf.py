@@ -15,9 +15,9 @@ class ScriptTest(unittest.TestCase):
 
     def setUp(self):
         utils.clean_tmp()
-        # These tests must be done from the app dir
+        # These tests must be done from the root dir
         self.chdir_old = os.getcwd()
-        os.chdir(utils.APP_DIR)
+        os.chdir(utils.ROOT_DIR)
 
     def tearDown(self):
         os.chdir(self.chdir_old)
@@ -28,7 +28,7 @@ class ScriptTest(unittest.TestCase):
         file_path = join(utils.TMP_DIR, "test1")
         expected_path = join(utils.RESULTS_DIR, "test1")
         dir_path = join(utils.SNIPPETS_DIR, "test1_2")
-        args = [utils.SCRIPT]
+        args = [utils.APP]
         args += ["-f", file_path, "-d", dir_path]
         subprocess.call(args)
         # The second call forces a backup
@@ -45,7 +45,7 @@ class ScriptTest(unittest.TestCase):
         config_path = utils.CONF_FILE
         section_name = "test2"
         expected_path = join(utils.RESULTS_DIR, "test2")
-        args = [utils.SCRIPT]
+        args = [utils.APP]
         args += ["-c", utils.CONF_FILE, "-n", section_name]
         subprocess.call(args)
         # The second call forces a backup
@@ -63,7 +63,7 @@ class ScriptTest(unittest.TestCase):
         """
         file_path = join(utils.TMP_DIR, "test1")
         dir_path = "/non-existent"
-        args = [utils.SCRIPT]
+        args = [utils.APP]
         args += ["-f", file_path, "-d", dir_path]
         output = ""
         with self.assertRaises(subprocess.CalledProcessError):
@@ -75,7 +75,7 @@ class ScriptTest(unittest.TestCase):
         file_path = join(utils.TMP_DIR, "test1")
         expected_path = join(utils.RESULTS_DIR, "test1")
         dir_path = join(utils.SNIPPETS_DIR, "test1_2")
-        args = [utils.SCRIPT]
+        args = [utils.APP]
         args += ["-f", file_path, "-d", dir_path]
         subprocess.call(args)
         # Set verbose flag

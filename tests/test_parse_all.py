@@ -5,13 +5,11 @@ from StringIO import StringIO
 
 import unittest
 
+from update_conf_py import main
 import utils
 
-# App module
-app = utils.import_app()
 
-
-class ParseTest(unittest.TestCase):
+class ParseAllTest(unittest.TestCase):
     """Tests of command line parsing and config parsing
     """
 
@@ -22,9 +20,9 @@ class ParseTest(unittest.TestCase):
         self.section_name = "test1"
         self.config_file_path = "tests/tmp/test1"
         self.config_dir_path = "tests/tmp/test1.d"
-        # These tests must be done from the app dir
+        # These tests must be done from the root dir
         self.chdir_old = os.getcwd()
-        os.chdir(utils.APP_DIR)
+        os.chdir(utils.ROOT_DIR)
 
     def tearDown(self):
         os.chdir(self.chdir_old)
@@ -36,7 +34,7 @@ class ParseTest(unittest.TestCase):
         sys.argv = [
             sys.argv[0], "-f", self.file_path, "-d", self.snippets_path,
             "-p", "$"]
-        args = app._parse_all()
+        args = main._parse_all()
         self.assertEqual(args.file, self.file_path)
         self.assertEqual(args.dir, self.snippets_path)
         self.assertEqual(args.comment_prefix, "$")
@@ -47,7 +45,7 @@ class ParseTest(unittest.TestCase):
         sys.argv = [
             sys.argv[0], "--file", self.file_path, "--dir", self.snippets_path,
             "--comment-prefix", "$"]
-        args = app._parse_all()
+        args = main._parse_all()
         self.assertEqual(args.file, self.file_path)
         self.assertEqual(args.dir, self.snippets_path)
         self.assertEqual(args.comment_prefix, "$")
@@ -59,7 +57,7 @@ class ParseTest(unittest.TestCase):
         """
         sys.argv = [
             sys.argv[0], "--file", self.file_path]
-        args = app._parse_all()
+        args = main._parse_all()
         self.assertEqual(args.file, self.file_path)
         self.assertEqual(args.dir, "{0}.d".format(self.file_path))
         self.assertEqual(args.comment_prefix, "#")
@@ -74,7 +72,7 @@ class ParseTest(unittest.TestCase):
         stderr_old, sys.stderr = sys.stderr, StringIO()
         try:
             with self.assertRaises(SystemExit):
-                app._parse_all()
+                main._parse_all()
             output = sys.stderr.getvalue()
             self.assertTrue("file" in output and "required" in output)
         finally:
@@ -84,7 +82,7 @@ class ParseTest(unittest.TestCase):
         """App must parse options from a config file
         """
         sys.argv = [sys.argv[0], "-c", self.config_path, "-n", "test1"]
-        args = app._parse_all()
+        args = main._parse_all()
         self.assertEqual(args.file, self.config_file_path)
         self.assertEqual(args.dir, self.config_dir_path)
         self.assertEqual(args.comment_prefix, "#")
@@ -98,7 +96,7 @@ class ParseTest(unittest.TestCase):
         stderr_old, sys.stderr = sys.stderr, StringIO()
         try:
             with self.assertRaises(SystemExit):
-                app._parse_all()
+                main._parse_all()
             output = sys.stderr.getvalue()
             self.assertTrue("config" in output and "not found" in output)
         finally:
@@ -111,7 +109,7 @@ class ParseTest(unittest.TestCase):
         stderr_old, sys.stderr = sys.stderr, StringIO()
         try:
             with self.assertRaises(SystemExit):
-                app._parse_all()
+                main._parse_all()
             output = sys.stderr.getvalue()
             self.assertTrue("section" in output and "not found" in output)
         finally:
@@ -125,7 +123,7 @@ class ParseTest(unittest.TestCase):
         sys.argv = [
             sys.argv[0], "-c", self.config_path, "-n", "test1",
             "-d", self.snippets_path]
-        args = app._parse_all()
+        args = main._parse_all()
         self.assertEqual(args.file, self.config_file_path)
         self.assertEqual(args.dir, self.snippets_path)
         self.assertEqual(args.comment_prefix, "#")

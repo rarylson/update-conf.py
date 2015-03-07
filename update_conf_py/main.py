@@ -1,5 +1,3 @@
-#!/usr/bin/env python
-
 """Generate config files from 'conf.d' like directories
 
 Split your config file into smaller files in a 'conf.d' like directory.
@@ -22,7 +20,7 @@ from ConfigParser import SafeConfigParser
 __author__ = "Rarylson Freitas"
 __email__ = "rarylson@gmail.com"
 __program__ = "update-conf.py"
-__version__ = "0.3.2"
+__version__ = "0.3.4"
 __license__ = "Revised BSD"
 
 # Consts

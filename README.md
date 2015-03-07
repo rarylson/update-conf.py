@@ -12,7 +12,9 @@ This project was based in the [update-conf.d project](https://github.com/Atha/up
 Install
 -------
 
-At first, install Python 2.6 or newer.
+This project requires Python 2.6 or newer.
+
+**PS:** It's possible to use Python 3. However, it is not well tested.
 
 In Ubuntu/Debian:
 
@@ -20,18 +22,18 @@ In Ubuntu/Debian:
 apt-get install python
 ```
 
-**PS:** It's possible to use Python 3. However, it is not well tested.
-
-After, install the requirements:
+To install:
 
 ```sh
-make requirements
+pip install update-conf.py
 ```
 
-At last, install the script:
+It's also possible to clone the project in Github and install via `setuptools`:
 
 ```sh
-make install
+git clone git@github.com:rarylson/update-conf.py.git
+cd update-conf.py
+python setup.py install
 ```
 
 Usage
@@ -79,5 +81,10 @@ This software is released under the [Revised BSD License](LICENSE).
 TODO
 ----
 
-- Publish this project in Pypi;
-- Publish this software in a Ubuntu PPA.
+- Problems with the config file install;
+    - It can generate errors while instaling the project in a local env, or using `--user`;
+    - A think the application should search for a config file in `/etc` or in `sys.prefix/etc`;
+    - See: http://stackoverflow.com/questions/7567642/where-to-put-a-configuration-file-in-python;
+    - See: https://pythonhosted.org/mrjob/guides/configs-basics.html;
+- Publish this software in a Ubuntu PPA;
+    - Ubuntu 12.04 and Ubuntu 14.04.

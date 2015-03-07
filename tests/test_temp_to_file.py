@@ -8,13 +8,11 @@ import filecmp
 
 import unittest
 
+from update_conf_py import main
 import utils
 
-# App module
-app = utils.import_app()
 
-
-class MoveTempToConfigTest(unittest.TestCase):
+class TempToFileTest(unittest.TestCase):
     """Tests of moving a config temp file to its final location
     """
 
@@ -30,7 +28,7 @@ class MoveTempToConfigTest(unittest.TestCase):
         # Simulating a temp file (in the system tmp dir)
         shutil.copy(expected_file, temp_file)
         try:
-            app._temp_to_file(temp_file, config_file)
+            main._temp_to_file(temp_file, config_file)
             self.assertTrue(
                 filecmp.cmp(config_file, expected_file, shallow=False))
         finally:
@@ -49,7 +47,7 @@ class MoveTempToConfigTest(unittest.TestCase):
         # Creating a previous config file
         shutil.copy(expected_file_bak, config_file)
         try:
-            app._temp_to_file(temp_file, config_file)
+            main._temp_to_file(temp_file, config_file)
             self.assertTrue(
                 filecmp.cmp(config_file, expected_file, shallow=False))
             self.assertTrue(
