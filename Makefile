@@ -55,28 +55,32 @@ install:
 dev-deps-ubuntu:
 	apt-get install -y pandoc
 
-# TODO Use pyandoc in setup.py
-# See: https://coderwall.com/p/qawuyq/use-markdown-readme-s-in-python-modules
-readme-rst:
-	pandoc --from=markdown --to=rst --output=README.rst README.md
-# Post-fix: License broken link
-	sed -i -e 's/`Revised BSD License <LICENSE>`__/**Revised BSD License**/' \
-	    README.rst
-# MacOS clean: for some reason, MacOSX is creating a '-e' file after sed.
-	rm README.rst-e &>/dev/null
-
 dev-install:
 	virtualenv $(VENV)
 	. $(VENV)/bin/activate && python setup.py develop
-# FIXME Config file should be instaled in other location than the hardcoded path /etc
+# FIXME Config file should be instaled in other location than the hardcoded
+# path /etc.
 	cp $(CONF) /etc
 
-clean-pyc:
-	find . -name "*.pyc" -type f -delete
+generate-rst:
+	python setup.py generate_rst
+
+# To use this command, you should have testpypi configured in your ~/.pypirc.
+testpypi-register: generate-rst
+    python setup.py register -r testpypi
+
+pypi-register: generate-rst
+	python setup.py register
+
+clean-rst:
+	rm -f README.rst
 
 clean-build:
 	rm -Rf build/
 	rm -Rf dist/
 	rm -Rf *.egg-info
 
-clean: clean-build clean-pyc
+clean-pyc:
+	find . -name "*.pyc" -type f -delete
+
+clean: clean-rst clean-build clean-pyc

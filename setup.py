@@ -1,34 +1,80 @@
 """update-conf.py setup.py file
 """
 
-from setuptools import setup
-from os.path import abspath, dirname, join
+import os
+from os.path import abspath, dirname, join, isfile
+from setuptools import setup, command, Command
 
 from update_conf_py import main
 
 # Consts
 GITHUB_URL = "https://github.com/rarylson/update-conf.py"
-README = "README.rst"
-LICENSE = "LICENSE"
+README_MD = "README.md"
+README_RST = "README.rst"
 
 # Important vars
 cur_dir = abspath(dirname(__file__))
+readme_md = join(cur_dir, README_MD)
+readme_rst = join(cur_dir, README_RST)
 # Get description from the first line of the module docstring.
 description = main.__doc__.split('\n')[0]
 # Get the long description from the 'README.rst' file (if it exists). Else,
 # use the module doc string.
-# Note: You MUST generate the 'README.rst' before uploading to Pypi.
+# The 'README.rst' is required when registering on Pypi.
 long_description = ""
 try:
-    with open(join(cur_dir, README), 'r') as f:
+    with open(readme_rst, 'r') as f:
         long_description = f.read()
 except IOError:
     long_description = main.__doc__
-# Get license from a file because the license is not listed in any Pypi
-# classifier.
-# TODO Maybe we should use 'main.__license__' instead. We need to read more
-# about Pypi!
-license = open(join(cur_dir, LICENSE), 'r').read()
+
+
+class GenerateRstCommand(Command):
+    """Generate a README.rst file
+
+    This file can be used after in the register command.
+    """
+
+    description = "generate a README.rst file from README.md"
+    user_options = []
+
+    def initialize_options(self):
+        pass
+
+    def finalize_options(self):
+        if isfile(readme_rst):
+            os.remove(readme_rst)
+
+    def run(self):
+        import tempfile
+        import shutil
+        import re
+    
+        import pypandoc
+
+        tmp_readme_md = join(tempfile.gettempdir(), README_MD)
+        shutil.copy(readme_md, tmp_readme_md)
+        try:
+            with open(tmp_readme_md, "r") as f:
+                md = f.read()
+            # Convert links that points to a relative URL
+            # The markdown file may be relative URLs (like [Page](page)).
+            # However, we do not want these links in Pypi (they will be
+            # broken). We want to replace them by absolutive URLs (like 
+            # [Page]({url}/blob/master/page)).
+            # For now, the conversions are hardcoded
+            md_link_re = r"\(LICENSE\)"
+            md_link_new = r"({0}/blob/master/LICENSE)".format(GITHUB_URL)
+            new_md = re.sub(md_link_re, md_link_new, md)
+            with open(tmp_readme_md, "w") as f:
+                f.write(new_md)
+            # Now, convert to RST
+            rst = pypandoc.convert(tmp_readme_md, "rst")
+            with open(readme_rst, "w") as f:
+                f.write(rst)
+        finally:
+            os.remove(tmp_readme_md)
+
 
 # Setup
 setup(
@@ -89,10 +135,15 @@ setup(
     extras_require={
         "dev": [
             "setuptools>=0.8",
-            "pyandoc>=0.0.1",
+            "pypandoc>=0.9",
         ],
     },
 
     # Tests
     test_suite="tests",
+
+    # Commands
+    cmdclass={
+        "generate_rst": GenerateRstCommand,
+    }
 )
