@@ -61,7 +61,7 @@ class ParseAllTest(unittest.TestCase):
         self.assertEqual(args.file, self.file_path)
         self.assertEqual(args.dir, "{0}.d".format(self.file_path))
         self.assertEqual(args.comment_prefix, "#")
-        self.assertEqual(args.config, "/etc/update-conf.py.conf")
+        self.assertEqual(args.config, [main.SYSTEM_CONFIG, main.USER_CONFIG])
 
     def test_wrong_cmd_args(self):
         """App must print an error and exit on wrong cmd args
