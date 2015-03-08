@@ -81,10 +81,5 @@ This software is released under the [Revised BSD License](LICENSE).
 TODO
 ----
 
-- Problems with the config file install;
-    - It can generate errors while instaling the project in a local env, or using `--user`;
-    - A think the application should search for a config file in `/etc` or in `sys.prefix/etc`;
-    - See: http://stackoverflow.com/questions/7567642/where-to-put-a-configuration-file-in-python;
-    - See: https://pythonhosted.org/mrjob/guides/configs-basics.html;
 - Publish this software in a Ubuntu PPA;
     - Ubuntu 12.04 and Ubuntu 14.04.
