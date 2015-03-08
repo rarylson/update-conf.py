@@ -179,10 +179,10 @@ def _get_splitted(directory):
                 splitted_files.append(entry_path)
     # Dir not found error
     except OSError:
-        _error("Dir '{0}' not found".format(directory))
+        _error("dir '{0}' not found".format(directory))
     # No splitted files error
     if not splitted_files:
-        _error("No splitted files found in dir '{0}'".format(directory))
+        _error("no splitted files found in dir '{0}'".format(directory))
 
     return splitted_files
 
