@@ -3,8 +3,11 @@
 
 import os
 from os.path import abspath, dirname, join, isfile
+import shutil
+from distutils import log
 from setuptools import setup, Command
 from setuptools.command.register import register
+from setuptools.command.install import install
 
 from update_conf_py import main
 
@@ -17,6 +20,8 @@ README_RST = "README.rst"
 cur_dir = abspath(dirname(__file__))
 readme_md = join(cur_dir, README_MD)
 readme_rst = join(cur_dir, README_RST)
+sample_config = join("samples", main.CONFIG_NAME)
+sample_config_path = join(cur_dir, sample_config)
 # Get description from the first line of the module docstring.
 description = main.__doc__.split('\n')[0]
 # Get the long description from the 'README.rst' file (if it exists). Else,
@@ -90,6 +95,24 @@ class RegisterCommand(register):
         return register.finalize_options(self)
 
 
+class InstallCommand(install):
+    """Install the global config file if it exists
+    """
+
+    def run(self):
+        result = install.run(self)
+        if os.access(main.SYSTEM_CONFIG, os.W_OK):
+            log.info("Copying {0} to {1}".format(
+                sample_config, main.SYSTEM_CONFIG))
+            shutil.copy(sample_config_path, main.SYSTEM_CONFIG)
+        else:
+            log.warn(
+                "Skiping copy of {0} to {1}. You do not have permission "
+                "to do this.".format(sample_config, main.SYSTEM_CONFIG))
+
+        return result
+
+
 # Setup
 setup(
     # Main software info
@@ -101,8 +124,9 @@ setup(
     author=main.__author__,
     author_email=main.__email__,
     url=GITHUB_URL,
-    # Currently, setuptools do not undestand this option. Ignore the warning
-    # and manually set it in the Pypi web interface.
+    # FIXME: Currently, setuptools do not understand this option (it's used
+    # only by twine). When using setuptools, for now, ignore the warning. In
+    # a future, only pass this option when using twine.
     bugtrack_url="{0}/issues".format(GITHUB_URL),
     download_url="{0}/tarball/{1}".format(GITHUB_URL, main.__version__),
     keywords="system unix config split snippets sysadmin",
@@ -140,9 +164,8 @@ setup(
     },
 
     # Data files
-    # The script config file is defined here.
     data_files=[
-        ("/etc", ['samples/update-conf.py.conf', ]),
+        (join("share", main.__program__), [sample_config, ]),
     ],
 
     # Extra
@@ -160,5 +183,6 @@ setup(
     cmdclass={
         "generate_rst": GenerateRstCommand,
         "register": RegisterCommand,
+        "install": InstallCommand,
     }
 )
