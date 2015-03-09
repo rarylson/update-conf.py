@@ -20,11 +20,13 @@ from ConfigParser import SafeConfigParser
 __author__ = "Rarylson Freitas"
 __email__ = "rarylson@gmail.com"
 __program__ = "update-conf.py"
-__version__ = "0.3.4"
+__version__ = "0.4.0"
 __license__ = "Revised BSD"
 
 # Consts
-DEFAULT_CONFIG = "/etc/{0}.conf".format(__program__)
+CONFIG_NAME = "{0}.conf".format(__program__)
+SYSTEM_CONFIG = os.path.join("/etc", CONFIG_NAME)
+USER_CONFIG = os.path.join(os.path.expanduser("~"), ".{0}".format(CONFIG_NAME))
 DEFAULT_DIR_EXT = "d"
 DEFAULT_COMMENT_PREFIX = "#"
 IGNORE_FILES_EXT = ["bak", "backup", "old", "inactive", "disabled"]
@@ -89,9 +91,8 @@ def _parse_all():
         help="name of the section (defined in the config file) to be used")
     parser.add_argument(
         "-c", "--config",
-        help="{0} config file (default {0})".format(
-            __program__, DEFAULT_CONFIG),
-        default=DEFAULT_CONFIG)
+        help="{0} config file (default [{1}, {2}])".format(
+            __program__, SYSTEM_CONFIG, USER_CONFIG))
     parser.add_argument(
         "-p", "--comment-prefix",
         help="Prefix to be used in the auto-generated comment (default '#')")
@@ -107,11 +108,21 @@ def _parse_all():
     # Parse config file
     if args.name:
         config_parser = SafeConfigParser()
-        # Open config file
-        try:
-            config_parser.readfp(open(args.config, 'r'))
-        except IOError:
-            parser.error("config file '{}' not found".format(args.config))
+        # Specific config file
+        if args.config:
+            try:
+                config_parser.readfp(open(args.config, 'r'))
+            except IOError:
+                parser.error("config file '{0}' not found".format(args.config))
+        # Default config file
+        # Options from USER_CONFIG take precedence over SYSTEM_CONFIG
+        else:
+            if os.path.isfile(SYSTEM_CONFIG) or os.path.isfile(USER_CONFIG):
+                config_parser.read([SYSTEM_CONFIG, USER_CONFIG])
+            else:
+                parser.error(
+                    "neither '{0}' nor '{1}' config file "
+                    "found".format(SYSTEM_CONFIG, USER_CONFIG))
         # Section not found error
         if not config_parser.has_section(args.name):
             parser.error(
@@ -138,6 +149,8 @@ def _parse_all():
         args.dir = "{0}.{1}".format(args.file, DEFAULT_DIR_EXT)
     if not args.comment_prefix:
         args.comment_prefix = DEFAULT_COMMENT_PREFIX
+    if not args.config:
+        args.config = [SYSTEM_CONFIG, USER_CONFIG]
 
     _print_verbose(
         "Generating {0} using splitted config files from {1}...".format(
@@ -179,10 +192,10 @@ def _get_splitted(directory):
                 splitted_files.append(entry_path)
     # Dir not found error
     except OSError:
-        _error("Dir '{0}' not found".format(directory))
+        _error("dir '{0}' not found".format(directory))
     # No splitted files error
     if not splitted_files:
-        _error("No splitted files found in dir '{0}'".format(directory))
+        _error("no splitted files found in dir '{0}'".format(directory))
 
     return splitted_files
 

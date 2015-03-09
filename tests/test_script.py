@@ -1,4 +1,3 @@
-import sys
 import os
 from os.path import join
 import subprocess
@@ -10,7 +9,7 @@ import utils
 
 
 class ScriptTest(unittest.TestCase):
-    """Tests uing the final script
+    """Tests that use the final script
     """
 
     def setUp(self):

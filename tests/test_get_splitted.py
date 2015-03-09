@@ -49,7 +49,7 @@ class GetSplittedTest(unittest.TestCase):
             with self.assertRaises(SystemExit):
                 main._get_splitted("/non-existent")
             output = sys.stderr.getvalue()
-            self.assertTrue("Dir" in output and "not found" in output)
+            self.assertTrue("dir" in output and "not found" in output)
         finally:
             sys.stderr = stderr_old
         # Empty dir
@@ -58,7 +58,7 @@ class GetSplittedTest(unittest.TestCase):
             with self.assertRaises(SystemExit):
                 main._get_splitted(utils.TMP_DIR)
             output = sys.stderr.getvalue()
-            self.assertTrue("No splitted" in output and "found" in output)
+            self.assertTrue("no splitted" in output and "found" in output)
         finally:
             sys.stderr = stderr_old
 
