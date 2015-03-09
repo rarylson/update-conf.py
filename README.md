@@ -14,7 +14,7 @@ Install
 
 This project requires Python 2.6 or newer.
 
-**PS:** It's possible to use Python 3. However, it is not well tested.
+**PS:** It's possible to use Python 3 also. However, it is not well tested.
 
 In Ubuntu/Debian:
 
@@ -28,7 +28,7 @@ To install:
 pip install update-conf.py
 ```
 
-It's also possible to clone the project in Github and install via `setuptools`:
+It's possible to clone the project in Github and install it via `setuptools`:
 
 ```sh
 git clone git@github.com:rarylson/update-conf.py.git
@@ -77,6 +77,11 @@ License
 -------
 
 This software is released under the [Revised BSD License](LICENSE).
+
+Changelog
+---------
+
+You can see the changelog [here](CHANGELOG.md).
 
 TODO
 ----

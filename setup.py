@@ -70,10 +70,13 @@ class GenerateRstCommand(Command):
             # However, we do not want these links in Pypi (they will be
             # broken). We want to replace them by absolutive URLs (like
             # [Page]({url}/blob/master/page)).
-            # For now, the conversions are hardcoded
+            # For now, the conversions are hardcoded.
             md_link_re = r"\(LICENSE\)"
             md_link_new = r"({0}/blob/master/LICENSE)".format(GITHUB_URL)
             new_md = re.sub(md_link_re, md_link_new, md)
+            md_link_re = r"\(CHANGELOG\.md\)"
+            md_link_new = r"({0}/blob/master/CHANGELOG.md)".format(GITHUB_URL)
+            new_md = re.sub(md_link_re, md_link_new, new_md)
             with open(tmp_readme_md, "w") as f:
                 f.write(new_md)
             # Now, convert to RST
