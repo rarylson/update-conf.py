@@ -1,7 +1,5 @@
-import sys
 import os
 from os.path import join, isfile
-from StringIO import StringIO
 import shutil
 import tempfile
 import filecmp

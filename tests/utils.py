@@ -3,9 +3,7 @@
 
 import os
 from os.path import join, abspath, dirname, isdir
-import sys
 import shutil
-import subprocess
 
 # Consts to be used by the test classes
 APP = "update-conf.py"
