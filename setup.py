@@ -177,6 +177,11 @@ setup(
             "setuptools>=0.8",
             "pypandoc>=0.9",
         ],
+        "test": [
+            "pep8>=1.6",
+            "flake8>=2.2",
+            "pep8-naming>=0.2",
+        ],
     },
 
     # Tests

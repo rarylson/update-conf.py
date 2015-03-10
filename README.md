@@ -94,6 +94,4 @@ TODO
     - Flags: https://github.com/z4r/python-coveralls
 - Create tests for 100% code coverage;
 - Code covarage after tests:
-    - `cd htmlcov && python -m SimpleHTTPServer 8888 && open http://localhost:8888`
-- `python setup.py flake8`;
-- Help in `Makefile`.
+    - `cd htmlcov && python -m SimpleHTTPServer 8888 && open http://localhost:8888`.

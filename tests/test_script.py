@@ -41,7 +41,6 @@ class ScriptTest(unittest.TestCase):
         """Script must merge files using args from config
         """
         file_path = join(utils.TMP_DIR, "test2")
-        config_path = utils.CONF_FILE
         section_name = "test2"
         expected_path = join(utils.RESULTS_DIR, "test2")
         args = [utils.APP]
@@ -64,7 +63,6 @@ class ScriptTest(unittest.TestCase):
         dir_path = "/non-existent"
         args = [utils.APP]
         args += ["-f", file_path, "-d", dir_path]
-        output = ""
         with self.assertRaises(subprocess.CalledProcessError):
             subprocess.check_output(args, stderr=subprocess.STDOUT)
 
@@ -72,7 +70,6 @@ class ScriptTest(unittest.TestCase):
         """Script must print verbose messages when verbose is set
         """
         file_path = join(utils.TMP_DIR, "test1")
-        expected_path = join(utils.RESULTS_DIR, "test1")
         dir_path = join(utils.SNIPPETS_DIR, "test1_2")
         args = [utils.APP]
         args += ["-f", file_path, "-d", dir_path]
