@@ -87,4 +87,13 @@ TODO
 ----
 
 - Publish this software in a Ubuntu PPA;
-    - Ubuntu 12.04 and Ubuntu 14.04.
+    - Ubuntu 12.04 and Ubuntu 14.04;
+- Use Travis as a continuous integration server;
+- Hide "bugtracker_url" warning when running setup.py with setuptools;
+- Use code coverage (`coverage`) and flags in `README.md`;
+    - Flags: https://github.com/z4r/python-coveralls
+- Create tests for 100% code coverage;
+- Code covarage after tests:
+    - `cd htmlcov && python -m SimpleHTTPServer 8888 && open http://localhost:8888`
+- `python setup.py flake8`;
+- Help in `Makefile`.
