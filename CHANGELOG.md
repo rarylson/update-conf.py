@@ -1,6 +1,11 @@
 Changelog
 =========
 
+0.4.1
+-----
+
+- **FIX:** Some bugs while installing in Linux.
+
 0.4.0
 -----
 
