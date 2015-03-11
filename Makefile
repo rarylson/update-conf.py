@@ -83,7 +83,7 @@ publish-pypi: prepare
 
 publish-github:
 	git tag "v$(VERSION)"
-	git push "v$(VERSION)"
+	git push origin "v$(VERSION)"
 
 check-publish-test:
 	pip search --index http://testpypi.python.org/pypi/ $(NAME) | grep -o $(VERSION)
