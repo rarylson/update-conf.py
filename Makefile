@@ -69,16 +69,16 @@ install-develop:
 
 # Publish (release)
 
-publish-prepare:
+prepare:
 	python setup.py generate_rst
 	python setup.py sdist
 	python setup.py bdist_wheel
 
 # To use this command, you should have pypitest configured in your ~/.pypirc.
-publish-pypitest: publish-prepare
+publish-pypitest: prepare
 	twine upload dist/* -r pypitest
 
-publish-pypi: publish-prepare
+publish-pypi: prepare
 	twine upload dist/*
 
 publish-github:
