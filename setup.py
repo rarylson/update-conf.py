@@ -168,7 +168,7 @@ setup(
 
     # Data files
     data_files=[
-        (join("share", main.__program__), [sample_config, ]),
+        (join("share", main.__program__), [sample_config_path, ]),
     ],
 
     # Extra
