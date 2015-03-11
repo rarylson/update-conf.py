@@ -104,14 +104,21 @@ class InstallCommand(install):
 
     def run(self):
         result = install.run(self)
-        if os.access(main.SYSTEM_CONFIG, os.W_OK):
-            log.info("Copying {0} to {1}".format(
-                sample_config, main.SYSTEM_CONFIG))
-            shutil.copy(sample_config_path, main.SYSTEM_CONFIG)
+        etc_dir = dirname(main.SYSTEM_CONFIG)
+        # Install config file only if it does not exist yet
+        if not isfile(main.SYSTEM_CONFIG):
+            if os.access(etc_dir, os.W_OK):
+                log.info("Copying {0} to {1}".format(
+                    sample_config, main.SYSTEM_CONFIG))
+                shutil.copy(sample_config_path, main.SYSTEM_CONFIG)
+            else:
+                log.warn(
+                    "Skiping copy of {0} to {1}. You do not have write "
+                    "permission in the {2} dir.".format(
+                        sample_config, main.SYSTEM_CONFIG, etc_dir))
         else:
-            log.warn(
-                "Skiping copy of {0} to {1}. You do not have permission "
-                "to do this.".format(sample_config, main.SYSTEM_CONFIG))
+            log.info("Skipping copy of {0} to {1}. Config file already "
+                "exists.".format(sample_config, main.SYSTEM_CONFIG))
 
         return result
 
