@@ -120,7 +120,8 @@ class InstallCommand(install):
                     "permission in the {2} dir.".format(
                         sample_config, main.SYSTEM_CONFIG, etc_dir))
         else:
-            log.info("Skipping copy of {0} to {1}. Config file already "
+            log.info(
+                "Skipping copy of {0} to {1}. Config file already "
                 "exists.".format(sample_config, main.SYSTEM_CONFIG))
 
         return result
