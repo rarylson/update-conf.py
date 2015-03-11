@@ -99,19 +99,29 @@ class RegisterCommand(register):
 
 
 class InstallCommand(install):
-    """Install the global config file if it exists
+    """Install the global config file
+
+    The global config file will be installed only if:
+    - The file doesn't exist yet
+    - We have write permission in the global system config dir
     """
 
     def run(self):
         result = install.run(self)
-        if os.access(main.SYSTEM_CONFIG, os.W_OK):
-            log.info("Copying {0} to {1}".format(
-                sample_config, main.SYSTEM_CONFIG))
-            shutil.copy(sample_config_path, main.SYSTEM_CONFIG)
+        etc_dir = dirname(main.SYSTEM_CONFIG)
+        if not isfile(main.SYSTEM_CONFIG):
+            if os.access(etc_dir, os.W_OK):
+                log.info("Copying {0} to {1}".format(
+                    sample_config, main.SYSTEM_CONFIG))
+                shutil.copy(sample_config_path, main.SYSTEM_CONFIG)
+            else:
+                log.warn(
+                    "Skiping copy of {0} to {1}. You do not have write "
+                    "permission in the {2} dir.".format(
+                        sample_config, main.SYSTEM_CONFIG, etc_dir))
         else:
-            log.warn(
-                "Skiping copy of {0} to {1}. You do not have permission "
-                "to do this.".format(sample_config, main.SYSTEM_CONFIG))
+            log.info("Skipping copy of {0} to {1}. Config file already "
+                "exists.".format(sample_config, main.SYSTEM_CONFIG))
 
         return result
 
@@ -168,7 +178,7 @@ setup(
 
     # Data files
     data_files=[
-        (join("share", main.__program__), [sample_config, ]),
+        (join("share", main.__program__), [sample_config_path, ]),
     ],
 
     # Extra
@@ -176,6 +186,11 @@ setup(
         "dev": [
             "setuptools>=0.8",
             "pypandoc>=0.9",
+        ],
+        "test": [
+            "pep8>=1.6",
+            "flake8>=2.2",
+            "pep8-naming>=0.2",
         ],
     },
 

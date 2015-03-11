@@ -1,6 +1,11 @@
 Changelog
 =========
 
+0.4.1
+-----
+
+- **Fix:** Some bugs while installing `{prefix}/share/update-conf.py` and `/etc/update-conf.py.conf` in Linux.
+
 0.4.0
 -----
 
