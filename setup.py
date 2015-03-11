@@ -99,13 +99,16 @@ class RegisterCommand(register):
 
 
 class InstallCommand(install):
-    """Install the global config file if it exists
+    """Install the global config file
+
+    The global config file will be installed only if:
+    - The file doesn't exist yet
+    - We have write permission in the global system config dir
     """
 
     def run(self):
         result = install.run(self)
         etc_dir = dirname(main.SYSTEM_CONFIG)
-        # Install config file only if it does not exist yet
         if not isfile(main.SYSTEM_CONFIG):
             if os.access(etc_dir, os.W_OK):
                 log.info("Copying {0} to {1}".format(
