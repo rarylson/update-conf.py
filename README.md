@@ -1,6 +1,12 @@
 update-conf.py
 ==============
 
+[![Pypi - Downloads](https://img.shields.io/pypi/dm/update-conf.py.svg)](https://pypi.python.org/pypi/update-conf.py/)
+[![Pypi - Version](https://img.shields.io/pypi/v/update-conf.py.svg)](https://pypi.python.org/pypi/update-conf.py/)
+[![Licence](https://img.shields.io/pypi/l/update-conf.py.svg)](LICENCE)
+[![Pypi - Status](https://pypip.in/status/update-conf.py/badge.svg)](https://pypi.python.org/pypi/update-conf.py/)
+[![Pypi - Wheel](https://pypip.in/wheel/update-conf.py/badge.svg)](https://pypi.python.org/pypi/update-conf.py/)
+
 Generate config files from `conf.d` like directories.
 
 Split your config file into smaller files in a `conf.d` like directory. The generated config file will be the concatenation of all splitted config files (also called snippets). The spplited files will be merged in the lexical order of their names.
@@ -102,7 +108,7 @@ TODO
     - Ubuntu 12.04 and Ubuntu 14.04;
 - Use Travis as a continuous integration server;
 - Hide "bugtracker_url" warning when running setup.py with setuptools;
-- Use code coverage (`coverage`) and flags in `README.md`;
+- Use code coverage (`coverage`);
     - Flags: https://github.com/z4r/python-coveralls
 - Create tests for 100% code coverage;
 - Code covarage after tests:
