@@ -16,12 +16,6 @@ This project requires Python 2.6 or newer.
 
 **PS:** It's possible to use Python 3 also. However, it is not well tested.
 
-In Ubuntu/Debian:
-
-```sh
-apt-get install python
-```
-
 To install:
 
 ```sh
@@ -53,7 +47,7 @@ If the directory containing the splitted files uses a diferent name pattern, you
 update-conf.py -f /etc/snmp/snmpd.conf -d /etc/snmp/snmpd.d
 ```
 
-It's also possible to define frequent used options in a config file (`/etc/update-conf.py.conf`). For example:
+It's also possible to define frequent used options in a config file. For example, in `/etc/update-conf.py.conf`:
 
 ```ini
 [snmpd]
@@ -71,6 +65,24 @@ To get help:
 
 ```sh
 update-conf.py --help
+```
+
+### Config files
+
+`update-conf.py` can use config files. It will use a global config file (`/etc/update-conf.py.conf`) or a user-home config file (`~/.update-conf.py.conf`) if they exist.
+
+When installing via `setuptools` or via the source distribution, the global system config (`/etc/update-conf.py.conf`) will be automatically created.
+
+However, when installing via the binary wheel distribution, the config file installation will be skipped. But you can use the sample config file as a start:
+
+```sh
+cp {prefix}/share/update-conf.py /etc/update-conf.py.conf
+```
+
+It's also possible to use a custom config file:
+
+```sh
+update-conf.py -c my_custom_config.conf -n snmpd
 ```
 
 License
