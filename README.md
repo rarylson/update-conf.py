@@ -4,8 +4,7 @@ update-conf.py
 [![Pypi - Downloads](https://img.shields.io/pypi/dm/update-conf.py.svg)](https://pypi.python.org/pypi/update-conf.py/)
 [![Pypi - Version](https://img.shields.io/pypi/v/update-conf.py.svg)](https://pypi.python.org/pypi/update-conf.py/)
 [![Licence](https://img.shields.io/pypi/l/update-conf.py.svg)](LICENCE)
-[![Pypi - Status](https://pypip.in/status/update-conf.py/badge.svg)](https://pypi.python.org/pypi/update-conf.py/)
-[![Pypi - Wheel](https://pypip.in/wheel/update-conf.py/badge.svg)](https://pypi.python.org/pypi/update-conf.py/)
+[![Pypi - Wheel](https://pypip.in/wheel/update-conf.py/badge.svg?style=flat)](https://pypi.python.org/pypi/update-conf.py/)
 
 Generate config files from `conf.d` like directories.
 
