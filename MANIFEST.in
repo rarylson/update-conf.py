@@ -1,0 +1,9 @@
+# From 'setuptools' docs:
+#     "Automatically include all relevant files in your source distributions,
+#     without needing to create a MANIFEST.in file"
+# However, 'samples/update-conf.py.conf' wasn't being included in sdist. We
+# don't know if it is a bug. Anyway, we're creating our 'MANIFEST.in'.
+# See: https://pythonhosted.org/setuptools/setuptools.html
+include samples/update-conf.py.conf
+include LICENSE
+include README.rst
