@@ -1,10 +1,17 @@
 Changelog
 =========
 
+0.4.2
+-----
+
+- **Fix:** More bugs while installing in Linux;
+    - `MANIFEST.in` created so the required files are now in the source distribution (used by Linux).
+
 0.4.1
 -----
 
-- **Fix:** Some bugs while installing `{prefix}/share/update-conf.py` and `/etc/update-conf.py.conf` in Linux.
+- **Fix:** Some bugs while installing in Linux;
+    - Fixed logic to install `{prefix}/share/update-conf.py` and `/etc/update-conf.py.conf`.
 
 0.4.0
 -----
