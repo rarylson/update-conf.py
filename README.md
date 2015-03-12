@@ -108,5 +108,6 @@ TODO
 - Code covarage after tests:
     - `cd htmlcov && python -m SimpleHTTPServer 8888 && open http://localhost:8888`;
 - https://pypi.python.org/pypi/bumpversion/ in `Makefile`;
-- check-manifest in `Makefile` / `setup.py`
-- should `README.rst` be in `MANIFEST.in`?
+- check-manifest in `Makefile` / `setup.py`;
+- should `README.rst` be in `MANIFEST.in`?;
+- https://github.com/blog/1184-contributing-guidelines
