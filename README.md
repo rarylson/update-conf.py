@@ -94,4 +94,7 @@ TODO
     - Flags: https://github.com/z4r/python-coveralls
 - Create tests for 100% code coverage;
 - Code covarage after tests:
-    - `cd htmlcov && python -m SimpleHTTPServer 8888 && open http://localhost:8888`.
+    - `cd htmlcov && python -m SimpleHTTPServer 8888 && open http://localhost:8888`;
+- https://pypi.python.org/pypi/bumpversion/ in `Makefile`;
+- check-manifest in `Makefile` / `setup.py`
+- should `README.rst` be in `MANIFEST.in`?
