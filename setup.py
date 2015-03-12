@@ -100,7 +100,7 @@ class SdistCommand(sdist):
 
 
 class RegisterCommand(register):
-    """Check if we're using README.rst before register in Pypi
+    """Check if we're using README.rst before registering in Pypi
     """
 
     def finalize_options(self):
