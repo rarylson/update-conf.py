@@ -4,6 +4,7 @@ Changelog
 0.4.2
 -----
 
+- Docs about config files added.
 - **Fix:** More bugs while installing in Linux;
     - `MANIFEST.in` created so the required files are now in the source distribution (used by Linux).
 
