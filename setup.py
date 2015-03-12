@@ -6,6 +6,7 @@ from os.path import abspath, dirname, join, isfile
 import shutil
 from distutils import log
 from setuptools import setup, Command
+from setuptools.command.sdist import sdist
 from setuptools.command.register import register
 from setuptools.command.install import install
 
@@ -85,6 +86,17 @@ class GenerateRstCommand(Command):
                 f.write(rst)
         finally:
             os.remove(tmp_readme_md)
+
+
+class SdistCommand(sdist):
+    """Check if we're using README.rst before creating the source dist
+    """
+
+    def finalize_options(self):
+        if not using_rst:
+            raise Exception("{} file not found".format(README_RST))
+
+        return sdist.finalize_options(self)
 
 
 class RegisterCommand(register):
@@ -201,6 +213,7 @@ setup(
     # Commands
     cmdclass={
         "generate_rst": GenerateRstCommand,
+        "sdist": SdistCommand,
         "register": RegisterCommand,
         "install": InstallCommand,
     }

@@ -6,3 +6,4 @@
 # See: https://pythonhosted.org/setuptools/setuptools.html
 include samples/update-conf.py.conf
 include LICENSE
+include README.rst
