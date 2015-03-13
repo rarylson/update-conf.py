@@ -3,7 +3,8 @@ from os.path import join
 import subprocess
 import filecmp
 
-import unittest
+# Import unittest2 for Python 2.6 compatibility
+import unittest2 as unittest
 
 import utils
 

@@ -201,6 +201,7 @@ setup(
             "pypandoc>=0.9",
         ],
         "test": [
+            "unittest2>=1.0.0",
             "flake8>=2.2",
             "pep8-naming>=0.2",
         ],

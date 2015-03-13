@@ -1,6 +1,7 @@
 -r requirements.txt
 
 setuptools>=0.8
+unittest2>=1.0.0
 pypandoc>=0.9
 flake8>=2.2
 pep8-naming>=0.2
