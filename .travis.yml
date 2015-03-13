@@ -3,6 +3,8 @@ python:
     - "2.6"
     - "2.7"
     - "3.4"
+before_install:
+    - sudo make develop-deps-ubuntu
 install:
     - pip install -r requirements-dev.txt
 script:
