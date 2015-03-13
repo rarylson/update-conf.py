@@ -15,9 +15,9 @@ before_install:
     - sudo make develop-deps-ubuntu
     # Unfortunately, Travis CI doesn't add the python bin path to the system
     # path. We're doing it manually.
-    - export PATH=$PATH:/home/travis/virtualenv/python2.7.*/bin
-    - export PATH=$PATH:/home/travis/virtualenv/python2.6.*/bin
-    - export PATH=$PATH:/home/travis/virtualenv/python3.4.*/bin
+    - export PATH=$PATH:$(echo /home/travis/virtualenv/python2.7.*/bin)
+    - export PATH=$PATH:$(echo /home/travis/virtualenv/python2.6.*/bin)
+    - export PATH=$PATH:$(echo /home/travis/virtualenv/python3.4.*/bin)
 
 install:
     - pip install -r requirements-dev.txt
