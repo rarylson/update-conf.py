@@ -37,9 +37,6 @@ check:
 	flake8 --ignore=N802 $(TEST_PACKAGE)
 
 test:
-	# DEBUG Travis
-	@echo "################"
-	@echo $(value PATH)
 	python setup.py test
 
 

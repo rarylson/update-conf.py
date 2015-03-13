@@ -8,24 +8,11 @@ python:
     # disabling it.
     #- "3.4"
 
-env:
-    global:
-        - PATH=$PATH:$(echo /home/travis/virtualenv/python2.7.*/bin)
-        - PATH=$PATH:$(echo /home/travis/virtualenv/python2.6.*/bin)
-        - PATH=$PATH:$(echo /home/travis/virtualenv/python3.4.*/bin)
-
 before_install:
     # NOTE: Currently, 'develop-deps-ubuntu' is necessary to install pyandoc.
     # Actually, it is NOT a test requirement. May we should separate
     # requirements-dev.txt from requirements-test.txt.
     - sudo make develop-deps-ubuntu
-    # Unfortunately, Travis CI doesn't add the python bin path to the system
-    # path. We're doing it manually.
-    - echo $PATH
-    - PATH=$PATH:$(echo /home/travis/virtualenv/python2.7.*/bin)
-    - PATH=$PATH:$(echo /home/travis/virtualenv/python2.6.*/bin)
-    - PATH=$PATH:$(echo /home/travis/virtualenv/python3.4.*/bin)
-    - echo $PATH
 
 install:
     - pip install -r requirements-dev.txt
