@@ -1,6 +1,7 @@
 update-conf.py
 ==============
 
+[![Travis CI - Build Status](https://img.shields.io/travis/rarylson/update-conf.py.svg)](https://travis-ci.org/rarylson/update-conf.py)
 [![Pypi - Downloads](https://img.shields.io/pypi/dm/update-conf.py.svg)](https://pypi.python.org/pypi/update-conf.py/)
 [![Pypi - Version](https://img.shields.io/pypi/v/update-conf.py.svg)](https://pypi.python.org/pypi/update-conf.py/)
 [![Licence](https://img.shields.io/pypi/l/update-conf.py.svg)](LICENCE)
