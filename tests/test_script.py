@@ -65,7 +65,7 @@ class ScriptTest(unittest.TestCase):
         args = [utils.APP]
         args += ["-f", file_path, "-d", dir_path]
         with self.assertRaises(subprocess.CalledProcessError):
-            subprocess.check_output(args, stderr=subprocess.STDOUT)
+            subprocess.check_call(args, stderr=subprocess.STDOUT)
 
     def test_script_verbose(self):
         """Script must print verbose messages when verbose is set
@@ -77,7 +77,11 @@ class ScriptTest(unittest.TestCase):
         subprocess.call(args)
         # Set verbose flag
         args += ["-v"]
-        output = subprocess.check_output(args)
+        # Using subprocess.Popen instead of subprocess.check_output for Python
+        # 2.6 compatibility.
+        # See: http://stackoverflow.com/a/4814985/2530295
+        output = subprocess.Popen(
+            args, stdout=subprocess.PIPE).communicate()[0]
         self.assertTrue(
             "Skiping" in output and "Merging" in output and
             "Backing up" in output)
