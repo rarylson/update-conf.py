@@ -161,7 +161,6 @@ setup(
         "License :: OSI Approved",
         "Natural Language :: English",
         "Operating System :: POSIX",
-        "Operating System :: POSIX :: Linux",
         "Programming Language :: Python :: 2",
         "Programming Language :: Python :: 2.6",
         "Programming Language :: Python :: 2.7",
