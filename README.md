@@ -18,9 +18,9 @@ This project was based in the [update-conf.d project](https://github.com/Atha/up
 Install
 -------
 
-This project requires Python 2.6 or newer.
+This project requires Python 2.6 or Python 2.7.
 
-**PS:** It's possible to use Python 3 also. However, it is not well tested.
+**PS:** We're working on Python 3.X compatibility.
 
 To install:
 
@@ -39,13 +39,13 @@ python setup.py install
 Usage
 -----
 
-If you run:
+To generate a config file, you can run something like this:
 
 ```sh
 update-conf.py -f /etc/snmp/snmpd.conf
 ```
 
-The script will merge the splitted config files in the directory `/etc/snmp/snmpd.conf.d` into the file `/etc/snmp/snmpd.conf`.
+The example above will merge the splitted config files in the directory `/etc/snmp/snmpd.conf.d` into the file `/etc/snmp/snmpd.conf`.
 
 If the directory containing the splitted files uses a diferent name pattern, you can pass its name as an argument:
 
@@ -75,17 +75,17 @@ update-conf.py --help
 
 ### Config files
 
-`update-conf.py` can use config files. It will use a global config file (`/etc/update-conf.py.conf`) or a user-home config file (`~/.update-conf.py.conf`) if they exist.
+`update-conf.py` will use the global config file (`/etc/update-conf.py.conf`) or the user-home config file (`~/.update-conf.py.conf`) if they exist.
 
-When installing via `setuptools` or via the source distribution, the global system config (`/etc/update-conf.py.conf`) will be automatically created.
+When installing via the source distribution, the global config file (`/etc/update-conf.py.conf`) will be automatically created.
 
-However, when installing via the binary wheel distribution, the config file installation will be skipped. But you can use the sample config file as a start:
+However, when installing via the binary wheel distribution, the config file installation will be skipped. But you can use the sample config file as a start point:
 
 ```sh
 cp {prefix}/share/update-conf.py /etc/update-conf.py.conf
 ```
 
-It's also possible to use a custom config file:
+It's also possible to pass a custom config file via command line args:
 
 ```sh
 update-conf.py -c my_custom_config.conf -n snmpd
@@ -99,19 +99,19 @@ This software is released under the [Revised BSD License](LICENSE).
 Changelog
 ---------
 
-You can see the changelog [here](CHANGELOG.md).
+Check the [CHANGELOG](CHANGELOG.md) page.
 
 TODO
 ----
 
 - Publish this software in a Ubuntu PPA;
+    - Remove dependencies from argparse e configparser before pubishing in the PPA;
     - Ubuntu 12.04 and Ubuntu 14.04;
-- Use Travis as a continuous integration server;
-- Hide "bugtracker_url" warning when running setup.py with setuptools;
+- Hide "bugtracker_url" warning when running `setup.py` with setuptools;
 - Use code coverage (`coverage`);
-    - Flags: https://github.com/z4r/python-coveralls
-- Create tests for 100% code coverage;
-- Code covarage after tests:
-    - `cd htmlcov && python -m SimpleHTTPServer 8888 && open http://localhost:8888`;
+    - Put the project in Coveralls;
+    - Create tests for 100% code coverage;
+    - Code covarage in Makefile:
+        - `cd htmlcov && python -m SimpleHTTPServer 8888 && open http://localhost:8888`;
 - https://pypi.python.org/pypi/bumpversion/ in `Makefile`;
-- https://github.com/blog/1184-contributing-guidelines
+- Add a `CONTRIBUTING.md` file (https://github.com/blog/1184-contributing-guidelines).
