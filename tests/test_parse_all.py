@@ -3,7 +3,8 @@ import os
 from os.path import join
 from StringIO import StringIO
 
-import unittest
+# Import unittest2 for Python 2.6 compatibility
+import unittest2 as unittest
 
 from update_conf_py import main
 import utils
@@ -20,6 +21,10 @@ class ParseAllTest(unittest.TestCase):
         self.section_name = "test1"
         self.config_file_path = "tests/tmp/test1"
         self.config_dir_path = "tests/tmp/test1.d"
+        self.section_name_2 = "test2"
+        self.config_file_path_2 = "tests/tmp/test2"
+        self.config_dir_path_2 = "tests/snippets/test2"
+        self.config_comment_prefix_2 = ";"
         # These tests must be done from the root dir
         self.chdir_old = os.getcwd()
         os.chdir(utils.ROOT_DIR)
@@ -79,15 +84,29 @@ class ParseAllTest(unittest.TestCase):
             sys.stderr = stderr_old
 
     def test_config_parse(self):
-        """App must parse options from a config file
+        """App must parse options from a config file (and use defaut values
+        from the other options)
         """
-        sys.argv = [sys.argv[0], "-c", self.config_path, "-n", "test1"]
+        sys.argv = [
+            sys.argv[0], "-c", self.config_path, "-n", self.section_name]
         args = main._parse_all()
         self.assertEqual(args.file, self.config_file_path)
         self.assertEqual(args.dir, self.config_dir_path)
         self.assertEqual(args.comment_prefix, "#")
         self.assertEqual(args.config, self.config_path)
         self.assertEqual(args.name, self.section_name)
+
+    def test_config_parse_full(self):
+        """App must parse all options from a config file
+        """
+        sys.argv = [
+            sys.argv[0], "-c", self.config_path, "-n", self.section_name_2]
+        args = main._parse_all()
+        self.assertEqual(args.file, self.config_file_path_2)
+        self.assertEqual(args.dir, self.config_dir_path_2)
+        self.assertEqual(args.comment_prefix, self.config_comment_prefix_2)
+        self.assertEqual(args.config, self.config_path)
+        self.assertEqual(args.name, self.section_name_2)
 
     def test_nonexistent_config_parse(self):
         """App must print an error and exit when no config file was found

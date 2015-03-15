@@ -1,0 +1,24 @@
+language: python
+
+python:
+    - "2.6"
+    - "2.7"
+    # Currently, the project is broke in Python3 because of the ConfigParser
+    # package (called configparser in Python3 - lowercase). For now, we're
+    # disabling it.
+    #- "3.4"
+
+install:
+    - pip install -r requirements-test.txt
+    - pip install coveralls
+    # It's necessary to install the project to create the update-conf.py bin.
+    # It's used by the 'test_script.py' module.
+    - python setup.py develop
+
+script:
+    - make check
+    # It's necessary to run tests as 'sudo'. 'sudo' is used by the
+    # 'test_sudo_config.py' module.
+    - sudo PATH=$PATH make test-with-coverage
+
+after_success: coveralls
