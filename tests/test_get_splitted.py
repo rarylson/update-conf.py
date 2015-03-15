@@ -2,7 +2,8 @@ import sys
 from os.path import join, basename
 from StringIO import StringIO
 
-import unittest
+# Import unittest2 for Python 2.6 compatibility
+import unittest2 as unittest
 
 from update_conf_py import main
 import utils

@@ -6,7 +6,6 @@ from os.path import abspath, dirname, join, isfile
 import shutil
 from distutils import log
 from setuptools import setup, Command
-from setuptools.command.sdist import sdist
 from setuptools.command.register import register
 from setuptools.command.install import install
 
@@ -88,17 +87,6 @@ class GenerateRstCommand(Command):
             os.remove(tmp_readme_md)
 
 
-class SdistCommand(sdist):
-    """Check if we're using README.rst before creating the source dist
-    """
-
-    def finalize_options(self):
-        if not using_rst:
-            raise Exception("{} file not found".format(README_RST))
-
-        return sdist.finalize_options(self)
-
-
 class RegisterCommand(register):
     """Check if we're using README.rst before registering in Pypi
     """
@@ -173,7 +161,6 @@ setup(
         "License :: OSI Approved",
         "Natural Language :: English",
         "Operating System :: POSIX",
-        "Operating System :: POSIX :: Linux",
         "Programming Language :: Python :: 2",
         "Programming Language :: Python :: 2.6",
         "Programming Language :: Python :: 2.7",
@@ -191,7 +178,7 @@ setup(
 
     # Data files
     data_files=[
-        (join("share", main.__program__), [sample_config_path, ]),
+        (join("share", main.__program__), [sample_config, ]),
     ],
 
     # Extra
@@ -201,9 +188,11 @@ setup(
             "pypandoc>=0.9",
         ],
         "test": [
-            "pep8>=1.6",
+            "unittest2>=1.0.0",
+            "coverage>=3.7",
             "flake8>=2.2",
             "pep8-naming>=0.2",
+            "check-manifest>=0.22",
         ],
     },
 
@@ -213,7 +202,6 @@ setup(
     # Commands
     cmdclass={
         "generate_rst": GenerateRstCommand,
-        "sdist": SdistCommand,
         "register": RegisterCommand,
         "install": InstallCommand,
     }

@@ -4,4 +4,6 @@
 /build
 /dist
 *.egg-info/
+/.coverage
+/htmlcov
 *.pyc

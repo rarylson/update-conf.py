@@ -20,7 +20,7 @@ from ConfigParser import SafeConfigParser
 __author__ = "Rarylson Freitas"
 __email__ = "rarylson@gmail.com"
 __program__ = "update-conf.py"
-__version__ = "0.4.2"
+__version__ = "0.4.3"
 __license__ = "Revised BSD"
 
 # Consts
@@ -126,7 +126,8 @@ def _parse_all():
         # Section not found error
         if not config_parser.has_section(args.name):
             parser.error(
-                "section name '{}' not found in config file".format(args.name))
+                "section name '{0}' not found in config file".format(
+                    args.name))
         # Get options from config file (options from command line take
         # precedence)
         if not args.file and config_parser.has_option(args.name, 'file'):

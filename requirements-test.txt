@@ -1,0 +1,7 @@
+-r requirements.txt
+
+unittest2>=1.0.0
+coverage>=3.7
+flake8>=2.2
+pep8-naming>=0.2
+check-manifest>=0.22
