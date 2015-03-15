@@ -18,4 +18,6 @@ script:
     - make check
     # It's necessary to run tests as 'sudo'. 'sudo' is used by the
     # 'test_sudo_config.py' module.
-    - sudo PATH=$PATH make test
+    - sudo PATH=$PATH make test-with-coverage
+
+after_success: coveralls
