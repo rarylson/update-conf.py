@@ -10,11 +10,7 @@ update-conf.py
 
 Generate config files from `conf.d` like directories.
 
-Split your config file
-into smaller files, called snippets,
-in a `conf.d` like directory.
-The generated config file will be the concatenation of all snippets,
-with snippets ordered by the lexical order of their names.
+Split your config file into smaller files, called snippets, in a `conf.d` like directory. The generated config file will be the concatenation of all snippets, with snippets ordered by the lexical order of their names.
 
 Files ending with `.bak`, `.old` and other similar terminations will be ignored.
 
@@ -116,4 +112,6 @@ TODO
 - https://pypi.python.org/pypi/bumpversion/ in `Makefile`;
 - Add a `CONTRIBUTING.md` file (https://github.com/blog/1184-contributing-guidelines);
 - Make project compatible with Python 3.X;
+- Change occurrences of the term "splitted config files" by "snippets";
+    - See: https://github.com/rarylson/update-conf.py/pull/16
 - Add a test installing `update-conf.py` from PyPI Test (`make publish-test`).
