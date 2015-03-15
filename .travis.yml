@@ -10,6 +10,7 @@ python:
 
 install:
     - pip install -r requirements-test.txt
+    - pip install coveralls
     # It's necessary to install the project to create the update-conf.py bin.
     # It's used by the 'test_script.py' module.
     - python setup.py develop
