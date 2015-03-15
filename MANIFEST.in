@@ -18,3 +18,4 @@ include *.txt
 recursive-include samples *
 recursive-include tests *
 global-exclude tests/tmp/*
+global-exclude *.pyc
