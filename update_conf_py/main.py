@@ -15,9 +15,12 @@ import sys
 import os
 import shutil
 import tempfile
-
 import argparse
-from ConfigParser import SafeConfigParser
+# Trying both 'configparser' and 'ConfigParser' for Python 3.4 compatibility
+try:
+    from configparser import SafeConfigParser
+except ImportError:
+    from ConfigParser import SafeConfigParser
 
 # About
 __author__ = "Rarylson Freitas"

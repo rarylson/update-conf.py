@@ -3,10 +3,7 @@ language: python
 python:
     - "2.6"
     - "2.7"
-    # Currently, the project is broke in Python3 because of the ConfigParser
-    # package (called configparser in Python3 - lowercase). For now, we're
-    # disabling it.
-    #- "3.4"
+    - "3.4"
 
 install:
     - pip install -r requirements-test.txt
@@ -19,6 +16,7 @@ script:
     - make check
     # It's necessary to run tests as 'sudo'. 'sudo' is used by the
     # 'test_sudo_config.py' module.
+    # Setting the PATH is also necessary for 'sudo make' finding the binary.
     - sudo PATH=$PATH make test-with-coverage
 
 after_success: coveralls
