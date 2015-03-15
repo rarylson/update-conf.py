@@ -46,9 +46,9 @@ To generate a config file, you can run something like this:
 update-conf.py -f /etc/snmp/snmpd.conf
 ```
 
-The example above will merge the splitted config files in the directory `/etc/snmp/snmpd.conf.d` into the file `/etc/snmp/snmpd.conf`.
+The example above will merge the snippets in the directory `/etc/snmp/snmpd.conf.d` into the file `/etc/snmp/snmpd.conf`.
 
-If the directory containing the splitted files uses a diferent name pattern, you can pass its name as an argument:
+If the directory containing the snippets uses a diferent name pattern, you can pass its name as an argument:
 
 ```sh
 update-conf.py -f /etc/snmp/snmpd.conf -d /etc/snmp/snmpd.d
@@ -112,6 +112,4 @@ TODO
 - https://pypi.python.org/pypi/bumpversion/ in `Makefile`;
 - Add a `CONTRIBUTING.md` file (https://github.com/blog/1184-contributing-guidelines);
 - Make project compatible with Python 3.X;
-- Change occurrences of the term "splitted config files" by "snippets";
-    - See: https://github.com/rarylson/update-conf.py/pull/16
 - Add a test installing `update-conf.py` from PyPI Test (`make publish-test`).
