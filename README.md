@@ -109,6 +109,5 @@ TODO
     - Remove dependencies from argparse e configparser before pubishing in the PPA;
     - Ubuntu 12.04 and Ubuntu 14.04;
 - Hide "bugtracker_url" warning when running `setup.py` with setuptools;
-- Create tests for 100% code coverage;
 - https://pypi.python.org/pypi/bumpversion/ in `Makefile`;
 - Add a `CONTRIBUTING.md` file (https://github.com/blog/1184-contributing-guidelines).

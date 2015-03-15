@@ -88,7 +88,6 @@ class ScriptTest(unittest.TestCase):
             "Skiping" in output and "Merging" in output and
             "Backing up" in output)
 
-
     def test_run(self):
         """Test a call to the run function
 
