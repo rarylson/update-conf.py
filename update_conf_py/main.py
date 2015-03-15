@@ -87,8 +87,8 @@ def _parse_all():
         "-f", "--file", help="config file to be generated")
     parser.add_argument(
         "-d", "--dir",
-        help="directory with the snippets (splitted config files) (default "
-             "FILE.{0})".format(DEFAULT_DIR_EXT))
+        help="directory with the snippets (default FILE.{0})".format(
+            DEFAULT_DIR_EXT))
     parser.add_argument(
         "-n", "--name",
         help="name of the section (defined in the config file) to be used")
@@ -163,7 +163,7 @@ def _parse_all():
     return args
 
 
-# Get all valid snippets (splitted config files) inside a dir
+# Get all valid snippets inside a dir
 #
 # This funtion skips all entries that are not files or end with some special
 # extensions.
@@ -197,7 +197,7 @@ def _get_snippets(directory):
     # Dir not found error
     except OSError:
         _error("dir '{0}' not found".format(directory))
-    # No splitted files error
+    # No snippets found error
     if not snippets:
         _error("no snippets found in dir '{0}'".format(directory))
 
