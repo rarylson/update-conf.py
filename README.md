@@ -10,11 +10,15 @@ update-conf.py
 
 Generate config files from `conf.d` like directories.
 
-Split your config file into smaller files in a `conf.d` like directory. The generated config file will be the concatenation of all splitted config files (also called snippets). The spplited files will be merged in the lexical order of their names.
+Split your config file
+into smaller files, called snippets,
+in a `conf.d` like directory.
+The generated config file will be the concatenation of all snippets,
+with snippets ordered by the lexical order of their names.
 
 Files ending with `.bak`, `.old` and other similar terminations will be ignored.
 
-This project was based in the [update-conf.d project](https://github.com/Atha/update-conf.d).
+This project was based on the [update-conf.d project](https://github.com/Atha/update-conf.d).
 
 Install
 -------
@@ -54,7 +58,7 @@ If the directory containing the splitted files uses a diferent name pattern, you
 update-conf.py -f /etc/snmp/snmpd.conf -d /etc/snmp/snmpd.d
 ```
 
-It's also possible to define frequent used options in a config file. For example, in `/etc/update-conf.py.conf`:
+It's also possible to define frequently used options in a config file. For example, in `/etc/update-conf.py.conf`:
 
 ```ini
 [snmpd]
