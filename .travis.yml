@@ -8,14 +8,8 @@ python:
     # disabling it.
     #- "3.4"
 
-before_install:
-    # NOTE: Currently, 'develop-deps-ubuntu' is necessary to install pyandoc.
-    # Actually, it is NOT a test requirement. May we should separate
-    # requirements-dev.txt from requirements-test.txt.
-    - sudo make develop-deps-ubuntu
-
 install:
-    - pip install -r requirements-dev.txt
+    - pip install -r requirements-test.txt
     # It's necessary to install the project to create the update-conf.py bin.
     # It's used by the 'test_script.py' module.
     - python setup.py develop
