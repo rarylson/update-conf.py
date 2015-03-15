@@ -148,8 +148,7 @@ setup(
 
     # Requirements
     install_requires=[
-        "argparse>=1.2",
-        "configparser>=2.3",
+        "argparse>=1.1",
     ],
 
     # Classifiers
