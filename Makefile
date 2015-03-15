@@ -15,12 +15,13 @@ all: help
 help:
 	@echo "Usage:"
 	@echo
-	@echo "    make install              install the project in the system (global)"
-	@echo "    make uninstall            show tips for uninstalling the project"
+	@echo "    make install              install project in system (global)"
+	@echo "    make uninstall            show tips for uninstalling"
 	@echo "    make check                check PEP8 compliance (and others)"
-	@echo "    make test                 run the tests (use 'sudo' to run all)"
+	@echo "    make test                 run tests (use 'sudo' to run all)"
+	@echo "    make check-coverage       run tests and check coverage (use 'sudo' to run all)"
 	@echo "    make clean                cleanup temporary files"
-	@echo "    make install-develop      install the project in develop mode (virtual environment)"
+	@echo "    make install-develop      install project in develop mode (virtual environment)"
 	@echo "    make develop-deps-ubuntu  install software dependencies (valid only in Ubuntu)"
 	@echo "    make prepare              prepare stuff (build, dist, etc) before publishing"
 	@echo "    make publish-test         test publishing a version (PyPI Test)"
@@ -39,6 +40,20 @@ check:
 
 test:
 	python setup.py test
+
+test-with-coverage:
+	coverage run --source=$(PACKAGE) setup.py test
+
+check-coverage: test-with-coverage
+	coverage html
+	@echo
+	@echo "Check coverage results at"
+	@echo
+	@tput setaf 2
+	@echo "    http://localhost:8000"
+	@tput sgr0
+	@echo
+	cd htmlcov && python -m SimpleHTTPServer
 
 
 # Install
@@ -107,7 +122,11 @@ clean-build:
 	rm -Rf dist/
 	rm -Rf *.egg-info
 
+clean-coverage-report:
+	rm .coverage
+	rm -Rf htmlcov
+
 clean-pyc:
 	find . -name "*.pyc" -type f -delete
 
-clean: clean-rst clean-build clean-pyc
+clean: clean-rst clean-build clean-coverage-report clean-pyc
