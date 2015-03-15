@@ -42,7 +42,7 @@ test:
 	python setup.py test
 
 test-with-coverage:
-	coverage run --source=$(PACKAGE) setup.py test
+	coverage run setup.py test
 
 check-coverage: test-with-coverage
 	coverage html

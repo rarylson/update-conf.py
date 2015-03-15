@@ -13,6 +13,8 @@
 #      https://docs.python.org/2/distutils/sourcedist.html
 include Makefile
 include LICENSE
+include .coveragerc
+include .travis.yml
 include *.md
 include *.txt
 recursive-include samples *
