@@ -123,7 +123,7 @@ clean-build:
 	rm -Rf *.egg-info
 
 clean-coverage-report:
-	rm .coverage
+	rm -f .coverage
 	rm -Rf htmlcov
 
 clean-pyc:

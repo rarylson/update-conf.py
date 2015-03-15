@@ -1,3 +1,4 @@
+import sys
 import os
 from os.path import join
 import subprocess
@@ -6,6 +7,7 @@ import filecmp
 # Import unittest2 for Python 2.6 compatibility
 import unittest2 as unittest
 
+from update_conf_py import main
 import utils
 
 
@@ -85,6 +87,32 @@ class ScriptTest(unittest.TestCase):
         self.assertTrue(
             "Skiping" in output and "Merging" in output and
             "Backing up" in output)
+
+
+    def test_run(self):
+        """Test a call to the run function
+
+        Unfortunately, the previous tests from this module are not detected
+        by 'coverage'. We are testing this function directaly (the test is
+        equal to the 'test_script_cmd'). So, 'coverage' will consider that the
+        'run' function is tested.
+        """
+        file_path = join(utils.TMP_DIR, "test1")
+        expected_path = join(utils.RESULTS_DIR, "test1")
+        dir_path = join(utils.SNIPPETS_DIR, "test1_2")
+        args = [utils.APP]
+        args += ["-f", file_path, "-d", dir_path]
+        # Mock sys.argv
+        self.argv_old = sys.argv
+        sys.argv = args
+        main.run()
+        # The second call forces a backup
+        main.run()
+        self.assertTrue(
+            filecmp.cmp(file_path, expected_path, shallow=False))
+        self.assertTrue(filecmp.cmp(
+            "{0}.bak".format(file_path), expected_path, shallow=False))
+        sys.argv = self.argv_old
 
 
 if __name__ == '__main__':
