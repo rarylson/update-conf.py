@@ -4,8 +4,7 @@ Changelog
 0.4.3
 -----
 
-- Build process improved and docs updated;
-- Project integrated with Travis;
+- Project integrated with Travis and Coveralls;
 - Project is now compatible (and tested) with Python 2.6.
 
 0.4.2
