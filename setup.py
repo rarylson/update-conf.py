@@ -160,6 +160,7 @@ setup(
         "Intended Audience :: System Administrators",
         "License :: OSI Approved",
         "Natural Language :: English",
+        "Operating System :: MacOS :: MacOS X",
         "Operating System :: POSIX",
         "Programming Language :: Python :: 2.6",
         "Programming Language :: Python :: 2.7",
