@@ -19,9 +19,7 @@ This project was based on the [update-conf.d project](https://github.com/Atha/up
 Install
 -------
 
-This project requires Python 2.6 or Python 2.7.
-
-**PS:** We're working on Python 3.X compatibility.
+This project requires Python 2.6, 2.7 or 3.4.
 
 To install:
 
@@ -111,5 +109,4 @@ TODO
 - Hide "bugtracker_url" warning when running `setup.py` with setuptools;
 - https://pypi.python.org/pypi/bumpversion/ in `Makefile`;
 - Add a `CONTRIBUTING.md` file (https://github.com/blog/1184-contributing-guidelines);
-- Make project compatible with Python 3.X;
 - Add a test installing `update-conf.py` from PyPI Test (`make publish-test`).
