@@ -1,6 +1,13 @@
+from __future__ import absolute_import
+
 import sys
 from os.path import join, basename
-from StringIO import StringIO
+# Use 'io.StringIO' for Python 3.4 compatibility. In Python 2.X, still use
+# 'StringIO.StringIO' to avoid unicode errors.
+try:
+    from StringIO import StringIO
+except ImportError:
+    from io import StringIO
 
 # Import unittest2 for Python 2.6 compatibility
 import unittest2 as unittest
@@ -24,20 +31,22 @@ class GetSnippetsTest(unittest.TestCase):
         """
         the_dir = join(utils.SNIPPETS_DIR, "test1")
         files = main._get_snippets(the_dir)
-        self.assertEqual(
-            map(basename, files),
-            ["00-conf_0", "01-conf_1", "02-conf_2", "99-conf_99",
-                "other_name-conf", "some_name-conf"])
+        files = [basename(f) for f in files]
+        expected_files = [
+            "00-conf_0", "01-conf_1", "02-conf_2", "99-conf_99",
+            "other_name-conf", "some_name-conf"]
+        self.assertEqual(files, expected_files)
 
     def test_snippets_skip(self):
         """App must skip all invalid snippet filenames
         """
         the_dir = join(utils.SNIPPETS_DIR, "test1_2")
         files = main._get_snippets(the_dir)
-        self.assertEqual(
-            map(basename, files),
-            ["00-conf_0", "01-conf_1", "02-conf_2", "99-conf_99",
-                "other_name-conf", "some_name-conf"])
+        files = [basename(f) for f in files]
+        expected_files = [
+            "00-conf_0", "01-conf_1", "02-conf_2", "99-conf_99",
+            "other_name-conf", "some_name-conf"]
+        self.assertEqual(files, expected_files)
 
     def test_snippets_wrong_dir(self):
         """App must prints an error and exists if wrong dirs are used
@@ -78,3 +87,7 @@ class GetSnippetsTest(unittest.TestCase):
                 "Skiping" in output and "03-conf_3.disabled" in output)
         finally:
             sys.stdout = stdout_old
+
+
+if __name__ == "__main__":
+    unittest.main()

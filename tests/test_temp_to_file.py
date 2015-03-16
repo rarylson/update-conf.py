@@ -1,3 +1,5 @@
+from __future__ import absolute_import
+
 import os
 from os.path import join, isfile
 import shutil
@@ -56,3 +58,7 @@ class TempToFileTest(unittest.TestCase):
         finally:
             if isfile(temp_file):
                 os.remove(temp_file)
+
+
+if __name__ == "__main__":
+    unittest.main()

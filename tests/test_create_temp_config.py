@@ -1,8 +1,15 @@
+from __future__ import absolute_import
+
 import sys
 import os
 from os.path import join
-from StringIO import StringIO
 import filecmp
+# Use 'io.StringIO' for Python 3.4 compatibility. In Python 2.X, still use
+# 'StringIO.StringIO' to avoid unicode errors.
+try:
+    from StringIO import StringIO
+except ImportError:
+    from io import StringIO
 
 # Import unittest2 for Python 2.6 compatibility
 import unittest2 as unittest
@@ -75,5 +82,5 @@ class CreateTempConfigTest(unittest.TestCase):
             os.remove(temp_file)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()
