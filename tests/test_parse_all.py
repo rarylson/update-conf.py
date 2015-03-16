@@ -7,7 +7,7 @@ from StringIO import StringIO
 import unittest2 as unittest
 
 from update_conf_py import main
-import utils
+from . import utils
 
 
 class ParseAllTest(unittest.TestCase):
@@ -148,7 +148,3 @@ class ParseAllTest(unittest.TestCase):
         self.assertEqual(args.comment_prefix, "#")
         self.assertEqual(args.config, self.config_path)
         self.assertEqual(args.name, self.section_name)
-
-
-if __name__ == '__main__':
-    unittest.main()

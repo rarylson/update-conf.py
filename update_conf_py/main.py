@@ -16,7 +16,7 @@ import os
 import shutil
 import tempfile
 import argparse
-# Trying both 'configparser' and 'ConfigParser' for Python 3.4 compatibility
+# Try both 'configparser' and 'ConfigParser' for Python 3.4 compatibility
 try:
     from configparser import SafeConfigParser
 except ImportError:

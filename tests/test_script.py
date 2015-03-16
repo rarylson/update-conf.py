@@ -8,7 +8,7 @@ import filecmp
 import unittest2 as unittest
 
 from update_conf_py import main
-import utils
+from . import utils
 
 
 class ScriptTest(unittest.TestCase):
@@ -112,7 +112,3 @@ class ScriptTest(unittest.TestCase):
         self.assertTrue(filecmp.cmp(
             "{0}.bak".format(file_path), expected_path, shallow=False))
         sys.argv = self.argv_old
-
-
-if __name__ == '__main__':
-    unittest.main()

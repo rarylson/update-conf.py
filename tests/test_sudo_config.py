@@ -8,8 +8,7 @@ from StringIO import StringIO
 import unittest2 as unittest
 
 from update_conf_py import main
-
-import utils
+from . import utils
 
 
 @unittest.skipIf(
@@ -88,7 +87,3 @@ class SudoConfigTest(unittest.TestCase):
                 main.SYSTEM_CONFIG in output and main.USER_CONFIG in output)
         finally:
             sys.stderr = stderr_old
-
-
-if __name__ == '__main__':
-    unittest.main()

@@ -8,7 +8,7 @@ import filecmp
 import unittest2 as unittest
 
 from update_conf_py import main
-import utils
+from . import utils
 
 
 class CreateTempConfigTest(unittest.TestCase):

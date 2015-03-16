@@ -1,6 +1,8 @@
 """update_conf_py package
 """
 
-from main import run
+# Use local imports from Python 3.4 compatibility
+from . import main
+from .main import run
 
-__all__ = [run]
+__all__ = [main, run]

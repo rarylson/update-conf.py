@@ -6,7 +6,7 @@ from StringIO import StringIO
 import unittest2 as unittest
 
 from update_conf_py import main
-import utils
+from . import utils
 
 
 class GetSnippetsTest(unittest.TestCase):
@@ -78,7 +78,3 @@ class GetSnippetsTest(unittest.TestCase):
                 "Skiping" in output and "03-conf_3.disabled" in output)
         finally:
             sys.stdout = stdout_old
-
-
-if __name__ == '__main__':
-    unittest.main()

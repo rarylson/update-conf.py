@@ -148,6 +148,7 @@ setup(
 
     # Requirements
     install_requires=[
+        # Require 'argparse' for Python 2.6 compatibility
         "argparse>=1.1",
     ],
 

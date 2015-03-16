@@ -8,7 +8,7 @@ import filecmp
 import unittest2 as unittest
 
 from update_conf_py import main
-import utils
+from . import utils
 
 
 class TempToFileTest(unittest.TestCase):
@@ -56,7 +56,3 @@ class TempToFileTest(unittest.TestCase):
         finally:
             if isfile(temp_file):
                 os.remove(temp_file)
-
-
-if __name__ == '__main__':
-    unittest.main()
