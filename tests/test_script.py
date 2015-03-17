@@ -1,3 +1,5 @@
+from __future__ import absolute_import
+
 import sys
 import os
 from os.path import join
@@ -8,7 +10,7 @@ import filecmp
 import unittest2 as unittest
 
 from update_conf_py import main
-import utils
+from . import utils
 
 
 class ScriptTest(unittest.TestCase):
@@ -84,6 +86,8 @@ class ScriptTest(unittest.TestCase):
         # See: http://stackoverflow.com/a/4814985/2530295
         output = subprocess.Popen(
             args, stdout=subprocess.PIPE).communicate()[0]
+        # In Python 3, it's necessary a conversion to str.
+        output = str(output)
         self.assertTrue(
             "Skiping" in output and "Merging" in output and
             "Backing up" in output)
@@ -114,5 +118,5 @@ class ScriptTest(unittest.TestCase):
         sys.argv = self.argv_old
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()

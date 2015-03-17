@@ -1,13 +1,20 @@
+from __future__ import absolute_import
+
 import sys
 import os
 from os.path import join
-from StringIO import StringIO
+# Use 'io.StringIO' for Python 3 compatibility. In Python 2, still use
+# 'StringIO.StringIO' to avoid unicode errors.
+try:
+    from StringIO import StringIO
+except ImportError:
+    from io import StringIO
 
 # Import unittest2 for Python 2.6 compatibility
 import unittest2 as unittest
 
 from update_conf_py import main
-import utils
+from . import utils
 
 
 class ParseAllTest(unittest.TestCase):
@@ -150,5 +157,5 @@ class ParseAllTest(unittest.TestCase):
         self.assertEqual(args.name, self.section_name)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()

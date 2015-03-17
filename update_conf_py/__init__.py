@@ -1,6 +1,10 @@
 """update_conf_py package
 """
 
-from main import run
+from __future__ import absolute_import
 
-__all__ = [run]
+# Use local imports from Python 3 compatibility
+from . import main
+from .main import run
+
+__all__ = [main, run]

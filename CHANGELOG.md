@@ -1,10 +1,15 @@
 Changelog
 =========
 
+0.4.4
+-----
+
+- Python 3 (3.2 or newer) compatibility added.
+
 0.4.3
 -----
 
-- Project is working now in Python 2.6;
+- Python 2.6 compatibility added;
 - Project integrated with Travis and Coveralls;
     - It passes in all tests (Python 2.6 and 2.7) and has 100% code coverage.
 

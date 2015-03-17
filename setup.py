@@ -148,8 +148,8 @@ setup(
 
     # Requirements
     install_requires=[
-        "argparse>=1.2",
-        "configparser>=2.3",
+        # Require 'argparse' for Python 2.6 compatibility
+        "argparse>=1.1",
     ],
 
     # Classifiers
@@ -160,9 +160,13 @@ setup(
         "Intended Audience :: System Administrators",
         "License :: OSI Approved",
         "Natural Language :: English",
+        "Operating System :: MacOS :: MacOS X",
         "Operating System :: POSIX",
         "Programming Language :: Python :: 2.6",
         "Programming Language :: Python :: 2.7",
+        "Programming Language :: Python :: 3.2",
+        "Programming Language :: Python :: 3.3",
+        "Programming Language :: Python :: 3.4",
         "Topic :: System :: Systems Administration",
         "Topic :: Utilities",
     ],

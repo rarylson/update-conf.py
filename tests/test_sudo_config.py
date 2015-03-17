@@ -1,15 +1,21 @@
+from __future__ import absolute_import
+
 import sys
 import os
 from os.path import join, isfile
 import shutil
-from StringIO import StringIO
+# Use 'io.StringIO' for Python 3 compatibility. In Python 2, still use
+# 'StringIO.StringIO' to avoid unicode errors.
+try:
+    from StringIO import StringIO
+except ImportError:
+    from io import StringIO
 
 # Import unittest2 for Python 2.6 compatibility
 import unittest2 as unittest
 
 from update_conf_py import main
-
-import utils
+from . import utils
 
 
 @unittest.skipIf(
@@ -90,5 +96,5 @@ class SudoConfigTest(unittest.TestCase):
             sys.stderr = stderr_old
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()
