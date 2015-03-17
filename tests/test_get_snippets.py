@@ -40,7 +40,7 @@ class GetSnippetsTest(unittest.TestCase):
                 "other_name-conf", "some_name-conf"])
 
     def test_snippets_wrong_dir(self):
-        """App must prints an error and exists if wrong dirs are used
+        """App must print an error and exists if wrong dirs are used
 
         Empty dirs and non-existend dirs are the two tested cases.
         """
