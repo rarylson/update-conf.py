@@ -19,7 +19,7 @@ This project was based on the [update-conf.d project](https://github.com/Atha/up
 Install
 -------
 
-This project requires Python 2.6, 2.7 or 3.4.
+This project works in Python 2 (2.6 or newer) and Python 3 (3.2 or newer).
 
 To install:
 

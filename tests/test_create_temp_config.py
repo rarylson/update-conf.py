@@ -4,7 +4,7 @@ import sys
 import os
 from os.path import join
 import filecmp
-# Use 'io.StringIO' for Python 3.4 compatibility. In Python 2.X, still use
+# Use 'io.StringIO' for Python 3 compatibility. In Python 2, still use
 # 'StringIO.StringIO' to avoid unicode errors.
 try:
     from StringIO import StringIO

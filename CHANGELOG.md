@@ -4,7 +4,8 @@ Changelog
 0.4.4
 -----
 
-- Added Python 3.4 compatibility;
+- Added Python 3.X compatibility;
+    - Now it works in Python 3.2 or newer.
 
 0.4.3
 -----

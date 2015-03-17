@@ -86,7 +86,7 @@ class ScriptTest(unittest.TestCase):
         # See: http://stackoverflow.com/a/4814985/2530295
         output = subprocess.Popen(
             args, stdout=subprocess.PIPE).communicate()[0]
-        # In Python 3.4, it's necessary a simple conversion.
+        # In Python 3, it's necessary a conversion to str.
         output = str(output)
         self.assertTrue(
             "Skiping" in output and "Merging" in output and
