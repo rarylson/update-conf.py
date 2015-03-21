@@ -1,9 +1,9 @@
 Contributing
 ============
 
-Contributions are always welcome. Every little help will be appreciated!
+Contributions are always welcome. And every little help will be appreciated!
 
-Furthermore, we love pull requests. Really!!!
+Furthermore, we love pull requests. Really!!! :smile:
 
 However, to make your contribution more effective, we'll appreciate if you follow some guidelines.
 
@@ -66,37 +66,47 @@ When creating a pull request, please try to follow these guidelines:
 - Base your changes in the develop branch;
     - You can use the master branch, but it would be possible that you lost some updates do not merged in the master branch yet;
     - Run:
+
       ```sh
       git clone git@github.com:YOUR_NAME/update-conf.py.git
       cd update-conf.py
       git checkout -b YOUR-BRANCH origin/develop
       ```
+
 - For bugs and features, it's recomended to install the project in your local environmet inside a virtualenv;
   - The following setup might work at the most situations:
+
     ```sh
     virtualenv venv
     . venv/bin/activate
     pip install -r requirements-test.txt
     python setup.py develop
     ```
+
   - However, if you really need a complete environment, you can run (if you're using Ubuntu):
+
     ```sh
     make develop-deps-ubuntu
     make install-develop
     ```
+
 - If your pull request solves a bug, include the necessary unit tests that reproduces the bug (and that passes after the fix);
 - If your pull request adds a feature, include the necessary unit tests;
 - Add any necessary docstrings and comments to the code;
 - Verify if your code passes in every check and test:
+
   ```sh
   make check
   make test  # or 'sudo make test' to run all tests
   make test-coverage
   ```
+
 - Push your changes:
+
   ```sh
   git push --set-upstream origin YOUR-BRANCH
   ```
+
 - Make a pull request comparing your new branch with the project develop branch;
 - Verify if your code works for Python 2.6, 2.7, 3.2, 3.3 and 3.4;
     - We're not using `tox` or a similar solution to do this. For now, check [update-conf.py - Travis CI - Pull requests](https://travis-ci.org/rarylson/update-conf.py/pull_requests) and make sure that your pull request tests pass for all supported Python versions.
