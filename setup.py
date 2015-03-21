@@ -138,9 +138,9 @@ setup(
     author=main.__author__,
     author_email=main.__email__,
     url=GITHUB_URL,
-    # FIXME: Currently, setuptools do not understand this option (it's used
-    # only by twine). When using setuptools, for now, ignore the warning. In
-    # a future, only pass this option when using twine.
+    # Note: Currently, neither setuptools nor twine support the 'bugtrack_url' metadata. Actually,
+    # it is not even specified in Metadata 2.0.
+    # For now, let's just ignore the warning and manually set 'bugtrack_url' in PyPI.
     bugtrack_url="{0}/issues".format(GITHUB_URL),
     download_url="{0}/tarball/{1}".format(GITHUB_URL, main.__version__),
     keywords="system unix config split snippets sysadmin",
