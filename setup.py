@@ -138,9 +138,9 @@ setup(
     author=main.__author__,
     author_email=main.__email__,
     url=GITHUB_URL,
-    # Note: Currently, neither setuptools nor twine support the 'bugtrack_url' metadata. Actually,
-    # it is not even specified in Metadata 2.0.
-    # For now, let's just ignore the warning and manually set 'bugtrack_url' in PyPI.
+    # Note: Currently, neither setuptools nor twine support the 'bugtrack_url'
+    # metadata. Actually, it is not even specified in Metadata 2.0. For now,
+    # let's just ignore the warning and manually set 'bugtrack_url' in PyPI.
     bugtrack_url="{0}/issues".format(GITHUB_URL),
     download_url="{0}/tarball/{1}".format(GITHUB_URL, main.__version__),
     keywords="system unix config split snippets sysadmin",
@@ -150,6 +150,13 @@ setup(
     install_requires=[
         # Require 'argparse' for Python 2.6 compatibility
         "argparse>=1.1",
+    ],
+    setup_requires=[
+        "setuptools>=0.8",
+        "pypandoc>=0.9",
+    ],
+    tests_require=[
+        "unittest2>=1.0.0",
     ],
 
     # Classifiers
@@ -183,21 +190,6 @@ setup(
     data_files=[
         (join("share", main.__program__), [sample_config, ]),
     ],
-
-    # Extra
-    extras_require={
-        "dev": [
-            "setuptools>=0.8",
-            "pypandoc>=0.9",
-        ],
-        "test": [
-            "unittest2>=1.0.0",
-            "coverage>=3.7",
-            "flake8>=2.2",
-            "pep8-naming>=0.2",
-            "check-manifest>=0.22",
-        ],
-    },
 
     # Tests
     test_suite="tests",
