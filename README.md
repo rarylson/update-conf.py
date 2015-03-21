@@ -1,8 +1,8 @@
 update-conf.py
 ==============
 
-[![Travis CI - Build Status](https://img.shields.io/travis/rarylson/update-conf.py.svg)](https://travis-ci.org/rarylson/update-conf.py)
-[![Coveralls - Coverage Percentage](https://img.shields.io/coveralls/rarylson/update-conf.py.svg)](https://coveralls.io/r/rarylson/update-conf.py)
+[![Travis CI - Build Status](https://img.shields.io/travis/rarylson/update-conf.py/master.svg)](https://travis-ci.org/rarylson/update-conf.py)
+[![Coveralls - Coverage Percentage](https://img.shields.io/coveralls/rarylson/update-conf.py/master.svg)](https://coveralls.io/r/rarylson/update-conf.py)
 [![Pypi - Downloads](https://img.shields.io/pypi/dm/update-conf.py.svg)](https://pypi.python.org/pypi/update-conf.py/)
 [![Pypi - Version](https://img.shields.io/pypi/v/update-conf.py.svg)](https://pypi.python.org/pypi/update-conf.py/)
 [![License](https://img.shields.io/pypi/l/update-conf.py.svg)](LICENSE)
@@ -19,9 +19,7 @@ This project was based on the [update-conf.d project](https://github.com/Atha/up
 Install
 -------
 
-This project requires Python 2.6 or Python 2.7.
-
-**PS:** We're working on Python 3.X compatibility.
+This project works in Python 2 (2.6 or newer) and Python 3 (3.2 or newer).
 
 To install:
 
@@ -108,8 +106,4 @@ TODO
 - Publish this software in a Ubuntu PPA;
     - Remove dependencies from argparse e configparser before pubishing in the PPA;
     - Ubuntu 12.04 and Ubuntu 14.04;
-- Hide "bugtracker_url" warning when running `setup.py` with setuptools;
-- https://pypi.python.org/pypi/bumpversion/ in `Makefile`;
-- Add a `CONTRIBUTING.md` file (https://github.com/blog/1184-contributing-guidelines);
-- Make project compatible with Python 3.X;
-- Add a test installing `update-conf.py` from PyPI Test (`make publish-test`).
+- Add a `CONTRIBUTING.md` file (https://github.com/blog/1184-contributing-guidelines).

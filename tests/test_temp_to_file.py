@@ -1,3 +1,5 @@
+from __future__ import absolute_import
+
 import os
 from os.path import join, isfile
 import shutil
@@ -8,7 +10,7 @@ import filecmp
 import unittest2 as unittest
 
 from update_conf_py import main
-import utils
+from . import utils
 
 
 class TempToFileTest(unittest.TestCase):
@@ -58,5 +60,5 @@ class TempToFileTest(unittest.TestCase):
                 os.remove(temp_file)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()

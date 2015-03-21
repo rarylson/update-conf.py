@@ -6,7 +6,7 @@ from os.path import abspath, dirname, join, isfile
 import shutil
 from distutils import log
 from setuptools import setup, Command
-from setuptools.command.register import register
+from setuptools.command.egg_info import egg_info
 from setuptools.command.install import install
 
 from update_conf_py import main
@@ -21,12 +21,12 @@ cur_dir = abspath(dirname(__file__))
 readme_md = join(cur_dir, README_MD)
 readme_rst = join(cur_dir, README_RST)
 sample_config = join("samples", main.CONFIG_NAME)
-sample_config_path = join(cur_dir, sample_config)
 # Get description from the first line of the module docstring.
 description = main.__doc__.split('\n')[0]
 # Get the long description from the 'README.rst' file (if it exists). Else,
-# use the module doc string.
-# The 'README.rst' is required when registering on Pypi.
+# fallback to the module docstring.
+# 'README.rst' MUST be required when generating dists or registering to PyPI.
+# In all the other cases, it's fine to use the module docstring.
 long_description = ""
 using_rst = False
 try:
@@ -35,6 +35,8 @@ try:
         using_rst = True
 except IOError:
     long_description = main.__doc__
+# Env vars for workaround
+using_check_manifest = os.environ.get('CHECK_MANIFEST', None) == 'True'
 
 
 class GenerateRstCommand(Command):
@@ -87,42 +89,53 @@ class GenerateRstCommand(Command):
             os.remove(tmp_readme_md)
 
 
-class RegisterCommand(register):
-    """Check if we're using README.rst before registering in Pypi
+class EggInfoCommand(egg_info):
+    """Check if we're using README.rst before registering in PyPI or before
+    creating dists
+
+    This is necessary to avoid uploading packages / registring versions without
+    the correct 'long_description'.
     """
 
     def finalize_options(self):
-        if not using_rst:
-            raise Exception("{} file not found".format(README_RST))
+        if (any(x in self.distribution.commands for x in
+                ["register", "sdist", "bdist_wheel"]) and
+                not using_check_manifest):
+            if not using_rst:
+                raise Exception("{} file not found".format(README_RST))
 
-        return register.finalize_options(self)
+        return egg_info.finalize_options(self)
 
 
 class InstallCommand(install):
     """Install the global config file
 
     The global config file will be installed only if:
-    - The file doesn't exist yet
+    - We're runnning the install command directly (not inside the 'bdist_wheel'
+      command, for example)
+    - The file doesn't exist yet (do not replace an already existing one)
     - We have write permission in the global system config dir
     """
 
     def run(self):
         result = install.run(self)
-        etc_dir = dirname(main.SYSTEM_CONFIG)
-        if not isfile(main.SYSTEM_CONFIG):
-            if os.access(etc_dir, os.W_OK):
-                log.info("Copying {0} to {1}".format(
-                    sample_config, main.SYSTEM_CONFIG))
-                shutil.copy(sample_config_path, main.SYSTEM_CONFIG)
+
+        if 'install' in self.distribution.commands:
+            etc_dir = dirname(main.SYSTEM_CONFIG)
+            if not isfile(main.SYSTEM_CONFIG):
+                if os.access(etc_dir, os.W_OK):
+                    log.info("Copying {0} to {1}".format(
+                        sample_config, main.SYSTEM_CONFIG))
+                    shutil.copy(sample_config, main.SYSTEM_CONFIG)
+                else:
+                    log.warn(
+                        "Skiping copy of {0} to {1}. You do not have write "
+                        "permission in the {2} dir.".format(
+                            sample_config, main.SYSTEM_CONFIG, etc_dir))
             else:
-                log.warn(
-                    "Skiping copy of {0} to {1}. You do not have write "
-                    "permission in the {2} dir.".format(
-                        sample_config, main.SYSTEM_CONFIG, etc_dir))
-        else:
-            log.info(
-                "Skipping copy of {0} to {1}. Config file already "
-                "exists.".format(sample_config, main.SYSTEM_CONFIG))
+                log.info(
+                    "Skipping copy of {0} to {1}. Config file already "
+                    "exists.".format(sample_config, main.SYSTEM_CONFIG))
 
         return result
 
@@ -138,9 +151,9 @@ setup(
     author=main.__author__,
     author_email=main.__email__,
     url=GITHUB_URL,
-    # FIXME: Currently, setuptools do not understand this option (it's used
-    # only by twine). When using setuptools, for now, ignore the warning. In
-    # a future, only pass this option when using twine.
+    # Note: Currently, neither setuptools nor twine support the 'bugtrack_url'
+    # metadata. Actually, it is not even specified in Metadata 2.0. For now,
+    # let's just ignore the warning and manually set 'bugtrack_url' in PyPI.
     bugtrack_url="{0}/issues".format(GITHUB_URL),
     download_url="{0}/tarball/{1}".format(GITHUB_URL, main.__version__),
     keywords="system unix config split snippets sysadmin",
@@ -148,8 +161,16 @@ setup(
 
     # Requirements
     install_requires=[
-        "argparse>=1.2",
-        "configparser>=2.3",
+        # Require 'argparse' for Python 2.6 compatibility
+        "argparse>=1.1",
+    ],
+    setup_requires=[
+        "setuptools>=0.8",
+    ],
+    tests_require=[
+        "setuptools>=0.8",
+        "argparse>=1.1",
+        "unittest2>=1.0.0",
     ],
 
     # Classifiers
@@ -160,9 +181,13 @@ setup(
         "Intended Audience :: System Administrators",
         "License :: OSI Approved",
         "Natural Language :: English",
+        "Operating System :: MacOS :: MacOS X",
         "Operating System :: POSIX",
         "Programming Language :: Python :: 2.6",
         "Programming Language :: Python :: 2.7",
+        "Programming Language :: Python :: 3.2",
+        "Programming Language :: Python :: 3.3",
+        "Programming Language :: Python :: 3.4",
         "Topic :: System :: Systems Administration",
         "Topic :: Utilities",
     ],
@@ -180,28 +205,13 @@ setup(
         (join("share", main.__program__), [sample_config, ]),
     ],
 
-    # Extra
-    extras_require={
-        "dev": [
-            "setuptools>=0.8",
-            "pypandoc>=0.9",
-        ],
-        "test": [
-            "unittest2>=1.0.0",
-            "coverage>=3.7",
-            "flake8>=2.2",
-            "pep8-naming>=0.2",
-            "check-manifest>=0.22",
-        ],
-    },
-
     # Tests
     test_suite="tests",
 
     # Commands
     cmdclass={
         "generate_rst": GenerateRstCommand,
-        "register": RegisterCommand,
+        "egg_info": EggInfoCommand,
         "install": InstallCommand,
     }
 )
