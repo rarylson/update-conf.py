@@ -102,27 +102,31 @@ class InstallCommand(install):
     """Install the global config file
 
     The global config file will be installed only if:
-    - The file doesn't exist yet
+    - We're runnning the install command directly (not inside the 'bdist_wheel'
+      command, for example)
+    - The file doesn't exist yet (do not replace an already existing one)
     - We have write permission in the global system config dir
     """
 
     def run(self):
         result = install.run(self)
-        etc_dir = dirname(main.SYSTEM_CONFIG)
-        if not isfile(main.SYSTEM_CONFIG):
-            if os.access(etc_dir, os.W_OK):
-                log.info("Copying {0} to {1}".format(
-                    sample_config, main.SYSTEM_CONFIG))
-                shutil.copy(sample_config, main.SYSTEM_CONFIG)
+
+        if 'install' in self.distribution.commands:
+            etc_dir = dirname(main.SYSTEM_CONFIG)
+            if not isfile(main.SYSTEM_CONFIG):
+                if os.access(etc_dir, os.W_OK):
+                    log.info("Copying {0} to {1}".format(
+                        sample_config, main.SYSTEM_CONFIG))
+                    shutil.copy(sample_config, main.SYSTEM_CONFIG)
+                else:
+                    log.warn(
+                        "Skiping copy of {0} to {1}. You do not have write "
+                        "permission in the {2} dir.".format(
+                            sample_config, main.SYSTEM_CONFIG, etc_dir))
             else:
-                log.warn(
-                    "Skiping copy of {0} to {1}. You do not have write "
-                    "permission in the {2} dir.".format(
-                        sample_config, main.SYSTEM_CONFIG, etc_dir))
-        else:
-            log.info(
-                "Skipping copy of {0} to {1}. Config file already "
-                "exists.".format(sample_config, main.SYSTEM_CONFIG))
+                log.info(
+                    "Skipping copy of {0} to {1}. Config file already "
+                    "exists.".format(sample_config, main.SYSTEM_CONFIG))
 
         return result
 
@@ -156,6 +160,7 @@ setup(
         "pypandoc>=0.9",
     ],
     tests_require=[
+        "argparse>=1.1",
         "unittest2>=1.0.0",
     ],
 
