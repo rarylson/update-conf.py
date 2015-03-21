@@ -5,10 +5,10 @@ Contributions are always welcome. And every little help will be appreciated!
 
 Furthermore, we love pull requests. Really!!! :smile:
 
-However, to make your contribution more effective, we'll appreciate if you follow some guidelines.
+However, to make your contribution more effective, we would appreciate if you follow our guidelines.
 
-How can I contribute with this project?
----------------------------------------
+How can you contribute with this project?
+-----------------------------------------
 
 ### Bug reports
 
@@ -18,11 +18,11 @@ If you are reporting a bug, please include:
 
 - Your environment (operating system and version, python version, etc);
 - Any other details about your local setup that might be helpful in troubleshooting;
-- Detailed steps to reproduce the bug.
+- The detailed steps to reproduce the bug.
 
 ### Bugfixes
 
-You can find all current opened bugs at [update-conf.py - Issues (Bug)](https://github.com/rarylson/update-conf.py/labels/bug).
+You can find all opened bugs at [update-conf.py - Issues (Bug)](https://github.com/rarylson/update-conf.py/labels/bug).
 
 Feel free to contribute solving any of these bugs.
 
@@ -30,15 +30,15 @@ When solving a bug, please add the bug reference in your commit message.
 
 If you discovered a new bug and solved it, please create a bug report before submiting your solution.
 
-### Implementing features
+### Implement features
 
-You can find all current proposed features in [README - TODO](README.md#TODO).
+You can find all proposed features in [README - TODO](README.md#TODO).
 
 Feel free to contribute implementing any of these features.
 
-If someday the number of features increases, we may move them to [update-conf.py - Issues (Enhancement)](https://github.com/rarylson/update-conf.py/labels/enhancement).
+**PS:** If someday the number of features increases, we may move them to [update-conf.py - Issues (Enhancement)](https://github.com/rarylson/update-conf.py/labels/enhancement).
 
-### Proposing features
+### Propose features
 
 For now, if you want to propose some feature, propose it at [update-conf.py - Issues](https://github.com/rarylson/update-conf.py/issues) with the `Enhancement` flag.
 
@@ -47,9 +47,9 @@ If you are proposing a feature, please:
 - Explain in detail how it would work;
 - Keep the scope as narrow as possible, to make it easier to implement.
 
-Of course proposing a new feature will be welcome. But remember that this is a volunteer-driven project, and that contributions are welcome and awesome :smile:.
+Of course proposing a feature is welcome. But remember that this is a volunteer-driven project, and that code contributions would be awesome :smile:.
 
-###  Write Documentation
+###  Write documentation
 
 You can help us improving the docs in the `README.md` file, in docstrings, in comments, and so on. They are the main docs about this project.
 
