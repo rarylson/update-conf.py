@@ -35,6 +35,8 @@ try:
         using_rst = True
 except IOError:
     long_description = main.__doc__
+# Env vars for workaround
+using_check_manifest = os.environ.get('CHECK_MANIFEST', None) == 'True'
 
 
 class GenerateRstCommand(Command):
@@ -87,15 +89,22 @@ class GenerateRstCommand(Command):
             os.remove(tmp_readme_md)
 
 
-class RegisterCommand(register):
-    """Check if we're using README.rst before registering in Pypi
+class EggInfoCommand(egg_info):
+    """Check if we're using README.rst before registering in PyPI or before
+    creating dists
+
+    This is necessary to avoid uploading packages / registring versions without
+    the correct 'long_description'.
     """
 
     def finalize_options(self):
-        if not using_rst:
-            raise Exception("{} file not found".format(README_RST))
+        if (any(x in self.distribution.commands for x in
+                ["register", "sdist", "bdist_wheel"]) and
+                not using_check_manifest):
+            if not using_rst:
+                raise Exception("{} file not found".format(README_RST))
 
-        return register.finalize_options(self)
+        return egg_info.finalize_options(self)
 
 
 class InstallCommand(install):
@@ -202,7 +211,7 @@ setup(
     # Commands
     cmdclass={
         "generate_rst": GenerateRstCommand,
-        "register": RegisterCommand,
+        "egg_info": EggInfoCommand,
         "install": InstallCommand,
     }
 )
