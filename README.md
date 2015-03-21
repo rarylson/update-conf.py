@@ -100,10 +100,14 @@ Changelog
 
 Check the [CHANGELOG](CHANGELOG.md) page.
 
+Contributing
+------------
+
+If you want to contribute with this project, check the [CONTRIBUTING](CONTRIBUTING.md) page.
+
 TODO
 ----
 
 - Publish this software in a Ubuntu PPA;
     - Remove dependencies from argparse e configparser before pubishing in the PPA;
-    - Ubuntu 12.04 and Ubuntu 14.04;
-- Add a `CONTRIBUTING.md` file (https://github.com/blog/1184-contributing-guidelines).
+    - Ubuntu 12.04 and Ubuntu 14.04.
