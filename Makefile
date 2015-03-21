@@ -25,13 +25,14 @@ help:
 	@echo "    make develop-deps-ubuntu  install software dependencies (valid only in Ubuntu)"
 	@echo "    make prepare              prepare stuff (build, dist, etc) before publishing"
 	@echo "    make publish-test         test publishing a version (PyPI Test)"
+	@echo "    make install-pypitest     test install project (from PyPI Test)"
 	@echo "    make publish              publish a version (GitHub / PyPI)"
 
 
 # Tests
 
 check:
-	check-manifest
+	CHECK_MANIFEST=True check-manifest
 	python setup.py flake8
 # Ignore 'N802' (function name should be lowercase) in tests because we need
 # to inherit from the unittest class (that defines the setUp / tearDown
@@ -80,7 +81,14 @@ develop-deps-ubuntu:
 
 install-develop:
 	virtualenv $(VENV)
+	. $(VENV)/bin/activate && pip install -r requirements-dev.txt
 	. $(VENV)/bin/activate && python setup.py develop
+
+install-pypitest:
+	virtualenv $(VENV)
+	. $(VENV)/bin/activate && pip install -r requirements.txt
+	. $(VENV)/bin/activate && pip install \
+		--index-url=https://testpypi.python.org/pypi/ $(NAME)==$(VERSION)
 
 
 # Publish (release)
@@ -102,7 +110,7 @@ publish-github:
 	git push origin "v$(VERSION)"
 
 check-publish-test:
-	pip search --index http://testpypi.python.org/pypi/ $(NAME) | grep -o $(VERSION)
+	pip search --index https://testpypi.python.org/pypi/ $(NAME) | grep -o $(VERSION)
 
 check-publish:
 	pip search $(NAME) | grep -o $(VERSION)
