@@ -166,9 +166,9 @@ setup(
     ],
     setup_requires=[
         "setuptools>=0.8",
-        "pypandoc>=0.9",
     ],
     tests_require=[
+        "setuptools>=0.8",
         "argparse>=1.1",
         "unittest2>=1.0.0",
     ],
