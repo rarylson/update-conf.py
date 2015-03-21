@@ -106,7 +106,4 @@ TODO
 - Publish this software in a Ubuntu PPA;
     - Remove dependencies from argparse e configparser before pubishing in the PPA;
     - Ubuntu 12.04 and Ubuntu 14.04;
-- Hide "bugtracker_url" warning when running `setup.py` with setuptools;
-- https://pypi.python.org/pypi/bumpversion/ in `Makefile`;
-- Add a `CONTRIBUTING.md` file (https://github.com/blog/1184-contributing-guidelines);
-- Add a test installing `update-conf.py` from PyPI Test (`make publish-test`).
+- Add a `CONTRIBUTING.md` file (https://github.com/blog/1184-contributing-guidelines).

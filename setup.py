@@ -6,7 +6,7 @@ from os.path import abspath, dirname, join, isfile
 import shutil
 from distutils import log
 from setuptools import setup, Command
-from setuptools.command.register import register
+from setuptools.command.egg_info import egg_info
 from setuptools.command.install import install
 
 from update_conf_py import main
@@ -24,8 +24,9 @@ sample_config = join("samples", main.CONFIG_NAME)
 # Get description from the first line of the module docstring.
 description = main.__doc__.split('\n')[0]
 # Get the long description from the 'README.rst' file (if it exists). Else,
-# use the module doc string.
-# The 'README.rst' is required when registering on Pypi.
+# fallback to the module docstring.
+# 'README.rst' MUST be required when generating dists or registering to PyPI.
+# In all the other cases, it's fine to use the module docstring.
 long_description = ""
 using_rst = False
 try:

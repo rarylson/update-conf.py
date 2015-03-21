@@ -25,6 +25,7 @@ help:
 	@echo "    make develop-deps-ubuntu  install software dependencies (valid only in Ubuntu)"
 	@echo "    make prepare              prepare stuff (build, dist, etc) before publishing"
 	@echo "    make publish-test         test publishing a version (PyPI Test)"
+	@echo "    make install-pypitest     test install project (from PyPI Test)"
 	@echo "    make publish              publish a version (GitHub / PyPI)"
 
 
@@ -81,6 +82,11 @@ develop-deps-ubuntu:
 install-develop:
 	virtualenv $(VENV)
 	. $(VENV)/bin/activate && python setup.py develop
+
+install-pypitest:
+	virtualenv $(VENV)
+	. $(VENV)/bin/activate && pip install \
+		--index-url=http://testpypi.python.org/pypi/ $(NAME)==$(VERSION)
 
 
 # Publish (release)
