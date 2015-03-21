@@ -21,7 +21,6 @@ cur_dir = abspath(dirname(__file__))
 readme_md = join(cur_dir, README_MD)
 readme_rst = join(cur_dir, README_RST)
 sample_config = join("samples", main.CONFIG_NAME)
-sample_config_path = join(cur_dir, sample_config)
 # Get description from the first line of the module docstring.
 description = main.__doc__.split('\n')[0]
 # Get the long description from the 'README.rst' file (if it exists). Else,
@@ -113,7 +112,7 @@ class InstallCommand(install):
             if os.access(etc_dir, os.W_OK):
                 log.info("Copying {0} to {1}".format(
                     sample_config, main.SYSTEM_CONFIG))
-                shutil.copy(sample_config_path, main.SYSTEM_CONFIG)
+                shutil.copy(sample_config, main.SYSTEM_CONFIG)
             else:
                 log.warn(
                     "Skiping copy of {0} to {1}. You do not have write "
