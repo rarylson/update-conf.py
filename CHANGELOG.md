@@ -4,7 +4,8 @@ Changelog
 0.4.4
 -----
 
-- Python 3 (3.2 or newer) compatibility added.
+- Python 3 (3.2 or newer) compatibility added;
+- Improvements in the build process.
 
 0.4.3
 -----
