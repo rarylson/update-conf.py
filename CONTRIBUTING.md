@@ -95,7 +95,7 @@ When creating a pull request, please try to follow these guidelines:
   ```
 - Push your changes:
   ```sh
-  git push -u YOUR-BRANCH origin/YOUR-BRANCH
+  git push --set-upstream origin YOUR-BRANCH
   ```
 - Make a pull request comparing your new branch with the project develop branch;
 - Verify if your code works for Python 2.6, 2.7, 3.2, 3.3 and 3.4;
