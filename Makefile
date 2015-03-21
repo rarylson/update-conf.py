@@ -81,12 +81,14 @@ develop-deps-ubuntu:
 
 install-develop:
 	virtualenv $(VENV)
+	. $(VENV)/bin/activate && pip install -r requirements-dev.txt
 	. $(VENV)/bin/activate && python setup.py develop
 
 install-pypitest:
 	virtualenv $(VENV)
+	. $(VENV)/bin/activate && pip install -r requirements.txt
 	. $(VENV)/bin/activate && pip install \
-		--index-url=http://testpypi.python.org/pypi/ $(NAME)==$(VERSION)
+		--index-url=https://testpypi.python.org/pypi/ $(NAME)==$(VERSION)
 
 
 # Publish (release)
@@ -108,7 +110,7 @@ publish-github:
 	git push origin "v$(VERSION)"
 
 check-publish-test:
-	pip search --index http://testpypi.python.org/pypi/ $(NAME) | grep -o $(VERSION)
+	pip search --index https://testpypi.python.org/pypi/ $(NAME) | grep -o $(VERSION)
 
 check-publish:
 	pip search $(NAME) | grep -o $(VERSION)
