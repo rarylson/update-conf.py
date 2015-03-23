@@ -81,7 +81,7 @@ When installing via the source distribution, the global config file (`/etc/updat
 However, when installing via the binary wheel distribution, the config file installation will be skipped. But you can use the sample config file as a start point:
 
 ```sh
-cp {prefix}/share/update-conf.py /etc/update-conf.py.conf
+cp {prefix}/share/update-conf.py/update-conf.py.conf /etc/update-conf.py.conf
 ```
 
 It's also possible to pass a custom config file via command line args:
