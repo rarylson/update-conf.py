@@ -5,7 +5,8 @@ Changelog
 -----
 
 - Python 3 (3.2 or newer) compatibility added;
-- Improvements in the build process.
+- Improvements in the build process;
+- `CONTRIBUTING.md` added and a fix in `README.md`.
 
 0.4.3
 -----
