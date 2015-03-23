@@ -20,7 +20,7 @@ If you are reporting a bug, please include:
 
 ### Bugfixes
 
-You can find known bugs in [README - TODO](README.md#TODO). But someday we may move them to [update-conf.py - Issues (Bug)](https://github.com/rarylson/update-conf.py/labels/bug).
+You can find known bugs in [README - TODO](README.md#todo). But someday we may move them to [update-conf.py - Issues (Bug)](https://github.com/rarylson/update-conf.py/labels/bug).
 
 Feel free to contribute solving any of these bugs.
 
@@ -39,7 +39,7 @@ Of course proposing a feature is welcome. But remember that this is a volunteer-
 
 ### Implement features
 
-Currently, some proposed features are in [README - TODO](README.md#TODO). But someday we may move them to [update-conf.py - Issues (Enhancement)](https://github.com/rarylson/update-conf.py/labels/enhancement).
+Currently, some proposed features are in [README - TODO](README.md#todo). But someday we may move them to [update-conf.py - Issues (Enhancement)](https://github.com/rarylson/update-conf.py/labels/enhancement).
 
 Feel free to contribute implementing any of these features.
 
