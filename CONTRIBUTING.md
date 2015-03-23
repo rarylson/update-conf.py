@@ -5,8 +5,6 @@ Contributions are always welcome. And every little help will be appreciated!
 
 Furthermore, we love pull requests. Really!!! :smile:
 
-However, to make your contribution more effective, we would appreciate if you follow our guidelines.
-
 How can you contribute with this project?
 -----------------------------------------
 
@@ -22,21 +20,11 @@ If you are reporting a bug, please include:
 
 ### Bugfixes
 
-You can find all opened bugs at [update-conf.py - Issues (Bug)](https://github.com/rarylson/update-conf.py/labels/bug).
+You can find known bugs in [README - TODO](README.md#TODO). But someday we may move them to [update-conf.py - Issues (Bug)](https://github.com/rarylson/update-conf.py/labels/bug).
 
 Feel free to contribute solving any of these bugs.
 
-When solving a bug, please add the bug reference in your commit message.
-
-If you discovered a new bug and solved it, please create a bug report before submiting your solution.
-
-### Implement features
-
-You can find all proposed features in [README - TODO](README.md#TODO).
-
-Feel free to contribute implementing any of these features.
-
-**PS:** If someday the number of features increases, we may move them to [update-conf.py - Issues (Enhancement)](https://github.com/rarylson/update-conf.py/labels/enhancement).
+When solving a bug, please add the bug reference in commit message and pull request.
 
 ### Propose features
 
@@ -49,22 +37,30 @@ If you are proposing a feature, please:
 
 Of course proposing a feature is welcome. But remember that this is a volunteer-driven project, and that code contributions would be awesome :smile:.
 
+### Implement features
+
+Currently, some proposed features are in [README - TODO](README.md#TODO). But someday we may move them to [update-conf.py - Issues (Enhancement)](https://github.com/rarylson/update-conf.py/labels/enhancement).
+
+Feel free to contribute implementing any of these features.
+
+When implementing a feature, please inform what feature is being implemented in commit message and pull request.
+
 ###  Write documentation
 
-You can help us improving the docs in the `README.md` file, in docstrings, in comments, and so on. They are the main docs about this project.
+You can help us improving the `README.md` file, docstrings, comments, and so on.
 
-If you want, you can also help us writing about this project in articles, blogs, etc... You can even help fixing any English mistakes in the docs (sorry for them :cry:).
+If you want, you can also help us writing about this project in articles, blogs, etc... You can even help fixing any English mistakes (sorry for them :cry:).
 
 This is a very simple project. We thought it's easy to understand and to use. This is why it doesn't have much documentation. However, fell free to add more docs if you consider necessary.
 
 Pull request guidelines
 -----------------------
 
-When creating a pull request, please try to follow these guidelines:
+When creating a pull request, please follow these guidelines:
 
 - Fork the project on Github;
-- Base your changes in the develop branch;
-    - You can use the master branch, but it would be possible that you lost some updates do not merged in the master branch yet;
+- To get the most updated branch, base your changes in the develop branch;
+    - You can use the master branch, but you may lost some updates do not merged in the master branch yet;
     - Run:
 
       ```sh
@@ -109,7 +105,7 @@ When creating a pull request, please try to follow these guidelines:
 
 - Make a pull request comparing your new branch with the project develop branch;
 - Verify if your code works for Python 2.6, 2.7, 3.2, 3.3 and 3.4;
-    - We're not using `tox` or a similar solution to do this. For now, check [update-conf.py - Travis CI - Pull requests](https://travis-ci.org/rarylson/update-conf.py/pull_requests) and make sure that your pull request tests pass for all supported Python versions.
+    - Currently, we're not using `tox` or a similar solution to do this. For now, check [update-conf.py - Travis CI - Pull requests](https://travis-ci.org/rarylson/update-conf.py/pull_requests) and make sure your pull request tests pass for all supported Python versions.
 
 If you follow all the previous guidelines, you're really an angel :angel: :+1:!
 
