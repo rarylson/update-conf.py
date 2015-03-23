@@ -81,7 +81,7 @@ When installing via the source distribution, the global config file (`/etc/updat
 However, when installing via the binary wheel distribution, the config file installation will be skipped. But you can use the sample config file as a start point:
 
 ```sh
-cp {prefix}/share/update-conf.py /etc/update-conf.py.conf
+cp {prefix}/share/update-conf.py/update-conf.py.conf /etc/update-conf.py.conf
 ```
 
 It's also possible to pass a custom config file via command line args:
@@ -100,10 +100,14 @@ Changelog
 
 Check the [CHANGELOG](CHANGELOG.md) page.
 
+Contributing
+------------
+
+If you want to contribute with this project, check the [CONTRIBUTING](CONTRIBUTING.md) page.
+
 TODO
 ----
 
 - Publish this software in a Ubuntu PPA;
     - Remove dependencies from argparse e configparser before pubishing in the PPA;
-    - Ubuntu 12.04 and Ubuntu 14.04;
-- Add a `CONTRIBUTING.md` file (https://github.com/blog/1184-contributing-guidelines).
+    - Ubuntu 12.04 and Ubuntu 14.04.
