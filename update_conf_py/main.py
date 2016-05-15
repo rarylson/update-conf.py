@@ -26,7 +26,7 @@ except ImportError:
 __author__ = "Rarylson Freitas"
 __email__ = "rarylson@gmail.com"
 __program__ = "update-conf.py"
-__version__ = "0.4.4"
+__version__ = "0.4.5"
 __license__ = "Revised BSD"
 
 # Consts
