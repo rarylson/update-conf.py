@@ -1,6 +1,11 @@
 Changelog
 =========
 
+0.4.5
+-----
+
+- Python3 compatibility changed to 3.3 or newer (including Python 3.5).
+
 0.4.4
 -----
 
