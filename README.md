@@ -75,9 +75,7 @@ update-conf.py --help
 
 `update-conf.py` will use the global config file (`/etc/update-conf.py.conf`) or the user-home config file (`~/.update-conf.py.conf`) if they exist.
 
-When installing via the source distribution, the global config file (`/etc/update-conf.py.conf`) will be automatically created.
-
-However, when installing via the binary wheel distribution, the config file installation will be skipped. But you can use the sample config file as a start point:
+You can use the the sample config file (provided within the distributed package) as a start point:
 
 ```sh
 cp {prefix}/share/update-conf.py/update-conf.py.conf /etc/update-conf.py.conf
