@@ -14,7 +14,6 @@
 include Makefile
 include LICENSE
 include .coveragerc
-include .travis.yml
 include *.md
 include *.txt
 recursive-include samples *
