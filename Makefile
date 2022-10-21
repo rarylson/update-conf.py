@@ -86,6 +86,7 @@ develop-deps-macos:
 
 install-develop:
 	virtualenv $(VENV)
+	. $(VENV)/bin/activate && pip install --upgrade pip
 	. $(VENV)/bin/activate && pip install -r requirements-dev.txt
 	. $(VENV)/bin/activate && python setup.py develop
 
@@ -114,10 +115,10 @@ publish-github:
 	git push origin "v$(VERSION)"
 
 check-publish-test:
-	pip search --index https://testpypi.python.org/pypi/ $(NAME) | grep -o $(VERSION)
+	pip index versions --index https://testpypi.python.org/pypi/ $(NAME) | grep -o "Available versions: $(VERSION)"
 
 check-publish:
-	pip search $(NAME) | grep -o $(VERSION)
+	pip index versions $(NAME) | grep -o "Available versions: $(VERSION)"
 
 publish-test: publish-pypitest check-publish-test
 

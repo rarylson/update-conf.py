@@ -1,6 +1,11 @@
 Changelog
 =========
 
+1.0.1
+-----
+
+- Minor fixes in the build/publish process
+
 1.0.0
 -----
 
