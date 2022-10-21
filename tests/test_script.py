@@ -1,13 +1,10 @@
-from __future__ import absolute_import
-
 import sys
 import os
 from os.path import join
 import subprocess
 import filecmp
 
-# Import unittest2 for Python 2.6 compatibility
-import unittest2 as unittest
+import unittest
 
 from update_conf_py import main
 from . import utils
@@ -59,7 +56,7 @@ class ScriptTest(unittest.TestCase):
             "{0}.bak".format(file_path), expected_path, shallow=False))
 
     def test_script_error(self):
-        """Script must prints an error and exists if something wrong ocour
+        """Script must print an error and exit if something wrong occur
 
         Only some tests are done, because most of them are already tested
         in the test cases of inner level functions.
@@ -81,13 +78,7 @@ class ScriptTest(unittest.TestCase):
         subprocess.call(args)
         # Set verbose flag
         args += ["-v"]
-        # Using subprocess.Popen instead of subprocess.check_output for Python
-        # 2.6 compatibility.
-        # See: http://stackoverflow.com/a/4814985/2530295
-        output = subprocess.Popen(
-            args, stdout=subprocess.PIPE).communicate()[0]
-        # In Python 3, it's necessary a conversion to str.
-        output = str(output)
+        output = str(subprocess.check_output(args))
         self.assertTrue(
             "Skiping" in output and "Merging" in output
             and "Backing up" in output)

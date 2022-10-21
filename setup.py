@@ -123,16 +123,11 @@ setup(
     packages=["update_conf_py"],
 
     # Requirements
-    install_requires=[
-        # Require 'argparse' for Python 2.6 compatibility
-        "argparse>=1.1",
-    ],
     setup_requires=[
         "setuptools>=0.8",
     ],
     tests_require=[
         "setuptools>=0.8",
-        "argparse>=1.1",
         "unittest2>=1.0.0",
     ],
 
@@ -146,11 +141,10 @@ setup(
         "Natural Language :: English",
         "Operating System :: MacOS :: MacOS X",
         "Operating System :: POSIX",
-        "Programming Language :: Python :: 2.6",
-        "Programming Language :: Python :: 2.7",
-        "Programming Language :: Python :: 3.3",
-        "Programming Language :: Python :: 3.4",
-        "Programming Language :: Python :: 3.5",
+        "Programming Language :: Python :: 3.7",
+        "Programming Language :: Python :: 3.8",
+        "Programming Language :: Python :: 3.9",
+        "Programming Language :: Python :: 3.10",
         "Topic :: System :: Systems Administration",
         "Topic :: Utilities",
     ],

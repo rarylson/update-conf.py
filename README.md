@@ -18,7 +18,7 @@ This project was based on the [update-conf.d project](https://github.com/Atha/up
 Install
 -------
 
-This project works in Python 2 (2.6 or newer) and Python 3 (3.3 or newer).
+This project works in Python 3 (3.7 or newer).
 
 To install:
 
@@ -105,6 +105,4 @@ If you want to contribute with this project, check the [CONTRIBUTING](CONTRIBUTI
 TODO
 ----
 
-- Publish this software in a Ubuntu PPA;
-    - Remove dependencies from argparse e configparser before pubishing in the PPA;
-    - Ubuntu 12.04 and Ubuntu 14.04.
+- Publish this software in a Ubuntu PPA.

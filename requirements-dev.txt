@@ -2,4 +2,3 @@
 
 setuptools>=0.8
 pypandoc>=0.9
-twine>=1.6.4

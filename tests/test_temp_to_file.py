@@ -1,13 +1,10 @@
-from __future__ import absolute_import
-
 import os
 from os.path import join, isfile
 import shutil
 import tempfile
 import filecmp
 
-# Import unittest2 for Python 2.6 compatibility
-import unittest2 as unittest
+import unittest
 
 from update_conf_py import main
 from . import utils

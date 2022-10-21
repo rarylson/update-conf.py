@@ -54,12 +54,12 @@ check-coverage: test-with-coverage
 	@echo "    http://localhost:8000"
 	@tput sgr0
 	@echo
-	cd htmlcov && python -m SimpleHTTPServer
+	cd htmlcov && python -m http.server
 
 
 # Install
 
-# setup.py does not have a uninstall command. We're only showing a tip.
+# setup.py does not have an uninstall command. We're only showing a tip.
 # See: http://stackoverflow.com/a/1550235/2530295
 uninstall:
 	@echo "'setup.py' does not have a uninstall command."
@@ -86,7 +86,6 @@ install-develop:
 
 install-pypitest:
 	virtualenv $(VENV)
-	. $(VENV)/bin/activate && pip install -r requirements.txt
 	. $(VENV)/bin/activate && pip install \
 		--index-url=https://testpypi.python.org/pypi/ $(NAME)==$(VERSION)
 

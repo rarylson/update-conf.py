@@ -9,18 +9,12 @@ NOTE: This software was based on the 'update-conf.d' project.
       See: https://github.com/Atha/update-conf.d
 """
 
-from __future__ import print_function
-
 import sys
 import os
 import shutil
 import tempfile
 import argparse
-# Try both 'configparser' and 'ConfigParser' for Python 3 compatibility
-try:
-    from configparser import SafeConfigParser
-except ImportError:
-    from ConfigParser import SafeConfigParser
+from configparser import ConfigParser
 
 # About
 __author__ = "Rarylson Freitas"
@@ -113,7 +107,7 @@ def _parse_all():
 
     # Parse config file
     if args.name:
-        config_parser = SafeConfigParser()
+        config_parser = ConfigParser()
         # Specific config file
         if args.config:
             try:
