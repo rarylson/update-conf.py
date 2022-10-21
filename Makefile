@@ -117,12 +117,15 @@ publish-github:
 check-publish-test:
 	pip index versions --index https://testpypi.python.org/pypi/ $(NAME) | grep -o "Available versions: $(VERSION)"
 
+after-publish-sleep:
+	sleep 30
+
 check-publish:
 	pip index versions $(NAME) | grep -o "Available versions: $(VERSION)"
 
-publish-test: publish-pypitest check-publish-test
+publish-test: publish-pypitest after-publish-sleep check-publish-test
 
-publish: publish-github publish-pypi check-publish
+publish: publish-github publish-pypi after-publish-sleep check-publish
 
 
 # Clean
