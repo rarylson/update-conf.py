@@ -5,5 +5,7 @@
 /dist
 *.egg-info/
 /.coverage
+/coverage.lcov
 /htmlcov
 *.pyc
+/.eggs

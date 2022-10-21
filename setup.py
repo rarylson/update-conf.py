@@ -82,7 +82,7 @@ class GenerateRstCommand(Command):
             with open(tmp_readme_md, "w") as f:
                 f.write(new_md)
             # Now, convert to RST
-            rst = pypandoc.convert(tmp_readme_md, "rst")
+            rst = pypandoc.convert_file(tmp_readme_md, "rst")
             with open(readme_rst, "w") as f:
                 f.write(rst)
         finally:
@@ -107,39 +107,6 @@ class EggInfoCommand(egg_info):
         return egg_info.finalize_options(self)
 
 
-class InstallCommand(install):
-    """Install the global config file
-
-    The global config file will be installed only if:
-    - We're runnning the install command directly (not inside the 'bdist_wheel'
-      command, for example)
-    - The file doesn't exist yet (do not replace an already existing one)
-    - We have write permission in the global system config dir
-    """
-
-    def run(self):
-        result = install.run(self)
-
-        if 'install' in self.distribution.commands:
-            etc_dir = dirname(main.SYSTEM_CONFIG)
-            if not isfile(main.SYSTEM_CONFIG):
-                if os.access(etc_dir, os.W_OK):
-                    log.info("Copying {0} to {1}".format(
-                        sample_config, main.SYSTEM_CONFIG))
-                    shutil.copy(sample_config, main.SYSTEM_CONFIG)
-                else:
-                    log.warn(
-                        "Skiping copy of {0} to {1}. You do not have write "
-                        "permission in the {2} dir.".format(
-                            sample_config, main.SYSTEM_CONFIG, etc_dir))
-            else:
-                log.info(
-                    "Skipping copy of {0} to {1}. Config file already "
-                    "exists.".format(sample_config, main.SYSTEM_CONFIG))
-
-        return result
-
-
 # Setup
 setup(
     # Main software info
@@ -151,25 +118,16 @@ setup(
     author=main.__author__,
     author_email=main.__email__,
     url=GITHUB_URL,
-    # Note: Currently, neither setuptools nor twine support the 'bugtrack_url'
-    # metadata. Actually, it is not even specified in Metadata 2.0. For now,
-    # let's just ignore the warning and manually set 'bugtrack_url' in PyPI.
-    bugtrack_url="{0}/issues".format(GITHUB_URL),
     download_url="{0}/tarball/{1}".format(GITHUB_URL, main.__version__),
     keywords="system unix config split snippets sysadmin",
     packages=["update_conf_py"],
 
     # Requirements
-    install_requires=[
-        # Require 'argparse' for Python 2.6 compatibility
-        "argparse>=1.1",
-    ],
     setup_requires=[
         "setuptools>=0.8",
     ],
     tests_require=[
         "setuptools>=0.8",
-        "argparse>=1.1",
         "unittest2>=1.0.0",
     ],
 
@@ -183,11 +141,10 @@ setup(
         "Natural Language :: English",
         "Operating System :: MacOS :: MacOS X",
         "Operating System :: POSIX",
-        "Programming Language :: Python :: 2.6",
-        "Programming Language :: Python :: 2.7",
-        "Programming Language :: Python :: 3.3",
-        "Programming Language :: Python :: 3.4",
-        "Programming Language :: Python :: 3.5",
+        "Programming Language :: Python :: 3.7",
+        "Programming Language :: Python :: 3.8",
+        "Programming Language :: Python :: 3.9",
+        "Programming Language :: Python :: 3.10",
         "Topic :: System :: Systems Administration",
         "Topic :: Utilities",
     ],
@@ -212,6 +169,5 @@ setup(
     cmdclass={
         "generate_rst": GenerateRstCommand,
         "egg_info": EggInfoCommand,
-        "install": InstallCommand,
     }
 )

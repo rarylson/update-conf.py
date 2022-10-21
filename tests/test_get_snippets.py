@@ -1,5 +1,3 @@
-from __future__ import absolute_import
-
 import sys
 from os.path import join, basename
 # Use 'io.StringIO' for Python 3 compatibility. In Python 2, still use
@@ -9,8 +7,7 @@ try:
 except ImportError:
     from io import StringIO
 
-# Import unittest2 for Python 2.6 compatibility
-import unittest2 as unittest
+import unittest
 
 from update_conf_py import main
 from . import utils
@@ -49,7 +46,7 @@ class GetSnippetsTest(unittest.TestCase):
         self.assertEqual(files, expected_files)
 
     def test_snippets_wrong_dir(self):
-        """App must print an error and exists if wrong dirs are used
+        """App must print an error and exist if wrong dirs are used
 
         Empty dirs and non-existend dirs are the two tested cases.
         """

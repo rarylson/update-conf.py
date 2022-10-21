@@ -1,7 +1,7 @@
 update-conf.py
 ==============
 
-[![Travis CI - Build Status](https://img.shields.io/travis/rarylson/update-conf.py/master.svg)](https://travis-ci.org/rarylson/update-conf.py)
+[![GitHub Workflow - Build Status](https://github.com/github/docs/actions/workflows/test.yml/badge.svg?branch=master)](https://travis-ci.org/rarylson/update-conf.py)
 [![Coveralls - Coverage Percentage](https://img.shields.io/coveralls/rarylson/update-conf.py/master.svg)](https://coveralls.io/r/rarylson/update-conf.py)
 [![Pypi - Downloads](https://img.shields.io/pypi/dm/update-conf.py.svg)](https://pypi.python.org/pypi/update-conf.py/)
 [![Pypi - Version](https://img.shields.io/pypi/v/update-conf.py.svg)](https://pypi.python.org/pypi/update-conf.py/)
@@ -18,7 +18,7 @@ This project was based on the [update-conf.d project](https://github.com/Atha/up
 Install
 -------
 
-This project works in Python 2 (2.6 or newer) and Python 3 (3.3 or newer).
+This project works in Python 3 (3.7 or newer).
 
 To install:
 
@@ -75,9 +75,7 @@ update-conf.py --help
 
 `update-conf.py` will use the global config file (`/etc/update-conf.py.conf`) or the user-home config file (`~/.update-conf.py.conf`) if they exist.
 
-When installing via the source distribution, the global config file (`/etc/update-conf.py.conf`) will be automatically created.
-
-However, when installing via the binary wheel distribution, the config file installation will be skipped. But you can use the sample config file as a start point:
+You can use the the sample config file (provided within the distributed package) as a start point:
 
 ```sh
 cp {prefix}/share/update-conf.py/update-conf.py.conf /etc/update-conf.py.conf
@@ -107,6 +105,4 @@ If you want to contribute with this project, check the [CONTRIBUTING](CONTRIBUTI
 TODO
 ----
 
-- Publish this software in a Ubuntu PPA;
-    - Remove dependencies from argparse e configparser before pubishing in the PPA;
-    - Ubuntu 12.04 and Ubuntu 14.04.
+- Publish this software in a Ubuntu PPA.

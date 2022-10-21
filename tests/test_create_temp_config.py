@@ -1,18 +1,10 @@
-from __future__ import absolute_import
-
 import sys
 import os
 from os.path import join
 import filecmp
-# Use 'io.StringIO' for Python 3 compatibility. In Python 2, still use
-# 'StringIO.StringIO' to avoid unicode errors.
-try:
-    from StringIO import StringIO
-except ImportError:
-    from io import StringIO
+from io import StringIO
 
-# Import unittest2 for Python 2.6 compatibility
-import unittest2 as unittest
+import unittest
 
 from update_conf_py import main
 from . import utils

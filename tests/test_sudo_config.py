@@ -1,18 +1,10 @@
-from __future__ import absolute_import
-
 import sys
 import os
 from os.path import join, isfile
 import shutil
-# Use 'io.StringIO' for Python 3 compatibility. In Python 2, still use
-# 'StringIO.StringIO' to avoid unicode errors.
-try:
-    from StringIO import StringIO
-except ImportError:
-    from io import StringIO
+from io import StringIO
 
-# Import unittest2 for Python 2.6 compatibility
-import unittest2 as unittest
+import unittest
 
 from update_conf_py import main
 from . import utils
@@ -90,8 +82,9 @@ class SudoConfigTest(unittest.TestCase):
                 main._parse_all()
             output = sys.stderr.getvalue()
             self.assertTrue(
-                "neither" in output and "nor" in output and
-                main.SYSTEM_CONFIG in output and main.USER_CONFIG in output)
+                "neither" in output and "nor" in output
+                and main.SYSTEM_CONFIG in output
+                and main.USER_CONFIG in output)
         finally:
             sys.stderr = stderr_old
 
