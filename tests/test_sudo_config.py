@@ -90,8 +90,9 @@ class SudoConfigTest(unittest.TestCase):
                 main._parse_all()
             output = sys.stderr.getvalue()
             self.assertTrue(
-                "neither" in output and "nor" in output and
-                main.SYSTEM_CONFIG in output and main.USER_CONFIG in output)
+                "neither" in output and "nor" in output
+                and main.SYSTEM_CONFIG in output
+                and main.USER_CONFIG in output)
         finally:
             sys.stderr = stderr_old
 

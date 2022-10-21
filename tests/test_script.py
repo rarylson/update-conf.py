@@ -89,8 +89,8 @@ class ScriptTest(unittest.TestCase):
         # In Python 3, it's necessary a conversion to str.
         output = str(output)
         self.assertTrue(
-            "Skiping" in output and "Merging" in output and
-            "Backing up" in output)
+            "Skiping" in output and "Merging" in output
+            and "Backing up" in output)
 
     def test_run(self):
         """Test a call to the run function
