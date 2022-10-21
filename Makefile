@@ -44,6 +44,7 @@ test:
 
 test-with-coverage:
 	coverage run setup.py test
+	coverage lcov
 
 check-coverage: test-with-coverage
 	coverage html
@@ -131,6 +132,7 @@ clean-build:
 
 clean-coverage-report:
 	rm -f .coverage
+	rm -f coverage.lcov
 	rm -Rf htmlcov
 
 clean-pyc:
