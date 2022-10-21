@@ -1,10 +1,10 @@
 update-conf.py
 ==============
 
-[![GitHub Workflow - Build Status](https://github.com/github/docs/actions/workflows/test.yml/badge.svg?branch=master)](https://travis-ci.org/rarylson/update-conf.py)
-[![Coveralls - Coverage Percentage](https://img.shields.io/coveralls/rarylson/update-conf.py/master.svg)](https://coveralls.io/r/rarylson/update-conf.py)
-[![Pypi - Downloads](https://img.shields.io/pypi/dm/update-conf.py.svg)](https://pypi.python.org/pypi/update-conf.py/)
-[![Pypi - Version](https://img.shields.io/pypi/v/update-conf.py.svg)](https://pypi.python.org/pypi/update-conf.py/)
+[![Test Status](https://github.com/rarylson/update-conf.py/actions/workflows/tests/badge.svg?branch=master&event=push)](https://github.com/rarylson/update-conf.py/actions/workflows/test.yml)
+[![Coverage Status](https://coveralls.io/repos/github/rarylson/update-conf.py/badge.svg?branch=master)](https://coveralls.io/github/rarylson/update-conf.py?branch=master)
+[![PyPI - Downloads](https://img.shields.io/pypi/dm/update-conf.py.svg)](https://pypi.python.org/pypi/update-conf.py/)
+[![PyPI - Version](https://img.shields.io/pypi/v/update-conf.py.svg)](https://pypi.python.org/pypi/update-conf.py/)
 [![License](https://img.shields.io/pypi/l/update-conf.py.svg)](LICENSE)
 
 Generate config files from `conf.d` like directories.
