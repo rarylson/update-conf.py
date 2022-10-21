@@ -23,6 +23,7 @@ help:
 	@echo "    make clean                cleanup temporary files"
 	@echo "    make install-develop      install project in develop mode (virtual environment)"
 	@echo "    make develop-deps-ubuntu  install software dependencies (valid only in Ubuntu)"
+	@echo "    make develop-deps-macos   install software dependencies (valid only in MacOS if using Homebrew)"
 	@echo "    make prepare              prepare stuff (build, dist, etc) before publishing"
 	@echo "    make publish-test         test publishing a version (PyPI Test)"
 	@echo "    make install-pypitest     test install project (from PyPI Test)"
@@ -80,6 +81,9 @@ install:
 develop-deps-ubuntu:
 	apt-get install -y pandoc
 
+develop-deps-macos:
+	brew install pandoc
+
 install-develop:
 	virtualenv $(VENV)
 	. $(VENV)/bin/activate && pip install -r requirements-dev.txt
@@ -88,7 +92,7 @@ install-develop:
 install-pypitest:
 	virtualenv $(VENV)
 	. $(VENV)/bin/activate && pip install \
-		--index-url=https://testpypi.python.org/pypi/ $(NAME)==$(VERSION)
+		--index-url https://test.pypi.org/simple/ $(NAME)==$(VERSION)
 
 
 # Publish (release)
@@ -100,7 +104,7 @@ prepare:
 
 # To use this command, you should have pypitest configured in your ~/.pypirc.
 publish-pypitest: prepare
-	twine upload dist/* -r pypitest
+	twine upload --repository testpypi dist/*
 
 publish-pypi: prepare
 	twine upload dist/*

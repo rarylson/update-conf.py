@@ -1,4 +1,5 @@
 -r requirements-test.txt
 
 setuptools>=0.8
-pypandoc>=0.9
+pypandoc>=1.9
+twine>=4.0

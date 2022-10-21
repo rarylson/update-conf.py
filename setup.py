@@ -82,7 +82,7 @@ class GenerateRstCommand(Command):
             with open(tmp_readme_md, "w") as f:
                 f.write(new_md)
             # Now, convert to RST
-            rst = pypandoc.convert(tmp_readme_md, "rst")
+            rst = pypandoc.convert_file(tmp_readme_md, "rst")
             with open(readme_rst, "w") as f:
                 f.write(rst)
         finally:
