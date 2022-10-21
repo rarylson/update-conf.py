@@ -1,7 +1,7 @@
 update-conf.py
 ==============
 
-[![Test Status](https://github.com/rarylson/update-conf.py/actions/workflows/tests/badge.svg?branch=master&event=push)](https://github.com/rarylson/update-conf.py/actions/workflows/test.yml)
+[![Test Status](https://github.com/rarylson/update-conf.py/actions/workflows/test.yml/badge.svg?branch=master&event=push)](https://github.com/rarylson/update-conf.py/actions/workflows/test.yml)
 [![Coverage Status](https://coveralls.io/repos/github/rarylson/update-conf.py/badge.svg?branch=master)](https://coveralls.io/github/rarylson/update-conf.py?branch=master)
 [![PyPI - Downloads](https://img.shields.io/pypi/dm/update-conf.py.svg)](https://pypi.python.org/pypi/update-conf.py/)
 [![PyPI - Version](https://img.shields.io/pypi/v/update-conf.py.svg)](https://pypi.python.org/pypi/update-conf.py/)
