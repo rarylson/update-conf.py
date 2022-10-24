@@ -84,7 +84,6 @@ When creating a pull request, please follow these guidelines:
   ```sh
   make check
   make test  # or 'sudo make test' to run all tests
-  make test-coverage
   ```
 
 - Push your changes:

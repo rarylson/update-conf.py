@@ -31,11 +31,7 @@ help:
 
 check:
 	check-manifest
-# Ignore 'N802' (function name should be lowercase) in tests because we need
-# to inherit from the unittest class (that defines the setUp / tearDown
-# functions). Ignore 'W503' (line break occurred before a binary operator)
-# because it's now deprecated and PEP8 is recommending the opposite.
-	flake8 --ignore=N802,W503 $(TEST_PACKAGE)
+	flake8 $(PACKAGE) $(TEST_PACKAGE)
 
 test:
 	python setup.py test
