@@ -110,9 +110,9 @@ def _parse_all():
         config_parser = ConfigParser()
         # Specific config file
         if args.config:
-            try:
+            if os.path.isfile(args.config):
                 config_parser.read(args.config)
-            except IOError:
+            else:
                 parser.error("config file '{0}' not found".format(args.config))
         # Default config file
         # Options from USER_CONFIG take precedence over SYSTEM_CONFIG
