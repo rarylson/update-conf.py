@@ -1,6 +1,14 @@
 Changelog
 =========
 
+1.0.2
+-----
+
+- **Fix:** Close config file as soon as possible 
+    - Before, we were using `readfp` and keeping the config file opened forever
+- Multiple improvements and more automation in the build/publish process
+    - Notadably, the release process now uses a CI/CD pipeline via Github Actions
+
 1.0.1
 -----
 
