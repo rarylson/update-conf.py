@@ -111,7 +111,7 @@ def _parse_all():
         # Specific config file
         if args.config:
             try:
-                config_parser.readfp(open(args.config, 'r'))
+                config_parser.read(args.config)
             except IOError:
                 parser.error("config file '{0}' not found".format(args.config))
         # Default config file
