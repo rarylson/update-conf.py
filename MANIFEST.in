@@ -11,13 +11,11 @@
 # don't know if it is a bug. Anyway, we're adding it into our 'MANIFEST.in'.
 # See: https://pythonhosted.org/setuptools/setuptools.html
 #      https://docs.python.org/2/distutils/sourcedist.html
-include Makefile
 include LICENSE
-include .coveragerc
 include *.md
 include *.txt
 recursive-include samples *
 recursive-include tests *
 global-exclude tests/tmp/*
-global-exclude *.rst
 global-exclude *.pyc
+exclude Makefile

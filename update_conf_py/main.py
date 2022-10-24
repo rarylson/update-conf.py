@@ -20,7 +20,7 @@ from configparser import ConfigParser
 __author__ = "Rarylson Freitas"
 __email__ = "rarylson@gmail.com"
 __program__ = "update-conf.py"
-__version__ = "1.0.1"
+__version__ = "1.0.2"
 __license__ = "Revised BSD"
 
 # Consts
@@ -111,7 +111,7 @@ def _parse_all():
         # Specific config file
         if args.config:
             try:
-                config_parser.readfp(open(args.config, 'r'))
+                config_parser.read(args.config)
             except IOError:
                 parser.error("config file '{0}' not found".format(args.config))
         # Default config file

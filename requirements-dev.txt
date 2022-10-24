@@ -1,5 +1,8 @@
 -r requirements-test.txt
 
-setuptools>=0.8
-pypandoc>=1.9
+pip>=19.3
+setuptools>=46.1
+wheel>=0.34
 twine>=4.0
+
+check-wheel-contents>=0.3.4
