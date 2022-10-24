@@ -35,8 +35,7 @@ setup(
     author=main.__author__,
     author_email=main.__email__,
     url=GITHUB_URL,
-    download_url="{0}/tarball/{1}".format(GITHUB_URL, main.__version__),
-    keywords="system unix config split snippets sysadmin",
+    keywords="system unix config split merge snippets sysadmin",
     packages=["update_conf_py"],
 
     # Requirements

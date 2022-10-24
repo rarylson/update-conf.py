@@ -11,10 +11,9 @@ from . import utils
 
 
 @unittest.skipIf(
-    os.geteuid() != 0, "supported only if the user is a superuser")
+    os.geteuid() != 0, "supported only with root (or sudo)")
 class SudoConfigTest(unittest.TestCase):
-    """Tests for the config read feature, but that requires superuser
-    privileges
+    """Tests for the config read feature, but that requires root privileges
 
     This tests SHOULD be run only in DEVELOPMENT envs. There are risks of
     destroying your original config files. Keep CAUTION!
