@@ -19,5 +19,5 @@ include *.txt
 recursive-include samples *
 recursive-include tests *
 global-exclude tests/tmp/*
-global-exclude *.rst
 global-exclude *.pyc
+exclude Makefile

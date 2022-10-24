@@ -1,7 +1,7 @@
 update-conf.py
 ==============
 
-[![Test Status](https://github.com/rarylson/update-conf.py/actions/workflows/test.yml/badge.svg?branch=master&event=push)](https://github.com/rarylson/update-conf.py/actions/workflows/test.yml)
+[![Test Status](https://github.com/rarylson/update-conf.py/actions/workflows/tests.yml/badge.svg?branch=master&event=push)](https://github.com/rarylson/update-conf.py/actions/workflows/tests.yml)
 [![Coverage Status](https://coveralls.io/repos/github/rarylson/update-conf.py/badge.svg?branch=master)](https://coveralls.io/github/rarylson/update-conf.py?branch=master)
 [![PyPI - Downloads](https://img.shields.io/pypi/dm/update-conf.py.svg)](https://pypi.python.org/pypi/update-conf.py/)
 [![PyPI - Version](https://img.shields.io/pypi/v/update-conf.py.svg)](https://pypi.python.org/pypi/update-conf.py/)
@@ -22,13 +22,13 @@ This project works in Python 3 (3.7 or newer).
 
 To install:
 
-```sh
+```bash
 pip install update-conf.py
 ```
 
 It's possible to clone the project in Github and install it via `setuptools`:
 
-```sh
+```bash
 git clone git@github.com:rarylson/update-conf.py.git
 cd update-conf.py
 python setup.py install
@@ -39,7 +39,7 @@ Usage
 
 To generate a config file, you can run something like this:
 
-```sh
+```bash
 update-conf.py -f /etc/snmp/snmpd.conf
 ```
 
@@ -47,7 +47,7 @@ The example above will merge the snippets in the directory `/etc/snmp/snmpd.conf
 
 If the directory containing the snippets uses a diferent name pattern, you can pass its name as an argument:
 
-```sh
+```bash
 update-conf.py -f /etc/snmp/snmpd.conf -d /etc/snmp/snmpd.d
 ```
 
@@ -61,13 +61,13 @@ dir = /etc/snmp/snmpd.d
 
 Now, you can run:
 
-```sh
+```bash
 update-conf.py -n snmpd
 ```
 
 To get help:
 
-```sh
+```bash
 update-conf.py --help
 ```
 
@@ -77,13 +77,13 @@ update-conf.py --help
 
 You can use the the sample config file (provided within the distributed package) as a start point:
 
-```sh
-cp {prefix}/share/update-conf.py/update-conf.py.conf /etc/update-conf.py.conf
+```bash
+cp ${prefix}/share/update-conf.py/update-conf.py.conf /etc/update-conf.py.conf
 ```
 
 It's also possible to pass a custom config file via command line args:
 
-```sh
+```bash
 update-conf.py -c my_custom_config.conf -n snmpd
 ```
 

@@ -12,7 +12,7 @@ Changelog
 - The global config file (`/etc/update-conf.py.conf`) is not auto-installed when running `python setup.py install` as root anymore;
 - Support to Python 2 was removed;
     - Code simplified to support only Python 3 (3.7 or newer);
-- Switching CI from Travis to GitHub Workflows
+- Switching CI from Travis to GitHub Actions
 
 0.4.5
 -----

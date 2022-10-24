@@ -95,7 +95,7 @@ When creating a pull request, please follow these guidelines:
 
 - Make a pull request comparing your new branch with the project develop branch;
 - Verify if your code works for all supported Python versions;
-    - You can check [update-conf.py - GitHub - Actions](https://github.com/rarylson/update-conf.py/actions/workflows/test.yml) for troubleshooting if necessary.
+    - You can check [update-conf.py - GitHub Actions](https://github.com/rarylson/update-conf.py/actions/workflows/tests.yml) for troubleshooting if necessary.
 
 If you follow all the previous guidelines, you're really an angel :angel: :+1:!
 
