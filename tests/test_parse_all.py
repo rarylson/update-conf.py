@@ -116,7 +116,7 @@ class ParseAllTest(unittest.TestCase):
             with self.assertRaises(SystemExit):
                 main._parse_all()
             output = sys.stderr.getvalue()
-            self.assertTrue("config" in output and "not found" in output)
+            self.assertTrue("config file '/non-existent' not found" in output)
         finally:
             sys.stderr = stderr_old
 
@@ -129,7 +129,7 @@ class ParseAllTest(unittest.TestCase):
             with self.assertRaises(SystemExit):
                 main._parse_all()
             output = sys.stderr.getvalue()
-            self.assertTrue("section" in output and "not found" in output)
+            self.assertTrue("section name 'non_existent' not found" in output)
         finally:
             sys.stderr = stderr_old
 

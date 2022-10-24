@@ -1,6 +1,11 @@
 Changelog
 =========
 
+1.0.3
+-----
+
+- **Fix:** Error message when config file not found 
+
 1.0.2
 -----
 

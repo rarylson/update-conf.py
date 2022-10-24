@@ -66,7 +66,10 @@ class ScriptTest(unittest.TestCase):
         args = [utils.APP]
         args += ["-f", file_path, "-d", dir_path]
         with self.assertRaises(subprocess.CalledProcessError):
-            subprocess.check_call(args, stderr=subprocess.STDOUT)
+            subprocess.check_call(
+                args,
+                stderr=subprocess.DEVNULL
+            )
 
     def test_script_verbose(self):
         """Script must print verbose messages when verbose is set
