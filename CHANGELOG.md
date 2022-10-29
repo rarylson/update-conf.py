@@ -1,6 +1,11 @@
 Changelog
 =========
 
+1.1.0
+-----
+
+- Docs with more usage examples
+
 1.0.3
 -----
 
