@@ -1,8 +1,8 @@
 Changelog
 =========
 
-1.x.x [WIP]
------------
+1.1.0
+-----
 
 - Docs with more usage examples
 
