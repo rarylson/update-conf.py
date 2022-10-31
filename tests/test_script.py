@@ -83,7 +83,7 @@ class ScriptTest(unittest.TestCase):
         args += ["-v"]
         output = str(subprocess.check_output(args))
         self.assertTrue(
-            "Skiping" in output and "Merging" in output
+            "Skipping" in output and "Merging" in output
             and "Backing up" in output)
 
     def test_run(self):

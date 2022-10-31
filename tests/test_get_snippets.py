@@ -79,9 +79,9 @@ class GetSnippetsTest(unittest.TestCase):
         try:
             main._get_snippets(the_dir)
             output = sys.stdout.getvalue()
-            self.assertTrue("Skiping" in output and "01-conf_1.bak" in output)
+            self.assertTrue("Skipping" in output and "01-conf_1.bak" in output)
             self.assertTrue(
-                "Skiping" in output and "03-conf_3.disabled" in output)
+                "Skipping" in output and "03-conf_3.disabled" in output)
         finally:
             sys.stdout = stdout_old
 

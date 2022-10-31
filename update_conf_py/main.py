@@ -186,7 +186,7 @@ def _get_snippets(directory):
                 continue
             for ext in IGNORE_FILES_EXT:
                 if entry.endswith(ext):
-                    _print_verbose("Skiping {0}".format(entry))
+                    _print_verbose("Skipping {0}".format(entry))
                     entry_is_valid = False
                     break
             if entry_is_valid:
