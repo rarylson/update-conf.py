@@ -1,8 +1,9 @@
 update-conf.py
 ==============
 
-[![Test Status](https://github.com/rarylson/update-conf.py/actions/workflows/tests.yml/badge.svg?branch=master&event=push)](https://github.com/rarylson/update-conf.py/actions/workflows/tests.yml)
-[![Coverage Status](https://coveralls.io/repos/github/rarylson/update-conf.py/badge.svg?branch=master)](https://coveralls.io/github/rarylson/update-conf.py?branch=master)
+[![Test Status](https://img.shields.io/github/workflow/status/rarylson/update-conf.py/tests/master?label=tests&logo=github)](https://github.com/rarylson/update-conf.py/actions/workflows/tests.yml)
+[![Coverage Status](https://img.shields.io/coveralls/github/rarylson/update-conf.py?logo=coveralls)](https://coveralls.io/github/rarylson/update-conf.py?branch=master)
+[![PyPI - Python](https://img.shields.io/pypi/pyversions/update-conf.py?logo=python&logoColor=white)](https://pypi.python.org/pypi/update-conf.py/)
 [![PyPI - Downloads](https://img.shields.io/pypi/dm/update-conf.py.svg)](https://pypi.python.org/pypi/update-conf.py/)
 [![PyPI - Version](https://img.shields.io/pypi/v/update-conf.py.svg)](https://pypi.python.org/pypi/update-conf.py/)
 [![License](https://img.shields.io/pypi/l/update-conf.py.svg)](LICENSE)
