@@ -22,6 +22,7 @@ jobs:
       - run: python setup.py develop
       - run: make check
       - run: sudo PATH=$PATH make test-with-coverage
+      - run: coverage lcov
       - uses: coverallsapp/github-action@1.1.3
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
